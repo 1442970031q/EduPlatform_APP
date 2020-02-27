@@ -1,0 +1,49 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no,viewport-fit=cover" />
+    <title></title>
+    <link href="../../content/css/base.css" rel="stylesheet" />
+    <link href="../../content/css/vant.css" rel="stylesheet" />
+    <link href="../../content/css/pages/center/person.data.css" rel="stylesheet" />
+    <script src="html5plus://ready"></script>
+</head>
+<body>
+    <div id="app">
+        <div id="app-head" class="van-hairline--bottom" v-bind:style="{'paddingTop': statusbarHeight + 'px'}">
+            <i id="app-back-button" class="iconfont iconbaidifanhuianniux right-back"></i>
+            <div class="app-head-text">个人信息</div>
+        </div>
+        <div id="app-content">
+            <van-cell-group class="mt-10">
+                <van-cell is-link class="avatar_box" @click="isActionsheet = true">
+                    <template slot="title">
+                        <img v-lazy="currentUser.Avatar" class="avatar" />
+                    </template>
+                </van-cell>
+            </van-cell-group>
+            <van-cell-group class="mt-10">
+                <van-cell title="手机号码" v-bind:value="currentUser.UserInfo.Phone"></van-cell>
+                <van-cell title="性别" v-bind:value="currentUser.UserInfo.Sex"></van-cell>
+                <van-cell title="民族" v-bind:value="currentUser.UserInfo.SfzNation"></van-cell>
+                <van-cell title="学号" v-bind:value="currentUser.UserInfo.ExamNum ? currentUser.UserInfo.ExamNum : '暂无'"></van-cell>
+                <van-cell title="入学年份" v-bind:value="currentUser.UserInfo.InYear + '年'"></van-cell>
+            </van-cell-group>
+            <van-cell-group class="mt-10">
+                <van-switch-cell v-if="currentUser.IsGroupLeader" @change="change(1)" v-model="learn.group" title="开启小组学习"></van-switch-cell>
+                <van-switch-cell v-if="currentUser.IsDormitoryLeader" @change="change(2)" v-model="learn.dorm" title="开启寝室学习"></van-switch-cell>
+                <van-cell title="修改登录密码" @click="APP.GLOBAL.gotoNewWindow('new.password')" is-link></van-cell>
+            </van-cell-group>
+        </div>
+        <van-action-sheet v-bind:class="{'safe-area': APP.CONFIG.IsSafeArea()}"
+                          v-model="isActionsheet"
+                          v-bind:actions="actions"
+                          cancel-text="取消"></van-action-sheet>
+    </div>
+    <script src="../../content/js/vue.js"></script>
+    <script src="../../content/js/vant.min.js"></script>
+    <script src="../../content/js/base.js"></script>
+    <script src="../../content/js/pages/center/person.data.js"></script>
+</body>
+</html>

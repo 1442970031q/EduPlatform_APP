@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no,viewport-fit=cover" />
+		<title></title>
+		<link href="../../content/css/base.css" rel="stylesheet" />
+		<link href="../../content/css/vant.css" rel="stylesheet" />
+		<link href="../../content/css/pages/center/look.kpl.css" rel="stylesheet" />
+		<script src="html5plus://ready"></script>
+	</head>
+	<body>
+		<div id="app">
+			<div id="app-head" class="fixed" v-bind:style="{'paddingTop': statusbarHeight + 'px'}">
+				<i id="app-back-button" class="iconfont iconbaidifanhuianniux right-back"></i>
+				<div class="app-head-text">我的KPI</div>
+			</div>
+			<div id="app-content" v-bind:style="{'paddingTop': (45 + statusbarHeight) + 'px'}">
+				<div class="content" v-bind:style="{'top':height*0.09+'px','height':height+'px'}">
+					<img class="head" v-bind:style="{'top':-height*0.06+'px','left':left+'px'}" v-lazy="currentUser.Avatar" />
+					<div class="text" v-bind:style="{'top':height*0.2+'px'}">
+						<div v-if="isLoading" class="loading-box">
+							<van-loading color="black"></van-loading>
+							<p class="loading-text">正在加载...</p>
+						</div>
+						<div v-else>
+							<p class="v1">
+								KPI
+							</p>
+							<p class="v2" v-text="pageModule.dataUser.score">
+							</p>
+							<ul class="live">
+								<li class="lv">
+									<p class="name">班级排名<span class="ci" v-text="pageModule.dataUser.ranking"></span></p>
+								</li>
+								<!--  <li class="lv">
+						        <span class="ci">10</span>
+						        <p class="name">年级排名</p>
+						    </li> -->
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<script src="../../content/js/vue.js"></script>
+		<script src="../../content/js/vant.min.js"></script>
+		<script src="../../content/js/base.js"></script>
+		<script src="../../content/js/pages/center/look.kpl.js"></script>
+	</body>
+</html>

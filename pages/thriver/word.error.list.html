@@ -1,0 +1,58 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no,viewport-fit=cover" />
+    <title></title>
+    <link href="../../content/css/base.css" rel="stylesheet" />
+    <link href="../../content/css/vant.css" rel="stylesheet" />
+    <link href="../../content/css/pages/thriver/word.error.list.css" rel="stylesheet" />
+    <script src="html5plus://ready"></script>
+</head>
+<body>
+    <div id="app">
+        <div id="app-head" class="fixed van-hairline--bottom" v-bind:style="{'paddingTop': statusbarHeight + 'px'}">
+            <i id="app-back-button" class="iconfont iconbaidifanhuianniux right-back"></i>
+            <div class="app-head-text">错题列表</div>
+        </div>
+        <div id="app-content" v-bind:style="{'paddingTop': (45 + statusbarHeight) + 'px'}">
+            <ul class="list">
+                <li class="problem"
+                    v-for="(item,index) in errorList"
+                    v-bind:key="index">
+                    <p class="chi">释义</p>
+                    <p class="chi_text" v-text="item.Chi"></p>
+                    <div class="answer_box">
+                        <div class="part green">
+                            <p v-text="item.RightAnswer"></p>
+                        </div>
+                        <div class="part red">
+                            <p v-text="item.SAnswer"></p>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+
+        </div>
+    </div>
+    <script src="../../content/js/vue.js"></script>
+    <script src="../../content/js/vant.min.js"></script>
+    <script src="../../content/js/base.js"></script>
+    <script>
+        var _vue = new Vue({
+            el: '#app',
+            data: {
+                'currentSelected': [],
+                'statusbarHeight': 20,
+                'errorList': []
+            },
+            created: function () {
+                if (APP.CONFIG.IS_RUNTIME) {
+                    this.statusbarHeight = plus.navigator.getStatusbarHeight();
+                    this.errorList = plus.webview.currentWebview().paramObject;
+                } 
+            }
+        });
+    </script>
+</body>
+</html>

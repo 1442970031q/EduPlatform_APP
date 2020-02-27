@@ -1,0 +1,64 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no,viewport-fit=cover" />
+    <title></title>
+    <link href="../../../content/css/base.css" rel="stylesheet" />
+    <link href="../../../content/css/vant.css" rel="stylesheet" />
+    <link href="../../../content/css/pages/center/member/task.list.css" rel="stylesheet" />
+    <script src="html5plus://ready"></script>
+</head>
+<body>
+    <div id="app">
+        <div id="app-head" class="fixed" v-bind:style="{'paddingTop': statusbarHeight + 'px'}">
+            <i id="app-back-button" class="iconfont iconbaidifanhuianniux right-back"></i>
+            <div class="app-head-text">学员列表</div>
+        </div>
+        <div id="app-content" v-bind:style="{'paddingTop': (45 + statusbarHeight) + 'px'}">
+            <div v-if="isLoading" class="loading-box p60">
+                <van-loading color="black"></van-loading>
+                <p class="loading-text">正在加载...</p>
+            </div>
+            <div v-else v-cloak class="container">
+                <form action="/">
+                    <van-search class="van-hairline--bottom"
+                                placeholder="请输入要搜索的学员姓名" 
+                                v-model="searchValue" 
+                                @search="onSearch" 
+                                @cancel="onCancel"
+                                show-action></van-search>
+                </form>
+                <ul class="list">
+                    <li class="item"
+                        v-for="(item,index) in pageModel.list"
+                        v-bind:key="index"
+                        v-bind:class="{'green': item.Id !== 0}"
+                        @click="gotoDetail(item)"
+                        v-show="item.isShow">
+                        <div class="name clearfix">
+                            <span class="txt" v-text="item.RealName"></span>
+                            <span class="right" v-if="item.Id !== 0">点击查看详情</span>
+                        </div>
+                        <ul class="info">
+                            <li>
+                                <p class="value green" v-text="item.RightCount"></p>
+                                <p class="text">正确单词</p>
+                            </li>
+                            <li>
+                                <p class="value red" v-text="item.ErrorCount"></p>
+                                <p class="text">错误单词</p>
+                            </li>
+                        </ul>
+                        <p class="time" v-text="item.Id === 0 ? '未提交' : item.SubTime"></p>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <script src="../../../content/js/vue.js"></script>
+    <script src="../../../content/js/vant.min.js"></script>
+    <script src="../../../content/js/base.js"></script>
+    <script src="../../../content/js/pages/center/member/task.list.js"></script>
+</body>
+</html>

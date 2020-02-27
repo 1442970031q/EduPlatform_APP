@@ -1,0 +1,99 @@
+.tags {
+    padding: 10px;
+    background-color: #FFFFFF;
+}
+
+    .tags .tag {
+        font-size: 0.85em;
+        color: #AAAAAA;
+        display: inline-block;
+        padding: 5px 10px;
+        height: 20px;
+        line-height: 20px;
+    }
+
+        .tags .tag .tagsNum {
+            font-size: 0.7em;
+            color: #AAAAAA;
+        }
+
+    .tags .isCheck {
+        font-weight: bold;
+        color: #53aaf6;
+    }
+
+.content {
+}
+
+    .content .cell {
+        background-color: #FFFFFF;
+        padding: 10px;
+        display: flex;
+    }
+
+        .content .cell:active {
+            background-color: #f9f9f9;
+        }
+
+        .content .cell .left {
+            width: 120px;
+            height: 90px;
+            border-radius: 5px;
+            overflow: hidden;
+        }
+
+            .content .cell .left .img {
+                width: 100%;
+                display: block;
+            }
+
+        .content .cell .right {
+            width: calc(100% - 130px);
+            margin-left: 10px;
+        }
+
+            .content .cell .right .intro {
+                height: 20px;
+                line-height: 20px;
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                width: 100%;
+            }
+
+            .content .cell .right .name {
+                font-size: 1em;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                white-space: nowrap;
+                height: 20px;
+                line-height: 20px;
+            }
+
+            .content .cell .right .info {
+                height: 20px;
+                line-height: 20px;
+                font-size: .7em;
+                color: #a5a5a5;
+            }
+
+            .content .cell .right .intro {
+                font-size: 0.8em;
+                color: #AAAAAA;
+            }
+
+            .content .cell .right .number {
+                font-size: 0.7em;
+                height: 20px;
+                line-height: 20px;
+            }
+
+                .content .cell .right .number .school {
+                    float: left;
+                    color: #53AAF6;
+                }
+
+                .content .cell .right .number .view {
+                    float: right;
+                    color: #949494;
+                }

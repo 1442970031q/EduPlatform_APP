@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no,viewport-fit=cover" />
+		<title></title>
+		<link href="../../content/css/base.css" rel="stylesheet" />
+		<link href="../../content/css/vant.css" rel="stylesheet" />
+		<style>
+			html,
+			body {
+				background: url(../../content/img/center/employability.score_bottom_bg.png) no-repeat, linear-gradient(to bottom, #53abf6, #78b9f3);
+				background-size: 100% auto;
+				background-position: bottom;
+			}
+
+			#app-head {
+				background: rgba(0, 0, 0, 0);
+				color: #FFFFFF;
+			}
+
+			.center {
+				position: relative;
+				background: url(../../content/img/center/employability.score_center_bg.png) no-repeat;
+				background-size: 100% auto;
+				background-position: center center;
+				color: #FFFFFF;
+				text-align: center;
+			}
+
+			.center .title {
+				font-size: 0.8em;
+				position: relative;
+				top: 20px;
+			}
+
+			.center .score {
+				font-size: 1.5em;
+				font-weight: 500;
+			}
+
+			.bottom {
+				position: fixed;
+				bottom: 100px;
+				width: 100%;
+				text-align: center;
+				font-size: 0.9em;
+				color: #53AAF6;
+			}
+
+			.bottom .iconfont {
+				margin-left: 5px;
+			}
+		</style>
+		<script src="html5plus://ready"></script>
+	</head>
+	<body>
+		<div id="app">
+			<div id="app-head" class="fixed" v-bind:style="{'paddingTop': statusbarHeight + 'px'}">
+				<i id="app-back-button" class="iconfont iconbaidifanhuianniux right-back"></i>
+				<div class="app-head-text">就业能力指数</div>
+			</div>
+			<div id="app-content">
+				<div v-if="isLoading" class="loading-box p50">
+					<van-loading color="black"></van-loading>
+					<p class="loading-text">正在加载...</p>
+				</div>
+				<div v-else>
+					<div v-if="pageModel.length===0">
+						<div class="normal_info">
+						    <img class="img" src="../../content/img/center/like_bg.png" />
+						    <p class="text" style="color: #FFFFFF;">
+						        还没有相关数据
+						    </p>
+						</div>
+					</div>
+					<div v-else>
+						<div class="center" :style="{'top':height/4+'px','width':width/2+'px','height':width/2+'px','left':'calc(50% - '+width/2/2+'px)','lineHeight':width/2/3+'px'}">
+							<p class="title">综合评价</p>
+							<p class="score"  v-text="pageModel[index].TotalScore"></p>
+						</div>
+						<div class="bottom">
+							<span class="name" v-text="pageModel[index].DirectionName"></span>
+							<span v-text="pageModel[index].IsMain?'(主就业方向)':''"></span>
+							<i class="iconfont iconqiehuan" @click="changeIndex"></i>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<script src="../../content/js/vue.js"></script>
+		<script src="../../content/js/vant.min.js"></script>
+		<script src="../../content/js/base.js"></script>
+		<script src="../../content/js/pages/center/employability.score.js"></script>
+	</body>
+</html>

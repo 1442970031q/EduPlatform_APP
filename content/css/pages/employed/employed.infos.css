@@ -1,0 +1,72 @@
+	.tags {
+	    padding: 10px;
+	    background-color: #FFFFFF;
+	}
+
+	.tags .tag {
+	    font-size: 0.85em;
+	    color: #AAAAAA;
+	    display: inline-block;
+	    padding: 5px 10px;
+	}
+
+	.tags .tag .tagsNum {
+	    font-size: 0.7em;
+	    color: #AAAAAA;
+	}
+
+	.tags .isCheck {
+	    font-weight: bold;
+	    color: #53aaf6;
+	}
+
+	.content {}
+
+	.content .cell {
+	    background-color: #FFFFFF;
+	    padding: 10px;
+	    display: flex;
+	}
+
+	.content .cell .left {
+	    width: 30%;
+	    height: 80px;
+	    text-align: center;
+	}
+
+	.content .cell .left .img {
+	    height: 100%;
+	    width: auto;
+	}
+
+	.content .cell .right .intro {
+	    height: 35px;
+	    text-overflow: -o-ellipsis-lastline;
+	    overflow: hidden;
+	    text-overflow: ellipsis;
+	    display: -webkit-box;
+	    -webkit-line-clamp: 2;
+	    line-clamp: 2;
+	    -webkit-box-orient: vertical;
+	}
+
+	.content .cell .right .name {
+	    font-size: 0.9em;
+	    text-overflow: -o-ellipsis-lastline;
+	    overflow: hidden;
+	    text-overflow: ellipsis;
+	    display: -webkit-box;
+	    -webkit-line-clamp: 1;
+	    line-clamp: 1;
+	    -webkit-box-orient: vertical;
+	}
+
+	.content .cell .right .intro {
+	    font-size: 0.8em;
+	    color: #AAAAAA;
+	}
+
+	.content .cell .right .number {
+	    font-size: 0.8em;
+	    color: #53AAF6;
+	}

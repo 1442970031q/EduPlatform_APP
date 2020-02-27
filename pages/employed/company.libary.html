@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no,viewport-fit=cover" />
+		<title></title>
+		<link href="../../content/css/base.css" rel="stylesheet" />
+		<link href="../../content/css/vant.css" rel="stylesheet" />
+		<link href="../../content/css/pages/employed/company.libary.css" rel="stylesheet" />
+		<script src="html5plus://ready"></script>
+	</head>
+	<body>
+		<div id="app">
+			<div id="app-head" class="fixed" v-bind:style="{'paddingTop': statusbarHeight + 'px'}">
+				<i id="app-back-button" class="iconfont iconbaidifanhuianniux right-back"></i>
+				<div class="app-head-text">企业题目</div>
+			</div>
+			<div id="app-content" v-bind:style="{'paddingTop': (45 + statusbarHeight) + 'px'}">
+				<div class="search">
+					<van-search v-model="form.title" placeholder="请输入搜索关键词" @keyup="onSearch" @clear="loadPageData"></van-search>
+				</div>
+				<div class="content">
+					<div v-if="isLoading" class="loading-box p60">
+					    <van-loading color="black"></van-loading>
+					    <p class="loading-text">正在加载...</p>
+					</div>
+					<div v-else>
+						<div v-if="data.length==0" class="none">
+							没有相关数据
+						</div>
+						<div v-else class="cells">
+							<div class="cell mt-5" v-for="item in data" @click="gotoDetail(item)">
+								<div class="left">
+									<img src="../../content/img/employed/word_bg.png" class="img" />
+								</div>
+								<div class="right">
+									<p class="name" v-text="item.Title"></p>
+									<p class="info" v-text="item.Time+' | '+item.FileSize+'M'">
+									</p>
+								</div>
+							</div>
+							<div v-if="isLoadMore" class="load_more clearfix">
+								<van-loading color="black"></van-loading>
+								<span class="load_text">正在加载...</span>
+							</div>
+							<div v-if="isLoadComplete" class="load_more_complete">
+								<span class="load_text">没有更多的数据了...</span>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<script src="../../content/js/vue.js"></script>
+		<script src="../../content/js/vant.min.js"></script>
+		<script src="../../content/js/base.js"></script>
+		<script src="../../content/js/pages/employed/company.libary.js"></script>
+	</body>
+</html>

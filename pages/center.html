@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no,viewport-fit=cover" />
+    <title></title>
+    <link href="../content/css/vant.css" rel="stylesheet" />
+    <link href="../content/css/base.css" rel="stylesheet" />
+    <link href="../content/css/pages/center.css" rel="stylesheet" />
+    <script src="html5plus://ready"></script>
+</head>
+<body>
+    <div id="app">
+        <div id="app-head" class="fixed" v-bind:style="{'paddingTop': statusbarHeight + 'px'}">
+            <i class="iconfont iconshezhiwodex submit-button" @click="APP.GLOBAL.gotoNewWindow('center/setting')"></i>
+        </div>
+        <div id="app-content" v-cloak>
+            <div class="top_content" @touchmove.stop.prevent>
+                <div class="pad" v-bind:style="{'paddingTop': (45 + statusbarHeight) + 'px'}"></div>
+                <div class="info" v-bind:style="{'top': (50 + statusbarHeight) + 'px'}">
+                    <div class="img clearfix" @click="APP.GLOBAL.gotoNewWindow('center/person.data')">
+						<div>
+							<img class="head" v-lazy="currentUser.Avatar"/>
+						</div>
+                        <div class="head_middle">
+                            <p class="name w6" v-text="currentUser.RealName"></p>
+							<p class="name w3" v-show="isLearn">正在学习</p>
+                        </div>
+                    </div>
+                    <ul class="values">
+                        <li class="value van-hairline--right" @click="APP.GLOBAL.gotoNewWindow('center/integral')">
+                            <p class="number" v-text="numberFormat(currentUser.ResidualIntegral, 0)"></p>
+                            <p class="text">积分</p>
+                        </li>
+                        <li class="value" @click="APP.GLOBAL.gotoNewWindow('center/coin.record')">
+                            <p class="number" v-text="numberFormat(currentUser.YSDCoin, 0)"></p>
+                            <p class="text">云币</p>
+                        </li>
+                    </ul>
+                </div>
+                <div class="ments">
+                    <ul class="ment">
+                        <li class="lis" @click="gotoMemberMangmentPage()">
+                            <svg class="icon svg-icon icon_fs" aria-hidden="true">
+                                <use xlink:href="#iconchengyuanguanlix"></use>
+                            </svg>
+                            <p class="name">成员管理</p>
+                        </li>
+                        <li class="lis" @click="APP.GLOBAL.gotoNewWindow('center/look.kpl')">
+                            <svg class="icon svg-icon icon_fs" aria-hidden="true">
+                                <use xlink:href="#iconwodeKPIx"></use>
+                            </svg>
+                            <p class="name">我的KPI</p>
+                        </li>
+                        <li class="lis" @click="APP.GLOBAL.gotoNewWindow('center/list')">
+                            <svg class="icon svg-icon icon_fs" aria-hidden="true">
+                                <use xlink:href="#iconbangdanx"></use>
+                            </svg>
+                            <p class="name">榜单</p>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+			<van-pull-refresh v-model="isRefresh" @refresh="onRefresh">
+			   <div class="menu_content" v-bind:style="{'paddingTop': (254 + statusbarHeight) + 'px'}">
+			       <div class="center">
+			           <div class="title">
+			               <span class="tit">兑换商城</span>
+			               <!--<span class="right" @click="APP.GLOBAL.gotoNewWindow('conversion/conversion.records')">
+			                   查看兑换记录
+			               </span>-->
+			           </div>
+			           <div class="block">
+			               <div class="left" @click="gotoExchangePage(1)">
+			                   <p class="p1">实物商品</p>
+			                   <p class="p2">online goods</p>
+			               </div>
+			               <div class="right" @click="gotoExchangePage(2)">
+			                   <p class="p1">线上商品</p>
+			                   <p class="p2">online goods</p>
+			               </div>
+			           </div>
+			       </div>
+			       <div class="center mt-10">
+			           <div class="title van-hairline--bottom" @click="APP.GLOBAL.gotoNewWindow('center/my.order')">
+			               <span class="tit">我的订单</span>
+			               <span class="right">查看更多</span>
+			           </div>
+			           <ul class="ment">
+			               <li class="lis" @click="gotoOrdersDetail(1)">
+			                   <svg class="icon svg-icon icon_fs small" aria-hidden="true">
+			                       <use xlink:href="#iconyishenqingx"></use>
+			                   </svg>
+			                   <p class="name">已申请</p>
+			               </li>
+			               <li class="lis" @click="gotoOrdersDetail(2)">
+			                   <svg class="icon svg-icon icon_fs small" aria-hidden="true">
+			                       <use xlink:href="#iconyishouhuox"></use>
+			                   </svg>
+			                   <p class="name">待取货</p>
+			               </li>
+			               <li class="lis" @click="gotoOrdersDetail(3)">
+			                   <svg class="icon svg-icon icon_fs small" aria-hidden="true">
+			                       <use xlink:href="#iconshouhuotongzhix"></use>
+			                   </svg>
+			                   <p class="name">已收货</p>
+			               </li>
+			           </ul>
+			       </div>
+			       <van-cell-group class="foot mt-10">
+			           <van-cell @click="APP.GLOBAL.gotoNewWindow('center/my.paln')" title="个性化任务" is-link>
+			               <i slot="icon" class="iconfont iconteshujihuax"></i>
+			           </van-cell>
+			           <van-cell @click="APP.GLOBAL.gotoNewWindow('center/employability.score')" title="就业能力指数" is-link>
+			               <i slot="icon" class="iconfont iconjiuyenenglizhishux"></i>
+			           </van-cell>
+			           <!--<van-cell title="我的收藏" @click="APP.GLOBAL.gotoNewWindow('center/my.like')" is-link>
+			               <i slot="icon" class="iconfont iconwodeshoucangx"></i>
+			           </van-cell>-->
+			           <van-cell title="我的关注" @click="APP.GLOBAL.gotoNewWindow('center/my.insterest')" is-link>
+			               <i slot="icon" class="iconfont iconwodeguanzhux"></i>
+			           </van-cell>
+			       </van-cell-group>
+			   </div>
+			</van-pull-refresh>
+        </div>
+    </div>
+    <script src="../content/js/vue.js"></script>
+    <script src="../content/js/vant.min.js"></script>
+    <script src="../content/js/iconfont.js"></script>
+    <script src="../content/js/base.js"></script>
+    <script src="../content/js/pages/center.js"></script>
+</body>
+</html>

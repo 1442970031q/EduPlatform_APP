@@ -1,0 +1,105 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no,viewport-fit=cover" />
+		<title></title>
+		<link href="../../content/css/base.css" rel="stylesheet" />
+		<link href="../../content/css/vant.css" rel="stylesheet" />
+        <style>
+            html, body {
+                background:#ffffff;
+            }
+            .content {
+                padding: 10px;
+                padding-bottom:20px;
+            }
+                .content img {
+                    width:100%;
+                }
+                .content .info {
+                    font-size: 0.8em;
+                    color: #aaaaaa;
+                    margin-top: 10px;
+                }
+
+                    .content .info .time {
+                        float: right;
+                    }
+        </style>
+		<script src="html5plus://ready"></script>
+	</head>
+	<body>
+		<div id="app">
+			<div id="app-head" class="fixed van-hairline--bottom" v-bind:style="{'paddingTop': statusbarHeight + 'px'}">
+				<i id="app-back-button" class="iconfont iconbaidifanhuianniux right-back"></i>
+				<div class="app-head-text" v-text="pageModel.data.Title"></div>
+			</div>
+            <div id="app-content" v-bind:style="{'paddingTop': (45 + statusbarHeight) + 'px'}">
+                <div v-if="pageModel.isLoadding" class="loading-box p60">
+                    <van-loading color="black"></van-loading>
+                    <p class="loading-text">正在加载...</p>
+                </div>
+                <div class="content" v-else v-cloak>
+
+                    <div  v-html="pageModel.data.CContent"></div>
+                    <div class="info">
+                        <span v-text="pageModel.data.LookCount+'观看'"></span>
+                        <span class="time" v-text="pageModel.data.Time"></span>
+                    </div>
+                </div>
+            </div>
+		</div>
+		<script src="../../content/js/vue.js"></script>
+		<script src="../../content/js/vant.min.js"></script>
+		<script src="../../content/js/base.js"></script>
+		<script>
+            Vue.use(vant.Lazyload, {
+                'attempt': 1,
+                'error':'../../content/img/conversion/default_conversion_block.jpg',
+                'loading':'../../content/img/conversion/default_conversion_block.jpg'
+            });
+ 
+            var _vue = new Vue({
+                el: '#app',
+                data: {
+                    'currentUser': APP.GLOBAL.getUserModel(),
+                    'isLoading': true,
+                    'pageModel': {
+                        'data': {},
+                        'isLoadding':true
+                    },
+                    'form': {
+                        'id': APP.GLOBAL.queryString('id')
+                    },
+                    'statusbarHeight': 20
+				},
+                methods: {
+                    'loadingPageData': function () {
+                        APP.GLOBAL.ajax({
+                            url: APP.CONFIG.BASE_URL + 'ObtainEmploymentHeadline',
+                            data: this.form,
+                            success: function (result) {
+                                if (result.Error) {
+                                    APP.GLOBAL.toastMsg(result.Msg);
+                                    return;
+                                }
+
+                                Vue.set(_vue.pageModel, 'data', result.Data);
+                                _vue.pageModel.isLoadding = false;
+                            }
+                        });
+                    } 
+                },
+				created: function() {
+                    if (APP.CONFIG.IS_RUNTIME) {
+                        this.statusbarHeight = plus.navigator.getStatusbarHeight();
+                    }
+                },
+                mounted:function() {
+                    this.loadingPageData();
+                }
+			});
+		</script>
+	</body>
+</html>

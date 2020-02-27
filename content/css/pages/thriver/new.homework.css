@@ -1,0 +1,68 @@
+﻿.safe-area .van-action-sheet__cancel {
+    padding-bottom: constant(safe-area-inset-bottom);
+    padding-bottom: env(safe-area-inset-bottom);
+}
+
+.input_group .input_line.full .full_control {
+    text-align: left;
+    line-height: initial;
+    padding: 15px;
+    height: initial;
+    resize: none;
+}
+
+.input_group .caption {
+    padding: 15px;
+    padding-bottom: 5px;
+    color: #585858;
+    font-size: .9em;
+}
+
+.images {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 10px;
+}
+
+    .images .image_content {
+        width: 70px;
+        height: 70px;
+        margin-right: 10px;
+        position: relative;
+        overflow: hidden;
+        background-color: #f9f9f9;
+        border-radius: 3px;
+    }
+
+        .images .image_content.new {
+            background-color: #f9f9f9;
+            line-height: 70px;
+            text-align: center;
+        }
+
+            .images .image_content.new .iconfont {
+                font-size: 2em;
+                color: #d8d8d8;
+            }
+
+        .images .image_content img {
+            position: absolute;
+            margin: auto;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+        }
+
+        .images .image_content .mask {
+            position: absolute;
+            height: 70px;
+            width: 70px;
+            background-color: rgba(0,0,0,.6);
+            z-index: 2;
+            text-align: center;
+            color: white;
+            font-size: .8em;
+            line-height: 70px;
+        }

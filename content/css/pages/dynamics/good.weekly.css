@@ -1,0 +1,70 @@
+html,
+body {
+    background-color: #FFFFFF;
+}
+
+.cell {
+    padding: 0 10px;
+}
+
+    .cell:active {
+        background-color: #f9f9f9;
+    }
+
+    .cell .content {
+        padding: 10px 0;
+        display: flex;
+        width: 100%;
+    }
+
+        .cell .content .left {
+            width: 45px;
+            padding: 5px;
+            float: left;
+        }
+
+            .cell .content .left .img {
+                display: block;
+                width: 100%;
+            }
+
+        .cell .content .right {
+            height: 59.5px;
+            width: calc(100% - 65px);
+            margin-left: 10px;
+        }
+
+            .cell .content .right .first {
+                height: 30px;
+                line-height: 30px;
+                font-size: .8em;
+                overflow: hidden;
+                width: 100%;
+                white-space: nowrap;
+                text-overflow: ellipsis;
+            }
+
+            .cell .content .right .last {
+                height: 25px;
+                line-height: 25px;
+                font-size: 0.7em;
+                color: #AAAAAA;
+            }
+
+                .cell .content .right .last .school {
+                    color: #53aaf6;
+                }
+
+                .cell .content .right .last .student {
+                    margin-left: 10px;
+                }
+
+                .cell .content .right .last .like,
+                .cell .content .right .last .message {
+                    float: right;
+                    margin-right: 10px;
+                }
+
+                    .cell .content .right .last .like .red {
+                        color: red;
+                    }

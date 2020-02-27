@@ -1,0 +1,150 @@
+
+#app-head .right-back {
+    background-color: #FDFFFF;
+    border-radius: 50%;
+    width: 35px;
+    height: 35px;
+    line-height: 35px;
+    font-size: 1em;
+    margin-left: 5px;
+    margin-top: 5px;
+}
+
+#video {
+    height: 230px;
+    position: fixed;
+    width: 100%;
+    background-color: black;
+}
+
+    #video .van-loading {
+        width: 60px;
+        height: 60px;
+        margin: auto;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        top: 0;
+        position: absolute;
+    }
+
+        #video .van-loading .van-loading__spinner {
+            width: 60px;
+            height: 60px;
+        }
+
+        #video .van-loading .van-loading__circular circle {
+            stroke-width: 1;
+        }
+
+.svg-icon {
+    width: 1em;
+    height: 1em;
+}
+
+.cover_image {
+    display: block;
+    width: 100%;
+}
+
+.content {
+    padding-top: 230px;
+    padding-bottom: 10px;
+}
+
+    .content.n_top {
+        padding-top: 0;
+    }
+
+    .content .intro {
+        padding: 15px;
+        background-color: #FFFFFF;
+    }
+
+        .content .intro .caption {
+            font-size: 1em;
+            height: 25px;
+            line-height: 25px;
+        }
+
+        .content .intro .des {
+            font-size: .9em;
+            margin: 5px 0;
+            color: #AAAAAA;
+        }
+
+        .content .intro .line {
+            height: 25px;
+            line-height: 25px;
+            display: flex;
+            align-items: center;
+        }
+
+        .content .intro .price {
+            font-size: 0.7em;
+        }
+
+            .content .intro .price .number {
+                color: #de7d4f;
+            }
+
+            .content .intro .price .cishu {
+                color: #AAAAAA;
+                margin-left: 15px;
+            }
+
+        .content .intro .c1 {
+            font-size: 0.8em;
+            color: #AAAAAA;
+        }
+
+        .content .intro .svg-icon {
+            width: 1em;
+            height: 1em;
+            margin-right: 3px;
+        }
+
+        .content .intro .ml-15 {
+            margin-left: 10px;
+        }
+
+    .content .collapse .index {
+        padding: 0 10px;
+    }
+
+    .content .collapse .text .cell {
+        padding: 5px 10px;
+        margin-bottom: 5px;
+    }
+
+    .content .collapse .text .mb-10 {
+        margin-bottom: 10px;
+    }
+
+    .content .collapse .text .cell .nickname {
+        color: #525252;
+        font-size: 1em;
+        height: 20px;
+        line-height: 20px;
+        display: flex;
+        align-items: center;
+    }
+
+        .content .collapse .text .cell .nickname .icon {
+            width: 1.1em;
+            height: 1.1em;
+            margin-right: 5px;
+        }
+
+.van-cell__title {
+    font-weight: bold;
+}
+
+.isCheck {
+    background-color: #EEEEEE;
+    border-radius: 5px;
+}
+
+.van-collapse-item__content {
+    padding: 10px;
+}

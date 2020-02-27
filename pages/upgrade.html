@@ -1,0 +1,37 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no,viewport-fit=cover" />
+    <title></title>
+    <link href="../content/css/base.css" rel="stylesheet" />
+    <link href="../content/css/pages/upgrade.css" rel="stylesheet" />
+    <script src="html5plus://ready"></script>
+</head>
+<body>
+    <div id="app">
+        <div class="top">
+            <img src="../content/img/upgrade/top_bottom_bg.png" class="bottom" />
+        </div>
+        <div class="container">
+            <p class="caption">新功能上线</p>
+            <div class="fix_content" v-html="request.des"></div>
+            <div class="bottom_action">
+                <button v-if="!pageModel.isDownload"
+                        class="confirm_button"
+                        @click="doDownload">
+                    立即更新
+                </button>
+                <div v-else class="percent">
+                    <div class="inner" v-bind:style="{'width': pageModel.downloadPer + '%'}"></div>
+                    <div class="text" v-text="pageModel.isComplete ? '正在安装，请稍候...' : '已下载 ' + pageModel.downloadPer + '%'"></div>
+                </div>
+            </div>
+        </div>
+        <img src="../content/img/upgrade/huojian.png" class="icon" />
+    </div>
+    <script src="../content/js/vue.js"></script>
+    <script src="../content/js/base.js"></script>
+    <script src="../content/js/pages/upgrade.js"></script>
+</body>
+</html>

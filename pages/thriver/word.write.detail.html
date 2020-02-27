@@ -1,0 +1,90 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no,viewport-fit=cover" />
+    <title></title>
+    <link href="../../content/css/base.css" rel="stylesheet" />
+    <link href="../../content/css/vant.css" rel="stylesheet" />
+    <link href="../../content/css/pages/thriver/word.write.detail.css" rel="stylesheet" />
+    <script src="html5plus://ready"></script>
+</head>
+<body>
+    <div id="app" class="h-100">
+        <div id="app-head" v-cloak class="van-hairline--bottom" v-bind:style="{'paddingTop': statusbarHeight + 'px'}">
+            <i id="app-back-button" class="iconfont iconbaidifanhuianniux right-back"></i>
+            <div class="app-head-text" v-bind:class="{'small': !isLoading, 'warn': !isLoading && !isError && pageModel.sec < warningTime}">
+                <i v-show="!isLoading && !isError" class="iconfont iconjishi"></i>
+                <span v-text="getTitle"></span>
+            </div>
+        </div>
+        <div id="app-content" v-bind:style="{'height': 'calc(100% - ' + (45 + statusbarHeight) + 'px)'}">
+            <div v-if="isLoading" class="loading-box p60">
+                <van-loading></van-loading>
+                <p class="loading-text">正在加载...</p>
+            </div>
+            <div v-else v-cloak class="h-100">
+                <div v-if="isError" class="none-data p60">
+                    <i class="iconfont iconICAtubiao_huodongdaojishi"></i>
+                    <p class="none-data-text" v-text="pageModel.errMsg"></p>
+                </div>
+                <div v-else>
+                    <div class="word_box">
+                        <div class="word_explain">
+                            <h3 class="caption">释义</h3>
+                            <div class="word_explain_line" v-text="pageModel.list[pageModel.currentIndex].Chi"></div>
+                        </div>
+                        <div class="write_input van-hairline--top">
+                            <input type="text"
+                                   readonly
+                                   v-model="pageModel.inputWord"
+                                   placeholder="请输入单词"
+                                   maxlength="30" />
+                        </div>
+                    </div>
+                    <div v-show="isActionShow"
+                         class="actions van-hairline--top"
+                         v-bind:class="{'safe': APP.CONFIG.IsSafeArea()}">
+                        <button class="btn"
+                                @click="prevWord"
+                                v-bind:class="{'dis': pageModel.currentIndex === 0}">
+                            上一题
+                        </button>
+                        <span class="prog"
+                              v-text="getProgText()"></span>
+                        <button class="btn"
+                                @click="nextWord"
+                                v-text="pageModel.currentIndex + 1 >= pageModel.list.length ? '提交' : '下一题'"></button>
+                    </div>
+                    <van-popup v-model="isKeyboard"
+                               position="bottom"
+                               v-bind:overlay="false"
+                               @opened="isActionShow = true"
+                               v-bind:class="{'safe': APP.CONFIG.IsSafeArea()}">
+                        <div class="keyboard">
+                            <ul class="keys"
+                                v-for="(line, lineIndex) in keyboard"
+                                v-bind:key="lineIndex">
+                                <li v-for="(key, kIndex) in line.keys"
+                                    v-bind:key="kIndex"
+                                    @touchstart="keydown(key)"
+                                    @touchend="keyend(key)">
+                                    <span class="press" v-text="key.name" v-show="key.isPress"></span>
+                                    <span class="key" v-text="!key.isPress ? key.name : ''"></span>
+                                </li>
+                                <li v-if="lineIndex === keyboard.length - 1" @click="backspace" class="big">
+                                    <i class="iconfont iconbackspace"></i>
+                                </li>
+                            </ul>
+                        </div>
+                    </van-popup>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="../../content/js/vue.js"></script>
+    <script src="../../content/js/vant.min.js"></script>
+    <script src="../../content/js/base.js"></script>
+    <script src="../../content/js/pages/thriver/word.write.detail.js"></script>
+</body>
+</html>

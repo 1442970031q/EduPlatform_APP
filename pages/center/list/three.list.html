@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no,viewport-fit=cover" />
+    <title></title>
+    <link href="../../../content/css/base.css" rel="stylesheet" />
+    <link href="../../../content/css/vant.css" rel="stylesheet" />
+    <link href="../../../content/css/pages/center/list/one.list.css" rel="stylesheet" />
+    <script src="html5plus://ready"></script>
+</head>
+
+<body>
+    <div id="app">
+        <div id="app-head" class="fixed" v-bind:style="{'paddingTop': statusbarHeight + 'px'}">
+            <i id="app-back-button" class="iconfont iconbaidifanhuianniux right-back"></i>
+            <div class="app-head-text">积分榜单</div>
+        </div>
+        <div id="app-content" v-bind:style="{'paddingTop': (45 + statusbarHeight) + 'px'}">
+            <div class="tags mt-10">
+                <div :class="{'tag':true,'check1':type==1}" @click="changeType(1)">
+                    班级榜
+                </div>
+                <div :class="{'tag':true,'check2':type==2}" @click="changeType(2)">
+                    年级榜
+                </div>
+            </div>
+            <div class="content">
+                <div v-if="isLoading" class="loading-box p60">
+                    <van-loading color="black"></van-loading>
+                    <p class="loading-text">正在加载...</p>
+                </div>
+                <div v-else>
+                    <ul class="top">
+                        <li class="two" v-bind:style="{'height':height*0.25+'px'}">
+                            <img class="medal" src="../../../content/img/center/list/yp_bg.png" />
+                            <span class="line"></span>
+                            <div v-if="!pageModule.topThree[1]" class="noData">暂无第二名成绩</div>
+                            <div v-else>
+                                <img class="head" v-lazy="pageModule.topThree[1].Avatar" />
+                                <p class="name" v-text="pageModule.topThree[1].RealName"></p>
+								<p class="class" v-text="pageModule.topThree[1].ClassName"></p>
+                                <p class="score" v-text="pageModule.topThree[1].Integral"></p>
+                            </div>
+                        </li>
+                        <li class="one" v-bind:style="{'height':height*0.3+'px'}">
+                            <img class="medal" src="../../../content/img/center/list/jp_bg.png" />
+                            <div v-if="!pageModule.topThree[0]" class="noData">暂无第一名成绩</div>
+                            <div v-else>
+                                <img class="head" v-lazy="pageModule.topThree[0].Avatar" />
+                                <p class="name" v-text="pageModule.topThree[0].RealName"></p>
+								<p class="class" v-text="pageModule.topThree[1].ClassName"></p>
+                                <p class="score" v-text="pageModule.topThree[0].Integral"></p>
+                            </div>
+                        </li>
+                        <li class="three" v-bind:style="{'height':height*0.22+'px'}">
+                            <img class="medal" src="../../../content/img/center/list/tp_bg.png" />
+                            <span class="line"></span>
+                            <div v-if="!pageModule.topThree[2]" class="noData">暂无第三名成绩</div>
+                            <div v-else>
+                                <img class="head" v-lazy="pageModule.topThree[2].Avatar" />
+                                <p class="name" v-text="pageModule.topThree[2].RealName"></p>
+								<p class="class" v-text="pageModule.topThree[1].ClassName"></p>
+                                <p class="score" v-text="pageModule.topThree[2].Integral"></p>
+                            </div>
+                        </li>
+                    </ul>
+                    <div class="center" v-bind:style="{'height':(height*0.7-50)+'px'}">
+                        <div v-if="pageModule.other.length==0" class="normal_info">
+                            <p class="text">
+                                还没有相关信息，敬请期待~
+                            </p>
+                        </div>
+                        <div v-else v-for="(item,index) in pageModule.other" class="cell van-hairline--bottom">
+                            <div :class="{'check':true,'color':item.IsHighlight}">
+                                <span class="mingci" v-text="index+4"></span>
+                                <img class="head" v-lazy="item.Avatar" />
+                                <span class="name" v-text="item.RealName"> </span>
+								<span class="class" v-text="item.ClassName"></span>
+                                <span class="score" v-text="item.Integral"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="../../../content/js/vue.js"></script>
+    <script src="../../../content/js/vant.min.js"></script>
+    <script src="../../../content/js/base.js"></script>
+	<script src="../../../content/js/pages/center/list/three.list.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,55 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no,viewport-fit=cover" />
+    <title></title>
+    <link href="../../content/css/base.css" rel="stylesheet" />
+    <link href="../../content/css/vant.css" rel="stylesheet" />
+    <link href="../../content/css/pages/center/exchange.coin.css" rel="stylesheet" />
+    <script src="html5plus://ready"></script>
+</head>
+<body>
+    <div id="app">
+        <div id="app-head" class="van-hairline--bottom" v-bind:style="{'paddingTop': statusbarHeight + 'px'}">
+            <i id="app-back-button" class="iconfont iconbaidifanhuianniux right-back"></i>
+            <div class="app-head-text">兑换云币</div>
+        </div>
+        <div id="app-content">
+            <div class="cell mt-10">
+                <p class="info">
+                    <span class="left">当前云币</span>
+                    <span class="right" v-text="'￥'+currentUser.YSDCoin"></span>
+                </p>
+                <p class="info mt-10">
+                    <span class="left">当前积分</span>
+                    <span class="right" v-text="currentUser.ResidualIntegral"></span>
+                </p>
+                <p class="info mt-10">
+                    <span class="left">兑换比列</span>
+                    <span class="right" v-text="currentUser.CoinExchangeIntegral+' 积分 = 1 云币'"></span>
+                </p>
+            </div>
+            <div class="input_group mt-10">
+                <div class="input_line">
+                    <span class="input_text">积分数量</span>
+                    <input type="number"
+                           class="input_control"
+                           placeholder="请输入要兑换的数量"
+                           v-model="form.coin" />
+                </div>
+                <div class="input_line">
+                    <span class="input_text">云币数量</span>
+                    <div class="input_control"
+                         v-text="sumIntegal"></div>
+                </div>
+            </div>
+            <div class="confirm_button mt-15" @click="checkData">立即兑换</div>
+        </div>
+    </div>
+    <script src="../../content/js/vue.js"></script>
+    <script src="../../content/js/vant.min.js"></script>
+    <script src="../../content/js/base.js"></script>
+    <script src="../../content/js/pages/center/exchange.coin.js"></script>
+</body>
+</html>

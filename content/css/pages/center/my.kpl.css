@@ -1,0 +1,40 @@
+﻿html, body {
+    background-color: #FFFFFF;
+}
+
+#app-head {
+    border-bottom: 1px solid #EEEEEE;
+}
+
+.kpl {
+    padding: 20px;
+}
+
+    .kpl .content {
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0px 0px 10px #EEEEEE;
+    }
+
+        .kpl .content .cell .name {
+            font-size: 0.9em;
+        }
+
+        .kpl .content .cell .input {
+            display: block;
+            border-bottom: 1px solid #EEEEEE;
+            padding: 10px 0;
+            width: 100%;
+        }
+
+            .kpl .content .cell .input:focus {
+                border-bottom: 1px solid #02b9ff;
+            }
+
+            .kpl .content .cell .input::-webkit-input-placeholder {
+                font-size: 0.8em;
+            }
+
+    .kpl .confirm_button {
+        width: 100%;
+    }

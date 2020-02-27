@@ -1,0 +1,43 @@
+﻿html, body {
+    background-color: white;
+}
+
+.inner {
+    padding-top: 30%;
+}
+
+    .inner .iconfont {
+        font-size: 5em;
+        color: #37bb00;
+        border-radius: 50%;
+        display: block;
+        width: 90px;
+        text-align: center;
+        line-height: 90px;
+        height: 90px;
+        margin: 0 auto;
+    }
+
+    .inner .caption {
+        text-align: center;
+        height: 25px;
+        line-height: 25px;
+        margin-top: 10px;
+        font-weight: bold;
+        color: #444;
+    }
+
+    .inner .des {
+        width: 90%;
+        font-size: .9em;
+        display: block;
+        margin: 0 auto;
+        text-align: center;
+        margin-top: 5px;
+        color: #ababab;
+    }
+
+    .inner .confirm_button {
+        width: 80%;
+        margin-top: 20px;
+    }

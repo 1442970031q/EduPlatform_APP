@@ -1,0 +1,62 @@
+﻿.content {
+    width: 95%;
+    margin: auto;
+    background-color: #FFFFFF;
+    border-radius: 5px;
+    padding-bottom: 15px;
+}
+
+    .content .title {
+        padding: 0 10px;
+        padding-top: 15px;
+    }
+
+        .content .title .value {
+            font-size: 0.7em;
+            color: #AAAAAA;
+        }
+
+    .content .cell {
+        padding: 0 15px;
+        display: flex;
+        height: 36px;
+    }
+
+        .content .cell .left .iconfont {
+            padding: 10px;
+            background: linear-gradient(to left top, #456afb, #2ea1fc);
+            color: #FFFFFF;
+            border-radius: 50px;
+            position: relative;
+            top: 7px;
+        }
+
+        .content .cell .center {
+            line-height: 15px;
+            margin-left: 10px;
+            padding-top: 2px;
+        }
+
+            .content .cell .center .type {
+                font-size: 0.8em;
+            }
+
+            .content .cell .center .info {
+                font-size: 0.7em;
+                color: #AAAAAA;
+            }
+
+        .content .cell .right {
+            position: absolute;
+            right: 30px;
+        }
+
+            .content .cell .right .button {
+                padding: 3px 6px;
+                background: linear-gradient(to left top, #456afb, #2ea1fc);
+                color: #FFFFFF;
+                border-radius: 50px;
+                font-size: 0.8em;
+                position: relative;
+                top: 6.5px;
+            }

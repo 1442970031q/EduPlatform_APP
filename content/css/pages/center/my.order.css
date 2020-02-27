@@ -1,0 +1,107 @@
+.van-tabs--line {
+    padding: 0;
+}
+
+.van-tabs__wrap {
+    position: fixed;
+    top: initial;
+}
+
+    .van-tabs__wrap.van-hairline--top-bottom::after {
+        border-top: 0 !important;
+    }
+
+.van-tabs__content {
+    padding-top: 44px;
+}
+
+.tabs {
+    margin-top: 10px;
+}
+
+    .tabs .product {
+        padding: 15px 10px;
+        background-color: #FFFFFF;
+        border-bottom: 1px solid #f9f9f9;
+    }
+
+        .tabs .product:last-child {
+            border-bottom: 0;
+        }
+
+        .tabs .product .left {
+            width: 130px;
+            border-radius: 5px;
+            overflow: hidden;
+            float: left;
+        }
+
+            .tabs .product .left img {
+                width: 100%;
+                display: block;
+            }
+
+        .tabs .product .center {
+            float: left;
+            margin-left: 10px;
+            width: calc(100% - 140px);
+        }
+
+            .tabs .product .center .line {
+                height: 20px;
+                line-height: 20px;
+                font-size: .8em;
+                color: #9c9c9c;
+            }
+
+            .tabs .product .center .name {
+                font-size: 1em;
+                width: 100%;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                white-space: nowrap;
+            }
+
+            .tabs .product .center .line.time {
+                text-align: right;
+                color: #989898;
+            }
+
+            .tabs .product .center .line.blue {
+                color: #53aaf6;
+            }
+
+        .tabs .product .right {
+            font-size: 0.8em;
+            padding-top: 5px;
+            position: absolute;
+            right: 10px;
+        }
+
+    .tabs .foot {
+        font-size: 0.8em;
+        text-align: right;
+        padding: 10px 0;
+    }
+
+        .tabs .foot .state {
+            float: left;
+        }
+
+        .tabs .foot .button1 {
+            padding: 4px 8px;
+            border: 1px solid #797979;
+            border-radius: 5px;
+            color: #797979;
+        }
+
+        .tabs .foot .button2 {
+            padding: 4px 8px;
+            border: 1px solid #53aaf6;
+            border-radius: 5px;
+            color: #53aaf6;
+        }
+
+.c1 {
+    color: #53aaf6;
+}

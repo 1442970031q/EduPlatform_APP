@@ -1,0 +1,58 @@
+﻿.list {
+    width: calc(100% - 30px);
+    margin: 15px auto;
+    margin-bottom: 35px;
+    border-radius: 6px;
+    overflow: hidden;
+}
+
+    .list .problem {
+        background-color: white;
+        padding: 15px;
+        border-bottom: 1px solid #f9f9f9;
+    }
+
+        .list .problem:last-child {
+            border-bottom: 0;
+        }
+
+        .list .problem .chi {
+            margin-bottom: 5px;
+            font-size: .8em;
+            color: #717171;
+        }
+
+        .list .problem .chi_text {
+            min-height: 20px;
+            line-height: 20px;
+            font-size: 1em;
+        }
+
+        .list .problem .answer_box {
+            margin-top: 20px;
+            display: flex;
+            justify-content: center;
+        }
+
+            .list .problem .answer_box .part {
+                width: 45%;
+                padding: 5px 0;
+                border-radius: 6px;
+                margin: 0 10px;
+                font-size: .8em;
+                height: 20px;
+                line-height: 20px;
+            }
+
+                .list .problem .answer_box .part p {
+                    text-align: center;
+                    color: white;
+                }
+
+                .list .problem .answer_box .part.red {
+                    background-color: #ff8383;
+                }
+
+                .list .problem .answer_box .part.green {
+                    background-color: #01db20;
+                }

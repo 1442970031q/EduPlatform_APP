@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no,viewport-fit=cover" />
+		<title></title>
+		<link href="../../content/css/base.css" rel="stylesheet" />
+		<link href="../../content/css/vant.css" rel="stylesheet" />
+		<link href="../../content/css/pages/center/check.student.paln.detail.css" rel="stylesheet" />
+		<script src="html5plus://ready"></script>
+	</head>
+
+	<body>
+		<div id="app">
+			<div id="app-head" class="fixed van-hairline--bottom" v-bind:style="{'paddingTop': statusbarHeight + 'px'}">
+				<i id="app-back-button" class="iconfont iconbaidifanhuianniux right-back"></i>
+				<div class="app-head-text">任务详情</div>
+			</div>
+			<div id="app-content" v-bind:style="{'paddingTop': (45 + statusbarHeight) + 'px'}">
+				<div v-if="isLoading" class="loading-box p60">
+					<van-loading color="black"></van-loading>
+					<p class="loading-text">正在加载...</p>
+				</div>
+				<div v-else>
+					<div class="cell mt-10" v-for="item in pageModel">
+						<div v-for="list in item.List">
+							<p class="title" v-text="list.CourseName"></p>
+							<div class="content" v-for="lis in list.ChapterList">
+								<div class="name mt-5" v-text="lis.ChapterName">
+								</div>
+								<div class="text">
+									<p class="pd" v-for="li in lis.ResourceList">
+										<i v-show="li.IsFinished" class="van-icon van-icon-success"></i>
+										<span class="left" v-text="li.ResourceName"></span>
+										<span class="right" @click="isDone(list.CourseId,lis.ChapterId,li.ResourceId,li.IsFinished)" v-text="!li.IsFinished?'完成':'未完成'"></span>
+									</p>
+								</div>
+							</div>
+						</div>
+						<p class="time mt-5">
+							<sapn>日期:</sapn>
+							<sapn class="right" v-text="item.Date"> </sapn>
+						</p>
+					</div>
+				</div>
+			</div>
+		</div>
+		<script src="../../content/js/vue.js"></script>
+		<script src="../../content/js/vant.min.js"></script>
+		<script src="../../content/js/base.js"></script>
+		<script src="../../content/js/pages/center/check.studnet.paln.detail.js"></script>
+	</body>
+
+</html>

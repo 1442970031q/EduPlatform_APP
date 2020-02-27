@@ -1,0 +1,60 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no,viewport-fit=cover" />
+    <title></title>
+    <link href="../../content/css/base.css" rel="stylesheet" />
+    <link href="../../content/css/vant.css" rel="stylesheet" />
+    <link href="../../content/css/pages/thriver/shortcut.css" rel="stylesheet" />
+    <script src="html5plus://ready"></script>
+</head>
+<body>
+    <div id="app" @click="close">
+        <div id="app-head" v-bind:style="{'paddingTop': statusbarHeight + 'px'}">
+            <i class="iconfont iconfabushouqianniux"></i>
+        </div>
+        <div id="app-content">
+            <ul class="shortcuts">
+                <li @click.stop="gotoPage('publish.question')">
+                    <i class="iconfont icontiwenwentix bg1"></i>
+                    <p class="text">发布问题</p>
+                </li>
+                <li @click.stop="gotoPage('new.homework')">
+                    <i class="iconfont icontijiaozuoyex bg3"></i>
+                    <p class="text">提交作业</p>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <script src="../../content/js/vue.js"></script>
+    <script src="../../content/js/vant.min.js"></script>
+    <script src="../../content/js/base.js"></script>
+    <script>
+        var _vue = new Vue({
+            el: '#app',
+            data: {
+                'currentUser': APP.GLOBAL.getUserModel(),
+                'statusbarHeight': 20
+            },
+            methods: {
+                'gotoPage': function (page) {
+                    APP.GLOBAL.gotoNewWindow(page, {
+                        'openCallback': function () {
+                            APP.GLOBAL.closeWindow('none');
+                        }
+                    });
+                },
+                'close': function () {
+                    APP.GLOBAL.closeWindow('fade-out');
+                }
+            },
+            created: function () {
+                if (APP.CONFIG.IS_RUNTIME) {
+                    this.statusbarHeight = plus.navigator.getStatusbarHeight();
+                }
+            }
+        });
+    </script>
+</body>
+</html>

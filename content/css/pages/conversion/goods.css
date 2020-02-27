@@ -1,0 +1,56 @@
+.list {
+    width: calc(100% - 20px);
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 10px;
+}
+
+    .list .tab {
+        margin-bottom: 10px;
+        width: 50%;
+        display: block;
+    }
+
+        .list .tab .inner {
+            border-radius: 5px;
+            overflow: hidden;
+            box-shadow: 0 0 5px #e6e6e6;
+        }
+
+        .list .tab:nth-child(odd) .inner {
+            margin-right: 5px;
+        }
+
+        .list .tab:nth-child(even) .inner {
+            margin-left: 5px;
+        }
+
+            .list .tab .inner .img {
+                width: 100%;
+                display: block;
+            }
+
+        .list .tab .inner .bottom {
+            background-color: white;
+            padding: 5px;
+        }
+
+            .list .tab .inner .bottom .name {
+                font-size: 0.9em;
+                height: 25px;
+                line-height: 25px;
+                color: #636363;
+                overflow: hidden;
+                width: 100%;
+                text-overflow: ellipsis;
+                white-space: nowrap;
+            }
+
+            .list .tab .inner .bottom .price {
+                font-size: 0.8em;
+                color: #d96736;
+                height: 20px;
+                line-height: 20px;
+                margin-top: 5px;
+            }

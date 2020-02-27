@@ -1,0 +1,48 @@
+﻿html, body {
+    background-color: white;
+}
+
+#app-head .iconfont {
+    color: #cacaca;
+}
+
+.shortcuts {
+    display: flex;
+    text-align: center;
+    position: fixed;
+    width: 100%;
+    bottom: 50px;
+}
+
+    .shortcuts li {
+        margin:0 auto;
+    }
+
+        .shortcuts li .iconfont {
+            font-size: 3em;
+            display: block;
+            height: 50px;
+            width: 50px;
+            line-height: 50px;
+            margin: 0 auto;
+        }
+
+            .shortcuts li .iconfont.bg1 {
+                color: #2eb9fe
+            }
+
+            .shortcuts li .iconfont.bg2 {
+                color: #0584fd
+            }
+
+            .shortcuts li .iconfont.bg3 {
+                color: #0262d7
+            }
+
+        .shortcuts li .text {
+            font-size: .8em;
+            height: 20px;
+            line-height: 20px;
+            margin-top: 5px;
+            color: #656565;
+        }

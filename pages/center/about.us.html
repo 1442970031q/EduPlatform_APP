@@ -1,0 +1,78 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no,viewport-fit=cover" />
+    <title></title>
+    <link href="../../content/css/base.css" rel="stylesheet" />
+    <link href="../../content/css/vant.css" rel="stylesheet" />
+    <link href="../../content/css/pages/center/about.us.css" rel="stylesheet" />
+    <script src="html5plus://ready"></script>
+</head>
+<body>
+    <div id="app">
+        <div id="app-head" class="fixed" v-bind:style="{'paddingTop': statusbarHeight + 'px'}">
+            <i id="app-back-button" class="iconfont iconbaidifanhuianniux right-back"></i>
+            <div class="app-head-text">关于我们</div>
+        </div>
+        <div id="app-content" v-bind:style="{'paddingTop': (45 + statusbarHeight) + 'px'}">
+            <div class="content">
+                <img src="../../content/img/logo.png" class="logo" />
+                <div class="text">
+                    <div class="value">
+                        郑州云时代教育信息服务有限公司，是一家专业从事互联网人才培训、教学产品和教学软件研发、软件人才外包和实训园区运营的科技企业。公司同时还是美国微软公司的银牌授权合作机构、阿里云大学及美国甲骨文公司等知名IT企业的授权合作伙伴，公司自成立至今先后与河工大、河工贸、安职、新职、河质院、驻职、周职等院校开展合作，累计服务近万名学子，我们将持续秉持"让错过名校的孩子拥有好未来的"教育理念，努力去成就每一个有梦想的学子和家庭。我们愿意为阳光和雨露，同时也需要大家敞开心扉去努力感悟和接受，体会人生成长中酸甜苦辣。愿我们一起携起手来感受花开的美好并成就不一样的自己，   为明天更好的自己而努力！
+                    </div>
+                    <p class="cell mt-10">
+                        <span class="left">办公电话</span>
+                        <a href="tel:037155239625" class="right">0371-55239625</a>
+                    </p>
+                    <p class="cell">
+                        <span class="left">工作时间</span>
+                        <span class="right">8:30-17:30</span>
+                    </p>
+                    <p class="cell">
+                        <span class="left">其他</span>
+                        <span class="right" @click="ooops">Try it !</span>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="../../content/js/vue.js"></script>
+    <script src="../../content/js/vant.min.js"></script>
+    <script src="../../content/js/base.js"></script>
+    <script>
+        var _vue = new Vue({
+            el: '#app',
+            data: {
+                'statusbarHeight': 20,
+            },
+            methods: {
+                'ooops': function () {
+                    APP.GLOBAL.confirmMsg({
+                        'title': 'Oooops！',
+                        'message': '小伙子我看你骨骼惊奇，今后必成大器！\n加入我们一起来维护APP如何？',
+                        'confirmButtonText': '我要拯救世界',
+                        'cancelButtonText': '算了吧',
+                        'confirmCallback': this.copyGroupNumber
+                    })
+                },
+                'copyGroupNumber': function () {
+                    if (APP.CONFIG.IS_RUNTIME) {
+                        var mainPage = plus.webview.getWebviewById('mainPage');
+                        if (mainPage !== null) {
+                            mainPage.evalJS('_vue.setClipBoard("838916223")');
+                            APP.GLOBAL.toastMsg('已复制QQ群号，加入我们吧！');
+                        }
+                    }
+                }
+            },
+            created: function () {
+                if (APP.CONFIG.IS_RUNTIME) {
+                    this.statusbarHeight = plus.navigator.getStatusbarHeight();
+                }
+            }
+        });
+    </script>
+</body>
+</html>

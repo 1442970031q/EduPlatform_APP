@@ -1,0 +1,597 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no,viewport-fit=cover" />
+    <title></title>
+    <link href="../content/css/base.css" rel="stylesheet" />
+    <link href="../content/css/vant.css" rel="stylesheet" />
+    <link href="../content/css/pages/thriver.css" rel="stylesheet" />
+    <script src="html5plus://ready"></script>
+</head>
+<body>
+    <div id="app">
+        <div id="app-head" v-bind:style="{'paddingTop': statusbarHeight + 'px'}">
+            <div class="app-head-text">成长</div>
+        </div>
+        <div id="app-content">
+            <div class="placeholder" v-bind:style="{'paddingTop': statusbarHeight + 'px'}"></div>
+            <van-pull-refresh v-model="isReloading" @refresh="onRefresh">
+                <van-tabs v-cloak
+                          v-model="tabActive"
+                          v-bind:class="{'border_bottom': pageModel.scrollTop > 20}"
+                          sticky
+                          v-bind:offset-top="statusbarHeight"
+                          line-width="20"
+                          @change="tabChanged">
+                    <van-tab title="视频学习">
+                        <div v-if="pageModel.tabPages.tab1.isLoading" class="loading-box p60">
+                            <van-loading color="black"></van-loading>
+                            <p class="loading-text">正在加载...</p>
+                        </div>
+                        <div v-else class="video">
+                            <div class="cell">
+                                <van-swipe class="swiper"
+                                           autoplay="5000"
+                                           indicator-color="white">
+                                    <van-swipe-item v-for="(item,index) in pageModel.tabPages.tab1.swipes"
+                                                    v-bind:key="index">
+                                        <img class="img" v-lazy="item" />
+                                    </van-swipe-item>
+                                </van-swipe>
+                            </div>
+                            <div class="tabs">
+                                <div class="title">
+                                    本周学习
+                                    <span class="right" @click="APP.GLOBAL.gotoNewWindow('thriver/my.crouse')">
+                                        全部<i class="iconfont iconchakanquanbux"></i>
+                                    </span>
+                                </div>
+                                <div v-if="pageModel.tabPages.tab1.block_1.length === 0" class="none-data">
+                                    <i class="iconfont iconkecheng small"></i>
+                                    <p class="none-data-text">本周暂无课程</p>
+                                </div>
+                                <div v-else
+                                     class="flex clearfix"
+                                     v-for="(item,index) in pageModel.tabPages.tab1.block_1"
+                                     v-bind:key="index"
+                                     @click="gotoVideoDetail(item, 1)">
+                                    <div class="left">
+                                        <img class="img" v-lazy="item.ImageSrc" />
+                                    </div>
+                                    <div class="right">
+                                        <p class="top" v-text="item.Name"></p>
+                                        <p class="center" v-text="filterHtml(item.Introduce)"></p>
+                                        <div class="bottom">
+                                            <span class="now mt-5" v-text="'已学习：' + item.Speed + '%'"></span>
+                                            <div class="progress-bar mt-5">
+                                                <div class="now-progress-bar" v-bind:style="{'width': item.Speed + '%'}"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="tabs">
+                                <p class="title">
+                                    推荐学习
+                                    <span class="right" @click="APP.GLOBAL.gotoNewWindow('thriver/crouse.recommend')">
+                                        全部<i class="iconfont iconchakanquanbux"></i>
+                                    </span>
+                                </p>
+                                <div v-if="pageModel.tabPages.tab1.block_2.length === 0" class="none-data">
+                                    <i class="iconfont iconkecheng small"></i>
+                                    <p class="none-data-text">暂无推荐信息</p>
+                                </div>
+                                <div v-else
+                                     class="flex clearfix"
+                                     v-for="(item,index) in pageModel.tabPages.tab1.block_2"
+                                     v-bind:key="index"
+                                     @click="gotoVideoDetail(item, 3)">
+                                    <div class="left">
+                                        <img class="img" v-lazy="item.ImageSrc" />
+                                    </div>
+                                    <div class="right">
+                                        <p class="top" v-text="item.Name"></p>
+                                        <p class="center" v-text="filterHtml(item.Introduce)"></p>
+                                        <div class="foot mt-10" v-if="item.IsBuy">
+                                            <span class="left" v-text="item.BuyCount + '人加入学习'"></span>
+                                            <span class="rig">已购买</span>
+                                        </div>
+                                        <div class="foot mt-10" v-else>
+                                            <span class="left" v-text="item.BuyCount + '人加入学习'"></span>
+                                            <span class="rig" v-text="item.Price + '云币'"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="tabs">
+                                <p class="title">
+                                    选购课程
+                                    <span class="right" @click="APP.GLOBAL.gotoNewWindow('thriver/my.choose.course')">
+                                        全部<i class="iconfont iconchakanquanbux"></i>
+                                    </span>
+                                </p>
+                                <div v-if="pageModel.tabPages.tab1.block_3.length === 0" class="none-data">
+                                    <i class="iconfont iconkecheng small"></i>
+                                    <p class="none-data-text">暂无可选购课程</p>
+                                </div>
+                                <div v-else
+                                     class="flex clearfix"
+                                     v-for="(item,index) in pageModel.tabPages.tab1.block_3"
+                                     v-bind:key="index"
+                                     @click="gotoVideoDetail(item, 2)">
+                                    <div class="left">
+                                        <img class="img" v-lazy="item.ImageSrc" />
+                                    </div>
+                                    <div class="right">
+                                        <p class="top" v-text="item.Name"></p>
+                                        <p class="center" v-text="filterHtml(item.Introduce)"></p>
+                                        <div class="bottom">
+                                            <span class="now mt-5" v-text="'已学习：' + item.Speed + '%'"></span>
+                                            <div class="progress-bar mt-5">
+                                                <div class="now-progress-bar" v-bind:style="{'width': item.Speed + '%'}"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </van-tab>
+                    <van-tab title="学期计划">
+                        <div v-if="pageModel.tabPages.tab2.isLoading" class="loading-box p60">
+                            <van-loading color="black"></van-loading>
+                            <p class="loading-text">正在加载...</p>
+                        </div>
+                        <div v-else>
+                            <div v-if="pageModel.tabPages.tab2.timeline.length === 0" class="normal_info">
+                                <img src="../content/img/thriver/plan_empty.png" class="img" />
+                                <p class="text">暂无学期计划</p>
+                            </div>
+                            <div v-else class="plan" v-bind:style="{'minHeight':height + 'px'}">
+                                <van-steps direction="vertical" v-bind:active="pageModel.tabPages.tab2.currentWeekNum" active-color="#53aaf6">
+                                    <van-step v-for="(item,index) in pageModel.tabPages.tab2.timeline"
+                                              v-bind:key="index"
+                                              class="plan_line">
+                                        <p class="week">
+                                            <span v-text="'第 ' + item.WeekNum + ' 周'"></span>
+                                            <span v-text="item.Date" class="time"></span>
+                                        </p>
+                                        <ul v-if="item.List.length !== 0" class="class_list">
+                                            <li v-for="(l, lIndex) in item.List"
+                                                v-bind:key="lIndex">
+                                                <p class="caption" v-text="(lIndex + 1) + '、' + l.Name"></p>
+                                                <p class="text_indent" v-text="'理论学时：' + l.THours + '小时'"></p>
+                                                <p class="text_indent" v-text="'实践学时：' + l.LHours + '小时'"></p>
+                                                <p class="text_indent" v-text="'计费学时：' + l.VHours + '小时'"></p>
+                                            </li>
+                                        </ul>
+                                        <p v-else class="none">暂无学期计划</p>
+                                    </van-step>
+                                </van-steps>
+                            </div>
+                        </div>
+                    </van-tab>
+                    <van-tab title="周报管理">
+                        <div v-if="pageModel.tabPages.tab3.isLoading" class="loading-box p60">
+                            <van-loading color="black"></van-loading>
+                            <p class="loading-text">正在加载...</p>
+                        </div>
+                        <div v-else class="weekly">
+                            <van-steps v-if="pageModel.tabPages.tab3.weekList.length !== 0"
+                                       class="week_time_line"
+                                       direction="vertical"
+                                       v-bind:active="-1"
+                                       v-bind:style="{'minHeight':height + 'px'}">
+                                <van-step v-for="(item,index) in pageModel.tabPages.tab3.weekList"
+                                          v-bind:key="index">
+                                    <i slot="inactive-icon" class="iconfont icondanxuan uncheck"></i>
+                                    <div class="week_content" v-if="item.Id !== 0">
+                                        <span class="week_content_left"></span>
+                                        <span class="week_content_left_inner"></span>
+                                        <div class="clearfix" @click="gotoNewReport(item)">
+                                            <img src="../content/img/thriver/thriver_report_item.png" class="left" />
+                                            <div class="right">
+                                                <p class="title" v-text="item.Title"></p>
+                                                <div class="bottom">
+                                                    <ul class="items">
+                                                        <li v-if="!item.IsSub" class="red">
+                                                            <i class="iconfont iconicon"></i>
+                                                            <span>未发布</span>
+                                                        </li>
+                                                        <li v-else class="green">
+                                                            <i class="iconfont icontubiao_tijiao"></i>
+                                                            <span>已发布</span>
+                                                        </li>
+                                                        <li>
+                                                            <i class="iconfont iconshoucangx"></i>
+                                                            <span v-text="item.LikeCount"></span>
+                                                        </li>
+                                                        <li>
+                                                            <i class="iconfont iconzhoubaoneirongpinglunx"></i>
+                                                            <span v-text="item.CommentCount"></span>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div v-else class="new_report clearfix" @click="gotoNewReport(item)">
+                                        <span class="new_report_left"></span>
+                                        <i class="iconfont iconriqi1 left_icon"></i>
+                                        <div class="right_content">
+                                            <p>撰写</p>
+                                            <p>周报</p>
+                                        </div>
+                                    </div>
+                                    <span class="time start" v-text="getTime(item.Date, 1)">2016.07</span>
+                                    <span class="time end" v-text="getTime(item.Date, 2)">2016.07</span>
+                                    <span class="week_name" v-text="'第 ' + item.WeekNum + ' 周'"></span>
+                                </van-step>
+                            </van-steps>
+                            <div v-else class="normal_info">
+                                <img class="img" src="../content/img/thriver/weekly_norml.png" />
+                                <p class="text">暂无您的周报信息！</p>
+                            </div>
+                        </div>
+                    </van-tab>
+                    <van-tab title="刷题">
+                        <div class="writer" v-bind:style="{'minHeight': height + 'px'}">
+                            <div class="block" @click="APP.GLOBAL.gotoNewWindow('thriver/do.homework')">
+                                <p class="text">开始做题</p>
+                                <img class="img" src="../content/img/thriver/weekly_bg1.jpg" />
+                            </div>
+                            <div class="block middle mt-15" @click="gotoSmallTest">
+                                <div class="text">
+                                    <p>小测试</p>
+                                    <p class="time" v-if="pageModel.tabPages.tab4.testId !== 0">
+                                        <span v-text="pageModel.tabPages.tab4.testTime"></span>
+                                    </p>
+                                    <p class="time none" v-else><i class="iconfont iconyongshix"></i>还未开启</p>
+                                </div>
+                                <img class="img" src="../content/img/thriver/weekly_bg3.jpg" />
+                            </div>
+                            <div class="block mt-15" @click="APP.GLOBAL.gotoNewWindow('thriver/exam.statistics')">
+                                <p class="text">做题统计</p>
+                                <img class="img" src="../content/img/thriver/weekly_bg2.jpg" />
+                            </div>
+                            <div class="block mt-15" @click="APP.GLOBAL.gotoNewWindow('thriver/error.topic')">
+                                <p class="text">错题集</p>
+                                <img class="img" src="../content/img/thriver/weekly_bg4.jpg" />
+                            </div>
+                        </div>
+                    </van-tab>
+                    <van-tab title="单词学习">
+                        <div class="word" v-bind:style="{'minHeight': height + 'px'}">
+                            <div class="block" @click="APP.GLOBAL.gotoNewWindow('thriver/word.write')">
+                                <p class="text">单词听写</p>
+                                <img class="img" src="../content/img/thriver/word_bg1.jpg" />
+                            </div>
+                            <div class="block mt-15" @click="APP.GLOBAL.gotoNewWindow('thriver/semester.lexicon')">
+                                <p class="text">学期词库</p>
+                                <img class="img" src="../content/img/thriver/word_bg2.jpg" />
+                            </div>
+                            <div class="block mt-15" @click="APP.GLOBAL.gotoNewWindow('thriver/unfamiliar.word')">
+                                <p class="text">生词本</p>
+                                <img class="img" src="../content/img/thriver/word_bg3.jpg" />
+                            </div>
+                            <div class="block mt-15" @click="APP.GLOBAL.gotoNewWindow('thriver/word.error.history')">
+                                <p class="text">测试记录</p>
+                                <img class="img" src="../content/img/thriver/word_bg4.jpg" />
+                            </div>
+                        </div>
+                    </van-tab>
+                    <van-tab title="作业">
+                        <div class="learn" v-bind:style="{'minHeight': height + 'px'}">
+                            <div class="stacky"
+                                 v-bind:class="{'learnfixed': pageModel.scrollTop > 45 }"
+                                 v-bind:style="{'top': (statusbarHeight + 44) + 'px' }">
+                                <span class="tag"
+                                      v-bind:class="{'check': pageModel.tabPages.tab6.workIndex === 0}"
+                                      @click="pageModel.tabPages.tab6.workIndex = 0">全部</span>
+                                <span class="tag"
+                                      v-bind:class="{'check': pageModel.tabPages.tab6.workIndex === 1}"
+                                      @click="pageModel.tabPages.tab6.workIndex = 1">未批改</span>
+                                <span class="tag"
+                                      v-bind:class="{'check': pageModel.tabPages.tab6.workIndex === 2}"
+                                      @click="pageModel.tabPages.tab6.workIndex = 2">已批改</span>
+                                <span class="tag"
+                                      v-bind:class="{'check':pageModel.tabPages.tab6. workIndex === 3}"
+                                      @click="pageModel.tabPages.tab6.workIndex = 3">已点评</span>
+                            </div>
+                            <div v-show="pageModel.tabPages.tab6.workIndex === 0" class="all">
+                                <div v-if="pageModel.tabPages.tab6.model.all.isLoading" class="loading-box p50">
+                                    <van-loading color="black"></van-loading>
+                                    <p class="loading-text">正在加载...</p>
+                                </div>
+                                <div v-else>
+                                    <div v-if="pageModel.tabPages.tab6.model.all.list.length === 0" class="none-data p40">
+                                        <i class="iconfont iconlunwentimu"></i>
+                                        <p class="none-data-text">暂无作业信息</p>
+                                    </div>
+                                    <div v-else class="work_content">
+                                        <ul class="work_items">
+                                            <li v-for="(item, index) in pageModel.tabPages.tab6.model.all.list"
+                                                v-bind:key="index"
+                                                @click="gotoWorkDetail(item)">
+                                                <div class="first clearfix">
+                                                    <span class="name" v-text="item.Name"></span>
+                                                    <span v-if="item.IsAnnotation" class="score" v-text="'评分：' + item.Score"></span>
+                                                    <span v-else class="score">未批改</span>
+                                                </div>
+                                                <div class="bottom" v-text="'老师评语：' + (item.IsComment ? item.Comment : '未点评')"></div>
+                                            </li>
+                                        </ul>
+                                        <div v-if="pageModel.tabPages.tab6.model.all.isLoadMore" class="load_more clearfix">
+                                            <van-loading color="black"></van-loading>
+                                            <span class="load_text">正在加载...</span>
+                                        </div>
+                                        <div v-if="pageModel.tabPages.tab6.model.all.isLoadComplete" class="load_more_complete">
+                                            <span class="load_text">没有更多的数据了...</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div v-show="pageModel.tabPages.tab6.workIndex === 1" class="doit">
+                                <div v-if="pageModel.tabPages.tab6.model.uncorrected.isLoading" class="loading-box p50">
+                                    <van-loading color="black"></van-loading>
+                                    <p class="loading-text">正在加载...</p>
+                                </div>
+                                <div v-else>
+                                    <div v-if="pageModel.tabPages.tab6.model.uncorrected.list.length === 0" class="none-data p40">
+                                        <i class="iconfont iconlunwentimu"></i>
+                                        <p class="none-data-text">暂无作业信息</p>
+                                    </div>
+                                    <div v-else class="work_content">
+                                        <ul class="work_items">
+                                            <li v-for="(item, index) in pageModel.tabPages.tab6.model.uncorrected.list"
+                                                v-bind:key="index"
+                                                @click="gotoWorkDetail(item)">
+                                                <div class="first clearfix">
+                                                    <span class="name" v-text="item.Name"></span>
+                                                    <span v-if="item.IsAnnotation" class="score" v-text="'评分：' + item.Score"></span>
+                                                    <span v-else class="score">还未批改</span>
+                                                </div>
+                                                <div class="bottom" v-text="'老师评语：' + (item.IsComment ? item.Comment : '还未点评')"></div>
+                                            </li>
+                                        </ul>
+                                        <div v-if="pageModel.tabPages.tab6.model.uncorrected.isLoadMore" class="load_more clearfix">
+                                            <van-loading color="black"></van-loading>
+                                            <span class="load_text">正在加载...</span>
+                                        </div>
+                                        <div v-if="pageModel.tabPages.tab6.model.uncorrected.isLoadComplete" class="load_more_complete">
+                                            <span class="load_text">没有更多的数据了...</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div v-show="pageModel.tabPages.tab6.workIndex === 2" class="not">
+                                <div v-if="pageModel.tabPages.tab6.model.corrected.isLoading" class="loading-box p50">
+                                    <van-loading color="black"></van-loading>
+                                    <p class="loading-text">正在加载...</p>
+                                </div>
+                                <div v-else>
+                                    <div v-if="pageModel.tabPages.tab6.model.corrected.list.length === 0" class="none-data p40">
+                                        <i class="iconfont iconlunwentimu"></i>
+                                        <p class="none-data-text">暂无作业信息</p>
+                                    </div>
+                                    <div v-else class="work_content">
+                                        <ul class="work_items">
+                                            <li v-for="(item, index) in pageModel.tabPages.tab6.model.corrected.list"
+                                                v-bind:key="index"
+                                                @click="gotoWorkDetail(item)">
+                                                <div class="first clearfix">
+                                                    <span class="name" v-text="item.Name"></span>
+                                                    <span v-if="item.IsAnnotation" class="score" v-text="'评分：' + item.Score"></span>
+                                                    <span v-else class="score">还未批改</span>
+                                                </div>
+                                                <div class="bottom" v-text="'老师评语：' + (item.IsComment ? item.Comment : '还未点评')"></div>
+                                            </li>
+                                        </ul>
+                                        <div v-if="pageModel.tabPages.tab6.model.corrected.isLoadMore" class="load_more clearfix">
+                                            <van-loading color="black"></van-loading>
+                                            <span class="load_text">正在加载...</span>
+                                        </div>
+                                        <div v-if="pageModel.tabPages.tab6.model.corrected.isLoadComplete" class="load_more_complete">
+                                            <span class="load_text">没有更多的数据了...</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div v-show="pageModel.tabPages.tab6.workIndex === 3" class="remark">
+                                <div v-if="pageModel.tabPages.tab6.model.comments.isLoading" class="loading-box p50">
+                                    <van-loading color="black"></van-loading>
+                                    <p class="loading-text">正在加载...</p>
+                                </div>
+                                <div v-else>
+                                    <div v-if="pageModel.tabPages.tab6.model.comments.list.length === 0" class="none-data p40">
+                                        <i class="iconfont iconlunwentimu"></i>
+                                        <p class="none-data-text">暂无作业信息</p>
+                                    </div>
+                                    <div v-else class="work_content">
+                                        <ul class="work_items">
+                                            <li v-for="(item, index) in pageModel.tabPages.tab6.model.comments.list"
+                                                v-bind:key="index"
+                                                @click="gotoWorkDetail(item)">
+                                                <div class="first clearfix">
+                                                    <span class="name" v-text="item.Name"></span>
+                                                    <span v-if="item.IsAnnotation" class="score" v-text="'评分：' + item.Score"></span>
+                                                    <span v-else class="score">还未批改</span>
+                                                </div>
+                                                <div class="bottom" v-text="'老师评语：' + (item.IsComment ? item.Comment : '还未点评')"></div>
+                                            </li>
+                                        </ul>
+                                        <div v-if="pageModel.tabPages.tab6.model.comments.isLoadMore" class="load_more clearfix">
+                                            <van-loading color="black"></van-loading>
+                                            <span class="load_text">正在加载...</span>
+                                        </div>
+                                        <div v-if="pageModel.tabPages.tab6.model.comments.isLoadComplete" class="load_more_complete">
+                                            <span class="load_text">没有更多的数据了...</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </van-tab>
+                    <van-tab title="学习社区">
+                        <div class="learn" v-bind:style="{'minHeight':height + 'px'}">
+                            <div class="stacky" v-bind:class="{'learnfixed':pageModel.scrollTop>45}" v-bind:style="{'top':(statusbarHeight+44) + 'px'}">
+                                <span class="tag" v-bind:class="{'check': pageModel.tabPages.tab7.learnIndex === 0}" @click="pageModel.tabPages.tab7.learnIndex = 0">最新</span>
+                                <span class="tag" v-bind:class="{'check': pageModel.tabPages.tab7.learnIndex === 1}" @click="pageModel.tabPages.tab7.learnIndex = 1">我的问题</span>
+                                <span class="tag" v-bind:class="{'check': pageModel.tabPages.tab7.learnIndex === 2}" @click="pageModel.tabPages.tab7.learnIndex = 2">我的回答</span>
+                            </div>
+                            <div v-show="pageModel.tabPages.tab7.learnIndex === 0" class="new">
+                                <div v-if="pageModel.tabPages.tab7.model.all.isLoading" class="loading-box p50">
+                                    <van-loading color="black"></van-loading>
+                                    <p class="loading-text">正在加载...</p>
+                                </div>
+                                <div v-else>
+                                    <div v-if="pageModel.tabPages.tab7.model.all.list.length === 0" class="none-data p40">
+                                        <i class="iconfont iconlunwentimu"></i>
+                                        <p class="none-data-text">暂无信息</p>
+                                    </div>
+                                    <div v-else>
+                                        <ul class="list">
+                                            <li class="rec"
+                                                v-for="(item,index) in pageModel.tabPages.tab7.model.all.list"
+                                                v-bind:key="index"
+                                                @click="gotoQuestionDetail(item)">
+                                                <div class="user">
+                                                    <img v-lazy="item.Avatar" class="head" />
+                                                    <span class="name" v-text="item.RealName"></span>
+                                                    <span v-if="!item.IsAttention"
+                                                          class="focus van-hairline--surround"
+                                                          @click.stop="focusQuestion(item)">
+                                                        关注问题
+                                                    </span>
+                                                    <span v-else
+                                                          class="focus gray van-hairline--surround"
+                                                          @click.stop="focusQuestion(item)">
+                                                        已关注
+                                                    </span>
+                                                </div>
+                                                <p class="value" v-text="item.Title"></p>
+                                                <div class="tags">
+                                                    <span v-for="tag in item.Tags.split(/,/g)"
+                                                          v-text="tag"
+                                                          class="tag van-hairline--surround">
+                                                    </span>
+                                                </div>
+                                                <div class="bottoms">
+                                                    <span class="w5" v-text="item.AttentionCount + '人关注'"></span>
+                                                    <span class="w5 txt-right" v-text="item.PublishTime"></span>
+                                                </div>
+                                            </li>
+                                        </ul>
+                                        <div v-if="pageModel.tabPages.tab7.model.all.isLoadMore" class="load_more clearfix">
+                                            <van-loading color="black"></van-loading>
+                                            <span class="load_text">正在加载...</span>
+                                        </div>
+                                        <div v-if="pageModel.tabPages.tab7.model.all.isLoadComplete" class="load_more_complete">
+                                            <span class="load_text">没有更多的数据了...</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div v-show="pageModel.tabPages.tab7.learnIndex === 1" class="new">
+                                <div v-if="pageModel.tabPages.tab7.model.myQuestion.isLoading" class="loading-box p50">
+                                    <van-loading color="black"></van-loading>
+                                    <p class="loading-text">正在加载...</p>
+                                </div>
+                                <div v-else>
+                                    <div v-if="pageModel.tabPages.tab7.model.myQuestion.list.length === 0" class="none-data p40">
+                                        <i class="iconfont iconlunwentimu"></i>
+                                        <p class="none-data-text">您还没有提问过呢</p>
+                                    </div>
+                                    <div v-else>
+                                        <ul class="list">
+                                            <li class="rec"
+                                                v-for="(item,index) in pageModel.tabPages.tab7.model.myQuestion.list"
+                                                v-bind:key="index"
+                                                @click="gotoQuestionDetail(item)">
+                                                <div class="user">
+                                                    <img v-lazy="item.Avatar" class="head" />
+                                                    <span class="name" v-text="item.RealName"></span>
+                                                </div>
+                                                <p class="value" v-text="item.Title"></p>
+                                                <div class="tags">
+                                                    <span v-for="tag in item.Tags.split(/,/g)"
+                                                          v-text="tag"
+                                                          class="tag van-hairline--surround">
+                                                    </span>
+                                                </div>
+                                                <div class="bottoms">
+                                                    <span class="w5" v-text="item.AttentionCount + '人关注'"></span>
+                                                    <span class="w5 txt-right" v-text="item.PublishTime"></span>
+                                                </div>
+                                            </li>
+                                        </ul>
+                                        <div v-if="pageModel.tabPages.tab7.model.myQuestion.isLoadMore" class="load_more clearfix">
+                                            <van-loading color="black"></van-loading>
+                                            <span class="load_text">正在加载...</span>
+                                        </div>
+                                        <div v-if="pageModel.tabPages.tab7.model.myQuestion.isLoadComplete" class="load_more_complete">
+                                            <span class="load_text">没有更多的数据了...</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div v-show="pageModel.tabPages.tab7.learnIndex === 2" class="new">
+                                <div v-if="pageModel.tabPages.tab7.model.myAnswer.isLoading" class="loading-box p50">
+                                    <van-loading color="black"></van-loading>
+                                    <p class="loading-text">正在加载...</p>
+                                </div>
+                                <div v-else>
+                                    <div v-if="pageModel.tabPages.tab7.model.myAnswer.list.length === 0" class="none-data p40">
+                                        <i class="iconfont iconlunwentimu"></i>
+                                        <p class="none-data-text">没有与您相关的回答</p>
+                                    </div>
+                                    <div v-else>
+                                        <ul class="list">
+                                            <li class="rec"
+                                                v-for="(item,index) in pageModel.tabPages.tab7.model.myAnswer.list"
+                                                v-bind:key="index"
+                                                @click="gotoQuestionDetail(item)">
+                                                <div class="user">
+                                                    <img v-lazy="item.Avatar" class="head" />
+                                                    <span class="name" v-text="item.RealName"></span>
+                                                </div>
+                                                <p class="value" v-text="item.Title"></p>
+                                                <div class="tags">
+                                                    <span v-for="tag in item.Tags.split(/,/g)"
+                                                          v-text="tag"
+                                                          class="tag van-hairline--surround">
+                                                    </span>
+                                                </div>
+                                                <div class="bottoms">
+                                                    <span class="w5" v-text="item.AttentionCount + '人关注'"></span>
+                                                    <span class="w5 txt-right" v-text="item.PublishTime"></span>
+                                                </div>
+                                            </li>
+                                        </ul>
+                                        <div v-if="pageModel.tabPages.tab7.model.myAnswer.isLoadMore" class="load_more clearfix">
+                                            <van-loading color="black"></van-loading>
+                                            <span class="load_text">正在加载...</span>
+                                        </div>
+                                        <div v-if="pageModel.tabPages.tab7.model.myAnswer.isLoadComplete" class="load_more_complete">
+                                            <span class="load_text">没有更多的数据了...</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </van-tab>
+                </van-tabs>
+            </van-pull-refresh>
+            <div class="shortcut" v-drag>
+                <div class="shortcut_button">
+                    <i class="iconfont iconguanzhuwentix"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="../content/js/vue.js"></script>
+    <script src="../content/js/vant.min.js"></script>
+    <script src="../content/js/base.js"></script>
+    <script src="../content/js/pages/thriver.js"></script>
+</body>
+</html>

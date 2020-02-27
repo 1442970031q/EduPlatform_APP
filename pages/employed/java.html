@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no,viewport-fit=cover" />
+		<title></title>
+		<link href="../../content/css/base.css" rel="stylesheet" />
+		<link href="../../content/css/vant.css" rel="stylesheet" />
+		<link href="../../content/css/pages/employed/java.css" rel="stylesheet" />
+		<script src="html5plus://ready"></script>
+	</head>
+	<body>
+		<div id="app">
+			<div id="app-head" class="fixed " v-bind:style="{'paddingTop': statusbarHeight + 'px'}">
+				<i id="app-back-button" class="iconfont iconbaidifanhuianniux right-back"></i>
+				<div class="app-head-text" v-text="obj.Name">
+				</div>
+			</div>
+			<div id="app-content" v-bind:style="{'paddingTop': (45 + statusbarHeight) + 'px'}">
+				<div v-if="isLoading" class="loading-box p60">
+					<van-loading color="black"></van-loading>
+					<p class="loading-text">正在加载...</p>
+				</div>
+				<div v-else class="content" v-bind:style="{'height':height+'px'}">
+					<div v-if="data.length===0" class="normal_info">
+						<img class="img" src="../../content/img/center/cache_bg.png" />
+						<p class="text">
+							还没有相关内容，敬请期待~
+						</p>
+					</div>
+					<div v-else>
+						<div class="left" :style="{'maxHeight':height+'px'}">
+							<div v-for="item in data.types" v-text="item.Name" @click="cehckCrouse(item)" :class="{'sidebar':true,'isCheck':checkId==item.Id}">
+							</div>
+						</div>
+						<div class="right" :class="{'tran':data.details.length===0}">
+							<div v-if="isLoadingDetail" class="loading-box p60">
+								<van-loading color="black"></van-loading>
+								<p class="loading-text">正在加载...</p>
+							</div>
+							<div v-else>
+								<div v-if="data.details.length===0" class="normal_info tran">
+									<img class="img" src="../../content/img/center/cache_bg.png" />
+									<p class="text">
+										对不起，没有相关试题
+									</p>
+								</div>
+								<div v-else class="text">
+									<van-collapse v-model="activeNames">
+										<van-collapse-item v-for="(item,index) in data.details" name="1">
+											<span slot="title" v-html="item.Title"></span>
+											<span slot="icon" class="question" v-text="'Q'+(index+1)"></span>
+											<p v-html="item.JContent"></p>
+										</van-collapse-item>
+									</van-collapse>
+									<div v-if="isLoadMore" class="load_more clearfix">
+										<van-loading color="black"></van-loading>
+										<span class="load_text">正在加载...</span>
+									</div>
+									<div v-if="isLoadComplete" class="load_more_complete">
+										<span class="load_text">没有更多的数据了...</span>
+									</div>
+								</div>
+							</div>
+						</div>
+
+					</div>
+				</div>
+			</div>
+		</div>
+		<script src="../../content/js/vue.js"></script>
+		<script src="../../content/js/vant.min.js"></script>
+		<script src="../../content/js/base.js"></script>
+		<script src="../../content/js/pages/employed/java.js"></script>
+	</body>
+</html>

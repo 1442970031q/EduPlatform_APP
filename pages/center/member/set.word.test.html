@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no,viewport-fit=cover" />
+    <title></title>
+    <link href="../../../content/css/base.css" rel="stylesheet" />
+    <link href="../../../content/css/vant.css" rel="stylesheet" />
+    <style>
+        .van-cell,
+        .van-cell__right-icon {
+            line-height: 35px;
+        }
+    </style>
+    <script src="html5plus://ready"></script>
+</head>
+<body>
+    <div id="app">
+        <div id="app-head" class="fixed van-hairline--bottom" v-bind:style="{'paddingTop': statusbarHeight + 'px'}">
+            <i id="app-back-button" class="iconfont iconbaidifanhuianniux right-back"></i>
+            <div class="app-head-text">设置测试时间</div>
+            <div v-show="testTime !== '未选择' && minutes !== '未选择'" 
+                 class="submit-button" 
+                 @click="submitDataAjax">发起测试</div>
+        </div>
+        <div id="app-content" v-bind:style="{'paddingTop': (45 + statusbarHeight) + 'px'}">
+            <van-cell-group class="mt-15">
+                <van-cell title="开始时间" 
+                          :value="testTime" 
+                          is-link 
+                          @click="startTimeShow = true"></van-cell>
+                <van-cell title="测试时间" 
+                          :value="minutes" 
+                          is-link 
+                          @click="timeShow = true"></van-cell>
+            </van-cell-group>
+            <van-popup v-model="startTimeShow" position="bottom">
+                <van-datetime-picker v-model="currentDate"
+                                     @cancel="startTimeShow=false"
+                                     @confirm="choseSatartTime"
+                                     type="datetime"
+                                     v-bind:min-date="minDate"
+                                     v-bind:formatter="formatter">
+                </van-datetime-picker>
+            </van-popup>
+            <van-popup v-model="timeShow" position="bottom">
+                <van-picker :columns="columns"
+                            value-key="time"
+                            @confirm="choseTime"
+                            show-toolbar
+                            @cancel="timeShow=false">
+                </van-picker>
+            </van-popup>
+        </div>
+    </div>
+    <script src="../../../content/js/vue.js"></script>
+    <script src="../../../content/js/vant.min.js"></script>
+    <script src="../../../content/js/base.js"></script>
+    <script src="../../../content/js/pages/center/member/set.word.test.js"></script>
+</body>
+
+</html>

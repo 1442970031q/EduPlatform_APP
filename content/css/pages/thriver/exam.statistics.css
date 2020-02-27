@@ -1,0 +1,89 @@
+﻿#app-head.bg {
+    background-color: #02b9ff;
+    color: white;
+}
+
+    #app-head.bg .right-back {
+        color: white;
+    }
+
+.block {
+    padding: 15px;
+    background-color: white;
+    margin-bottom: 10px;
+}
+
+    .block.bg {
+        background-color: #02b9ff;
+        margin-bottom: 0;
+        position: fixed;
+        width: 100%;
+        box-sizing: border-box;
+        z-index: 1;
+        padding-top: 5px;
+    }
+
+    .block .title {
+        height: 30px;
+        line-height: 30px;
+        padding: 5px 15px;
+        background: -webkit-linear-gradient(left, #e4e9f9, white);
+        border-radius: 4px;
+        font-size: .9em;
+        color: #505050;
+    }
+
+    .block.bg .title {
+        background: none;
+        color: white;
+        font-weight: bold;
+        font-size: 1.2em;
+    }
+
+    .block .title.small {
+        font-size: .8em;
+        font-weight: bold;
+    }
+
+    .block .info {
+        display: flex;
+        margin-top: 15px;
+    }
+
+    .block.bg .info {
+        margin-top: 5px;
+    }
+
+    .block .info li {
+        width: 50%;
+        text-align: center;
+    }
+
+        .block .info li .caption {
+            font-size: .8em;
+            height: 20px;
+            line-height: 20px;
+            color: #444;
+        }
+
+        .block .info li .number {
+            font-size: 1.8em;
+            height: 40px;
+            line-height: 40px;
+            margin: 5px 0;
+            font-weight: bold;
+            color: #333;
+        }
+
+        .block .info li .bottom {
+            font-size: .8em;
+            height: 20px;
+            line-height: 20px;
+            color: #444;
+        }
+
+    .block.bg .info li .caption,
+    .block.bg .info li .number,
+    .block.bg .info li .bottom {
+        color: white;
+    }

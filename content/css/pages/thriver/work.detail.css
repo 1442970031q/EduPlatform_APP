@@ -1,0 +1,90 @@
+﻿.top_content {
+    background-color: white;
+    padding: 15px;
+    position: relative;
+}
+
+    .top_content .caption {
+        height: 25px;
+        line-height: 25px;
+    }
+
+    .top_content .title {
+        font-size: .9em;
+        height: 20px;
+        line-height: 20px;
+        margin-top: 5px;
+        color: #5a5a5a;
+    }
+
+    .top_content .images {
+        display: flex;
+        flex-wrap: wrap;
+        background-color: white;
+        margin-top: 15px;
+    }
+
+        .top_content .images .image {
+            width: 70px;
+            height: 70px;
+            overflow: hidden;
+            position: relative;
+            margin-right: 15px;
+            border-radius: 4px;
+        }
+
+            .top_content .images .image img {
+                position: absolute;
+                left: 0;
+                top: 0;
+                width: 100%;
+                display: block;
+            }
+
+    .top_content .remark {
+        margin-top: 15px;
+    }
+
+        .top_content .remark .title {
+            font-size: .9em;
+            height: 20px;
+            line-height: 20px;
+            font-weight: bold;
+        }
+
+        .top_content .remark .des {
+            font-size: .9em;
+            margin-top: 5px;
+            color: #909090;
+        }
+
+    .top_content .score {
+        position: absolute;
+        width: 80px;
+        height: 60px;
+        text-align: center;
+        line-height: 60px;
+        right: 0;
+        top: 0;
+    }
+
+        .top_content .score .value {
+            font-size: 1.8em;
+            font-weight: bold;
+        }
+
+.comment {
+    padding: 15px;
+    background-color: white;
+}
+
+    .comment .caption {
+        height: 25px;
+        line-height: 25px;
+    }
+
+    .comment .text {
+        margin-top: 10px;
+        font-size: .9em;
+        color: #888;
+    }

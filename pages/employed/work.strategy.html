@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no,viewport-fit=cover" />
+		<title></title>
+		<link href="../../content/css/base.css" rel="stylesheet" />
+		<link href="../../content/css/vant.css" rel="stylesheet" />
+		<link href="../../content/css/pages/employed/work.strategy.css" rel="stylesheet" />
+		<script src="html5plus://ready"></script>
+	</head>
+	<body>
+		<div id="app">
+			<div id="app-head" class="fixed van-hairline--bottom" v-bind:style="{'paddingTop': statusbarHeight + 'px'}">
+				<i id="app-back-button" class="iconfont iconbaidifanhuianniux right-back"></i>
+				<div class="app-head-text">就业宝典</div>
+			</div>
+			<div id="app-content" v-bind:style="{'paddingTop': (45 + statusbarHeight) + 'px'}"  >
+				<div v-if="isLoading" class="loading-box p60">
+				    <van-loading color="black"></van-loading>
+				    <p class="loading-text">正在加载...</p>
+				</div>
+				<div v-else>
+					<div v-if="data.length==0" class="normal_info">
+						<img class="img" src="../../content/img/center/cache_bg.png" />
+						<p class="text">
+							还没有相关内容，敬请期待~
+						</p>
+					</div>
+					<div v-else class="content">
+						<p class="title">
+							就业分类
+						</p>
+						<div class="tabs">
+							<div v-for="item in data" class="tab" @click="gotoDetail(item)">
+								<img class="img"  v-lazy="item.ImageSrc" />
+								<p class="name" v-text="item.Name"> </p>
+							</div>
+						</div>
+					</div> 
+				</div>
+			</div>
+		</div>
+		<script src="../../content/js/vue.js"></script>
+		<script src="../../content/js/vant.min.js"></script>
+		<script src="../../content/js/base.js"></script>
+		<script src="../../content/js/pages/employed/work.strategy.js"></script>
+	</body>
+</html>

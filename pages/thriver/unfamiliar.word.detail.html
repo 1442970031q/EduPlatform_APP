@@ -1,0 +1,60 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no,viewport-fit=cover" />
+    <title></title>
+    <link href="../../content/css/base.css" rel="stylesheet" />
+    <link href="../../content/css/vant.css" rel="stylesheet" />
+    <link href="../../content/css/pages/thriver/word.explain.css" rel="stylesheet" />
+    <script src="html5plus://ready"></script>
+</head>
+<body>
+    <div id="app" class="h-100">
+        <div id="app-head" v-bind:style="{'paddingTop': statusbarHeight + 'px'}">
+            <i id="app-back-button" class="iconfont iconbaidifanhuianniux right-back"></i>
+            <div class="app-head-text">背单词</div>
+        </div>
+        <div id="app-content" v-bind:style="{'height': 'calc(100% - ' + (45 + statusbarHeight) + 'px)'}">
+            <div v-cloak class="container">
+                <div class="word_box">
+                    <div class="word_top van-hairline--bottom">
+                        <h3 class="word" v-if="pageModel.word !== null" v-text="pageModel.word.Eng"></h3>
+                        <div class="word_info">
+                            <van-loading color="black" v-if="isLoadSound"></van-loading>
+                            <div v-else class="word_sound"
+                                 v-bind:class="{'playing': isPlaying}"
+                                 @click="playSound">
+                                <span class="sound_icon"></span>
+                                美
+                                <span v-text="'[' + pageModel.word.Phonetic + ']'"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="word_explain">
+                        <h3 class="caption">释义</h3>
+                        <p class="word_explain_line" v-if="pageModel.word !== null" v-text="pageModel.word.Chi"></p>
+                    </div>
+                    <div class="bottom b_1"></div>
+                    <div class="bottom b_2"></div>
+                    <div class="actions">
+                        <button @click="removeBook"
+                                class="van-hairline--right blue">
+                            <i class="iconfont iconjizhulex"></i>
+                            记住了
+                        </button>
+                        <button class="red">
+                            <i class="iconfont iconyaofuxix"></i>
+                            要复习
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="../../content/js/vue.js"></script>
+    <script src="../../content/js/vant.min.js"></script>
+    <script src="../../content/js/base.js"></script>
+    <script src="../../content/js/pages/thriver/unfamiliar.word.detail.js"></script>
+</body>
+</html>

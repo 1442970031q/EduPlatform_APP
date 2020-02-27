@@ -1,0 +1,94 @@
+.content {
+    margin-top: 10px;
+}
+
+    .content .caption {
+        padding: 15px;
+        padding-bottom: 5px;
+        color: #777;
+    }
+
+    .content .cell {
+        background-color: #FFFFFF;
+    }
+
+        .content .cell .item {
+            display: flex;
+            padding: 15px;
+        }
+
+            .content .cell .item:active {
+                background-color: #f9f9f9;
+            }
+
+        .content .cell .item .left {
+            width: 120px;
+            height: 80px;
+            text-align: center;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+            .content .cell .item .left .img {
+                width: 100%;
+                display: block;
+            }
+
+        .content .cell .item .right {
+            width: calc(100% - 135px);
+            margin-left: 15px;
+        }
+
+            .content .cell .item .right .intro {
+                height: 20px;
+                line-height: 20px;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                white-space: nowrap;
+                font-size: 0.8em;
+                color: #AAAAAA;
+            }
+
+            .content .cell .item .right .name {
+                font-size: 1em;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                white-space: nowrap;
+                height: 20px;
+                line-height: 20px;
+            }
+
+            .content .cell .item .right .number {
+                font-size: 0.8em;
+                color: #53AAF6;
+            }
+
+            .content .cell .item .right .bottom {
+                text-align: right;
+                height: 25px;
+                line-height: 25px;
+                display: flex;
+                align-items: center;
+            }
+
+                .content .cell .item .right .bottom .now {
+                    font-size: 0.6em;
+                    color: #53aaf6;
+                    width: 75px;
+                    text-align: center;
+                    display: block;
+                    margin-left: 10px;
+                }
+
+            .content .cell .item .right .progress-bar {
+                background-color: #f7f7f7;
+                border-radius: 4px;
+                overflow: hidden;
+                height: 5px;
+                width: calc(100% - 85px);
+            }
+
+                .content .cell .item .right .progress-bar .now-progress-bar {
+                    background-color: #53aaf6;
+                    height: 5px;
+                }

@@ -1,0 +1,42 @@
+html, body {
+    background-color: #FFFFFF;
+}
+
+.content {
+    background-color: #FFFFFF;
+    padding-top: 15%;
+    padding-bottom: 50px;
+}
+
+    .content .logo {
+        width: 183.5px;
+        display: block;
+        margin: 0 auto;
+    }
+
+    .content .text {
+        width: 90%;
+        margin: auto;
+        margin-top: 5%;
+    }
+
+        .content .text .value {
+            font-size: 0.9em;
+            text-indent: 2em;
+            margin: 20px 0;
+            color: #777777;
+        }
+
+        .content .text .cell {
+            padding: 10px 0;
+        }
+
+            .content .text .cell .left {
+                font-size: 0.9em;
+            }
+
+            .content .text .cell .right {
+                font-size: 0.8em;
+                color: #c7c7c7;
+                float: right;
+            }

@@ -1,0 +1,48 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no,viewport-fit=cover" />
+    <title></title>
+    <link href="../../content/css/base.css" rel="stylesheet" />
+    <link href="../../content/css/vant.css" rel="stylesheet" />
+    <link href="../../content/css/pages/thriver/small.test.result.css" rel="stylesheet" />
+    <script src="html5plus://ready"></script>
+</head>
+<body>
+    <div id="app">
+        <div id="app-head" v-bind:style="{'paddingTop': statusbarHeight + 'px'}">
+            <i id="app-back-button" class="iconfont iconbaidifanhuianniux right-back"></i>
+            <div class="app-head-text">测试结果</div>
+            <div v-if="request.qCount - request.rCount > 0"
+                 class="submit-button" 
+                 @click="gotoErrorList">查看错题</div>
+        </div>
+        <div id="app-content">
+            <div class="score_box">
+                <span id="score" class="score_value"></span>
+            </div>
+            <div class="test_info">
+                <ul>
+                    <li>
+                        <p class="text">回答错误</p>
+                        <p class="value" v-text="request.qCount - request.rCount"></p>
+                    </li>
+                    <li>
+                        <p class="text">回答正确</p>
+                        <p class="value" v-text="request.rCount"></p>
+                    </li>
+                </ul>
+            </div>
+            <div class="buttons">
+                <button class="btn" @click="APP.GLOBAL.closeWindow()">关闭页面</button>
+            </div>
+        </div>
+    </div>
+    <script src="../../content/js/vue.js"></script>
+    <script src="../../content/js/vant.min.js"></script>
+    <script src="../../content/js/base.js"></script>
+    <script src="../../content/js/countUp.min.js"></script>
+    <script src="../../content/js/pages/thriver/word.write.result.js"></script>
+</body>
+</html>

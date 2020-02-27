@@ -1,0 +1,129 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no,viewport-fit=cover" />
+    <title></title>
+    <link href="../../content/css/base.css" rel="stylesheet" />
+    <link href="../../content/css/vant.css" rel="stylesheet" />
+    <link href="../../content/css/pages/center/member.mangement.css" rel="stylesheet" />
+    <script src="html5plus://ready"></script>
+</head>
+<body>
+    <div id="app">
+        <div id="app-head" class="fixed" v-bind:style="{'paddingTop': statusbarHeight + 'px'}">
+            <i id="app-back-button" class="iconfont iconbaidifanhuianniux right-back"></i>
+            <div class="app-head-text">
+                成员管理
+            </div>
+        </div>
+        <div id="app-content" v-cloak v-bind:style="{'paddingTop': (45 + statusbarHeight) + 'px'}">
+            <div v-if="!currentUser.IsDisciplinaryCommissioner && !currentUser.IsGroupLeader && !currentUser.IsEnglishRepresentative"
+                 class="normal_info">
+                <p class="text">这里什么也没有！！！</p>
+            </div>
+            <van-tabs v-else 
+                      line-width="20" 
+                      @change="changeTabs">
+                <van-tab title="考勤" v-if="currentUser.IsDisciplinaryCommissioner">
+                    <ul class="items">
+                        <li class="li clearfix" @click="APP.GLOBAL.gotoNewWindow('member/public.crouse.check')">
+                            <i class="iconfont icongonggongke"></i>
+                            <div class="item_right">
+                                <p class="text">公共课</p>
+                                <p class="des">公共课考勤登记</p>
+                            </div>
+                            <div class="more">
+                                <i class="van-icon van-icon-arrow"></i>
+                            </div>
+                        </li>
+                        <li class="li clearfix" @click="APP.GLOBAL.gotoNewWindow('member/main.crouse.check')">
+                            <i class="iconfont iconzhuanyeke"></i>
+                            <div class="item_right">
+                                <p class="text">专业课</p>
+                                <p class="des">专业课考勤登记</p>
+                            </div>
+                            <div class="more">
+                                <i class="van-icon van-icon-arrow"></i>
+                            </div>
+                        </li>
+                    </ul>
+                </van-tab>
+                <van-tab title="上机" class="work" v-if="currentUser.IsGroupLeader">
+                    <div v-if="pageModule.tab_1.isLoading" class="loading-box p60">
+                        <van-loading color="black"></van-loading>
+                        <p class="loading-text">正在加载...</p>
+                    </div>
+                    <div v-else class="mb-35">
+                        <div v-if="pageModule.tab_1.data.length==0" class="normal_info">
+                            <img class="img" src="../../content/img/center/cache_bg.png" />
+                            <p class="text">
+                                还没有上机任务
+                            </p>
+                        </div>
+                        <div v-else 
+                             class="task_item"
+                             v-for="(item,index) in pageModule.tab_1.data"
+                             v-bind:key="index">
+                            <div class="title clearfix">
+                                <span class="text" v-text="item.ChapterName"></span>
+                                <span class="number" v-text="'任务：'+item.RwCount"> </span>
+                            </div>
+                            <div class="group van-hairline--top">
+                                <p class="top">小组成员</p>
+                                <div class="members" v-for="list in item.Data">
+                                    <div class="member computer">
+                                        <span class="name" v-text="list.StudentName"></span>
+                                        <div class="right">
+                                            <p class="txt">任务完成数量</p>
+                                            <van-stepper v-model="list.FinishCount" min="0"></van-stepper>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="confirm_button mt-15" @click="submitWorkAjax(index)">提交</div>
+                        </div>
+                    </div>
+                </van-tab>
+                <van-tab title="单词" class="work" v-if="currentUser.IsEnglishRepresentative">
+                    <div v-if="pageModule.tab_2.isLoading" class="loading-box p60">
+                        <van-loading color="black"></van-loading>
+                        <p class="loading-text">正在加载...</p>
+                    </div>
+                    <div v-else class="mb-35">
+                        <p class="top">设置单词测试的时间，设置完成注意提醒同学</p>
+                        <div v-if="pageModule.tab_2.data.length==0" class="normal_info">
+                            <img class="img" src="../../content/img/center/cache_bg.png" />
+                            <p class="text">
+                                还没有没有要设置的章节
+                            </p>
+                        </div>
+                        <div v-else class="members mt-10">
+                            <ul>
+                                <li class="member clearfix"
+                                     v-for="(item,index) in pageModule.tab_2.data"
+                                     v-bind:key="index"
+                                     v-bind:class="{'green': item.IsTested}"
+                                     @click="gotoSetPage(item)">
+                                    <div class="name">
+                                        <i class="iconfont iconquanbujiexix"></i>
+                                        <span v-text="item.SName"></span>
+                                    </div>
+                                    <div class="right" v-if="item.IsTested">
+                                        <i class="iconfont iconxuanzeduihaox"></i>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </van-tab>
+            </van-tabs>
+        </div>
+    </div>
+    <script src="../../content/js/vue.js"></script>
+    <script src="../../content/js/vant.min.js"></script>
+    <script src="../../content/js/base.js"></script>
+    <script src="../../content/js/pages/center/member.mangement.js"></script>
+</body>
+</html>

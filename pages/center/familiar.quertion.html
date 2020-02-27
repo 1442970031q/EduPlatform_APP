@@ -1,0 +1,62 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no,viewport-fit=cover" />
+    <title></title>
+    <link href="../../content/css/base.css" rel="stylesheet" />
+    <link href="../../content/css/vant.css" rel="stylesheet" />
+    <style>
+        .van-cell,
+        .van-cell__right-icon {
+            line-height: 30px;
+        }
+
+        #app-content .question {
+            padding: 3px 5px;
+            font-size: 0.7em;
+            color: white;
+            background: url(../../content/img/question_bg.png) no-repeat;
+            background-size: 100% auto;
+            background-position: center top;
+            line-height: 15px;
+            margin-right: 5px;
+            margin-top: 4px;
+        }
+    </style>
+    <script src="html5plus://ready"></script>
+</head>
+<body>
+    <div id="app">
+        <div id="app-head" class="fixed van-hairline--bottom" v-bind:style="{'paddingTop': statusbarHeight + 'px'}">
+            <i id="app-back-button" class="iconfont iconbaidifanhuianniux right-back"></i>
+            <div class="app-head-text">常见问题</div>
+        </div>
+        <div id="app-content" v-bind:style="{'paddingTop': (45 + statusbarHeight) + 'px'}">
+            <div v-if="isLoading" class="loading-box p60">
+                <van-loading color="black"></van-loading>
+                <p class="loading-text">正在加载...</p>
+            </div>
+            <div v-else>
+                <div v-if="pageModel.list.length === 0" class="normal_info">
+                    <img class="img" src="../../content/img/center/cache_bg.png" />
+                    <p class="text">还没有相关的问题</p>
+                </div>
+                <van-collapse class="mt-10" v-else v-model="activeNames">
+                    <van-collapse-item v-for="(item,index) in pageModel.list"
+                                       v-bind:key="index"
+                                       v-bind:title="item.Question"
+                                       v-bind:name="index+1">
+                        <span slot="icon" class="question" v-text="'Q' + (index + 1)"></span>
+                        <div v-html="item.Answer"></div>
+                    </van-collapse-item>
+                </van-collapse>
+            </div>
+        </div>
+    </div>
+    <script src="../../content/js/vue.js"></script>
+    <script src="../../content/js/vant.min.js"></script>
+    <script src="../../content/js/base.js"></script>
+    <script src="../../content/js/pages/center/familiar.quertion.js"></script>
+</body>
+</html>

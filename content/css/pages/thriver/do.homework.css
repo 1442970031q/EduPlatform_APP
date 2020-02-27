@@ -1,0 +1,188 @@
+.crouse {
+    display: flex;
+    padding: 15px;
+    background-color: #FFFFFF;
+    margin-top: 10px;
+}
+
+    .crouse:active {
+        background-color: #f9f9f9;
+    }
+
+    .crouse .left {
+        width: calc(100% - 50px);
+        color: #AAAAAA;
+        font-size: 0.9em;
+        line-height: 25px;
+        height: 25px;
+    }
+
+        .crouse .left .name {
+            color: #333333;
+        }
+
+    .crouse .right {
+        width: 50px;
+        text-align: right;
+        line-height: 25px;
+        height: 25px;
+        text-align: right;
+    }
+
+        .crouse .right .iconfont {
+            color: #8dc3f8;
+        }
+
+.check {
+}
+
+    .check .cell {
+        text-align: center;
+        height: 45px;
+        line-height: 45px;
+        background-color: white;
+        margin-bottom: 15px;
+    }
+
+    .check .term {
+        background-color: white;
+    }
+
+        .check .term .term_name {
+            padding: 15px;
+            height: 20px;
+            line-height: 20px;
+            color: #9a9a9a;
+        }
+
+        .check .term .fp {
+            font-size: 0.8em;
+            font-weight: normal;
+            padding: 5px;
+            height: 40px;
+            line-height: 40px;
+            margin-bottom: 0;
+        }
+
+    .check .fp.van-hairline--bottom::after,
+    .check .fp.van-hairline--top::after {
+        border-color: #f9f9f9 !important;
+    }
+
+    .check .term .fp:active {
+        background-color: #f9f9f9;
+    }
+
+    .check .isCheck {
+        background-color: #FFFFFF;
+        border-left: 3px solid #02b9ff;
+    }
+
+.content {
+    margin-top: 10px;
+    padding-bottom: 65px;
+}
+
+    .content.safe {
+        padding-bottom: 80px;
+    }
+
+    .content .van-checkbox-group {
+        background-color: white;
+    }
+
+    .content .block {
+        padding: 10px 15px;
+        display: flex;
+        align-items: center;
+    }
+
+        .content .block.van-hairline--bottom::after {
+            border-color: #e2e2e2;
+        }
+
+        .content .block .van-checkbox {
+            display: inline-block;
+        }
+
+        .content .block .left {
+            width: calc(100% - 50px);
+            overflow: hidden;
+        }
+
+            .content .block .left .name {
+                font-size: 1em;
+                overflow: hidden;
+                width: 100%;
+                height: 25px;
+                line-height: 25px;
+                text-overflow: ellipsis;
+                white-space: nowrap;
+            }
+
+                .content .block .left .name .small {
+                    font-size: .7em;
+                    color: #8c8c8c;
+                }
+
+            .content .block .left .info {
+                font-size: .8em;
+                color: #AAAAAA;
+                overflow: hidden;
+                width: 100%;
+                height: 20px;
+                line-height: 20px;
+                text-overflow: ellipsis;
+                white-space: nowrap;
+            }
+
+            .content .block .left .count {
+                height: 20px;
+                font-size: .7em;
+                color: #AAAAAA;
+                margin-top: 10px;
+            }
+
+        .content .block .right {
+            width: 50px;
+            font-size: 0.8em;
+            text-align: right;
+        }
+
+            .content .block .right .button {
+                color: #53aaf6;
+                border-radius: 50px;
+                border: 1px solid #53aaf6;
+                padding: 5px 10px;
+                vertical-align: -2px;
+            }
+
+                .content .block .right .button:active {
+                    background-color: #53aaf6;
+                    color: white;
+                }
+
+                .content .block .right .button .iconfont {
+                    color: #53aaf6;
+                    margin-right: 3px;
+                }
+
+                .content .block .right .button:active .iconfont {
+                    color: white;
+                }
+
+.confirm_button.dis,
+.confirm_button.dis:active {
+    color: #a0a0a0;
+    background-color: #d8d8d8;
+}
+
+.confirm_button.safe {
+    height: initial !important;
+    padding-bottom: 30px;
+}
+
+.van-checkbox__icon--checked .van-icon {
+    background-color: #02b9ff;
+    border-color: #02b9ff;
+}

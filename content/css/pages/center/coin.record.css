@@ -1,0 +1,35 @@
+.cell {
+	background: white;
+	padding: 10px;
+}
+
+.cell .row {
+	display: flex;
+}
+
+.cell .row .w7 {
+	width: 70%;
+	overflow: hidden;
+	word-break: keep-all;
+	white-space: nowrap;
+	overflow-x: hidden;
+	text-overflow: ellipsis;
+	font-size: 0.9em;
+	line-height: 30px;
+}
+
+.cell .row .w3 {
+	width: 30%;
+	font-weight: 500;
+	font-size: 1.5em;
+	text-align: right;
+}
+
+.cell .row2 {
+	font-size: 0.85em;
+}
+
+.cell .row3 {
+	font-size: 0.7em;
+	color: #aaaaaa;
+}

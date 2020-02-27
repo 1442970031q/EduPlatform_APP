@@ -1,0 +1,139 @@
+.tags {
+    padding: 10px;
+    background-color: #FFFFFF;
+    position: fixed;
+    width: 100%;
+    box-sizing: border-box;
+    border-top: 10px solid #f6f6f6;
+}
+
+    .tags .caption {
+        font-weight: bold;
+        font-size: .9em;
+    }
+
+    .tags .tag_content {
+        height: 30px;
+        overflow: hidden;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        display: flex;
+        margin: 20px 0;
+        margin-bottom: 10px;
+    }
+
+        .tags .tag_content .tag {
+            font-size: 0.7em;
+            color: #AAAAAA;
+            display: block;
+            padding: 5px;
+            margin-right: 10px;
+            height: 20px;
+            line-height: 20px;
+            flex: 0 0 22%;
+            text-align: center;
+        }
+
+            .tags .tag_content .tag.van-hairline--surround::after {
+                border-radius: 6px;
+                border-color:#AAAAAA;
+            }
+
+            .tags .tag_content .tag.isCheck {
+                color: #53aaf6;
+            }
+
+                .tags .tag_content .tag.isCheck.van-hairline--surround::after {
+                    border-color: #53aaf6 !important;
+                }
+
+.content {
+    padding-top: 120px;
+}
+
+    .content .cell {
+        background-color: #FFFFFF;
+        padding: 15px;
+        display: flex;
+        border-bottom: 1px solid #f9f9f9;
+    }
+
+        .content .cell:last-child {
+            border-bottom: 0;
+        }
+
+        .content .cell:active {
+            background-color: #f9f9f9;
+        }
+
+        .content .cell .left {
+            width: 120px;
+            height: 80px;
+            text-align: center;
+            overflow: hidden;
+            border-radius: 4px;
+        }
+
+            .content .cell .left .img {
+                width: 100%;
+                display: block;
+            }
+
+        .content .cell .right {
+            width: calc(100% - 130px);
+            margin-left: 10px;
+        }
+
+            .content .cell .right .intro {
+                height: 20px;
+                line-height: 20px;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                white-space: nowrap;
+                font-size: 0.85em;
+                color: #b3b3b3;
+            }
+
+            .content .cell .right .name {
+                font-size: 1em;
+                height: 20px;
+                line-height: 20px;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                white-space: nowrap;
+            }
+
+            .content .cell .right .number {
+                font-size: 0.7em;
+                color: #53aaf6;
+                height: 20px;
+                line-height: 20px;
+            }
+
+                .content .cell .right .number .lf {
+                    float: left;
+                }
+
+                .content .cell .right .number .fig {
+                    float: right;
+                }
+
+            .content .cell .right .bottom {
+                text-align: right;
+            }
+
+                .content .cell .right .bottom .now {
+                    font-size: 0.7em;
+                    color: #53aaf6;
+                }
+
+                .content .cell .right .bottom .progress-bar {
+                    background: #ececec;
+                    height: 3px;
+                }
+
+                    .content .cell .right .bottom .progress-bar .now-progress-bar {
+                        background: #53aaf6;
+                        height: 3px;
+                        width: 80%;
+                    }

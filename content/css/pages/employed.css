@@ -1,0 +1,509 @@
+html, body {
+    background-color: #FFFFFF;
+}
+
+.van-tabs__line {
+    bottom: 20px;
+}
+
+[class*=van-hairline]::after {
+    border: none;
+}
+
+.infostabs {
+    background-color: #fff;
+}
+
+    .infostabs .experience {
+        padding: 10px 15px;
+        background-color: #FFFFFF;
+    }
+
+        .infostabs .experience .top {
+            height: 20px;
+            line-height: 20px;
+        }
+
+            .infostabs .experience .top .name {
+                font-weight: bold;
+            }
+
+            .infostabs .experience .top .right {
+                float: right;
+                font-size: 0.8em;
+                color: #AAAAAA;
+                float: right;
+                font-weight: normal;
+            }
+
+        .infostabs .experience .content {
+            display: flex;
+            margin-top: 10px;
+        }
+
+            .infostabs .experience .content img {
+                width: 100px;
+                display: block;
+                border-radius: 5px;
+                height: 66.66px;
+            }
+
+            .infostabs .experience .content .right {
+                line-height: 33px;
+                width: calc(100% - 105px);
+                margin-left: 5px;
+            }
+
+                .infostabs .experience .content .right .p1 {
+                    font-size: .9em;
+                    overflow-x: hidden;
+                    text-overflow: ellipsis;
+                    white-space: nowrap;
+                }
+
+                .infostabs .experience .content .right .p2 {
+                    font-size: .8em;
+                    color: #aaaaaa;
+                }
+
+                    .infostabs .experience .content .right .p2 .r {
+                        float: right;
+                    }
+
+    .infostabs .swiper {
+        max-height: 150px;
+        border-radius: 5px;
+        width: calc(100% - 20px);
+        margin: auto
+    }
+
+    .infostabs .cell {
+        width: 100%;
+        position: relative;
+        margin-bottom: 15px;
+        overflow: hidden;
+    }
+
+        .infostabs .cell .img {
+            width: 100%;
+            display: block;
+            position: relative;
+        }
+
+        .infostabs .cell .title {
+            position: absolute;
+            top: 0;
+            width: 100%;
+            -moz-box-sizing: border-box;
+            -webkit-box-sizing: border-box;
+            box-sizing: border-box;
+            left: 0;
+            height: 45px;
+            line-height: 45px;
+            padding: 0 10px;
+            color: white;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(rgb(0, 0, 0)), to(rgba(255, 255, 255, 0)));
+        }
+
+        .infostabs .cell .number {
+            position: absolute;
+            border-radius: 20px;
+            color: white;
+            background-color: rgba(0,0,0, .75);
+            padding: 5px 10px;
+            bottom: 10px;
+            right: 10px;
+            font-size: .8em;
+        }
+
+        .infostabs .cell .play {
+            position: absolute;
+            left: 0;
+            right: 0;
+            top: 0;
+            bottom: 0;
+            margin: auto;
+            font-size: .8em;
+            color: rgba(255,255,255,.8);
+            background-color: rgba(0,0,0,.7);
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            text-align: center;
+            line-height: 50px;
+        }
+
+    .infostabs .van-swipe__indicators {
+        background-color: rgba(255, 255, 255, 0.4);
+        padding: 5px 10px;
+        border-radius: 6px;
+    }
+
+    .infostabs .swiper .img {
+        width: 100%;
+        height: auto;
+        border-radius: 5px;
+    }
+
+.pd {
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 100;
+    background-color: #FFFFFF;
+}
+
+.infos {
+    padding: 10px 15px;
+    background-color: #FFFFFF;
+}
+
+.infos_lihe {
+    height: 10px;
+    background-color: #f6f6f6;
+}
+
+.infos .swiper {
+    border-radius: 5px;
+}
+
+.infos .van-tabs__wrap {
+    position: fixed;
+    top: 45px;
+}
+
+.infos .swiper .img {
+    width: 100%;
+    max-height: 180px;
+    min-height: 180px;
+    border-radius: 5px;
+}
+
+.infos .info .titles {
+    line-height: 30px;
+    height: 30px;
+    margin-bottom: 5px;
+    padding: 0 5px;
+}
+
+    .infos .info .titles .caption {
+        font-size: 1em;
+        font-weight: bold;
+    }
+
+    .infos .info .titles .right {
+        font-size: 0.8em;
+        color: #AAAAAA;
+        position: absolute;
+        right: 15px;
+    }
+
+        .infos .info .titles .right .iconfont {
+            color: #aaa;
+        }
+
+.infos .info .block {
+    display: flex;
+    box-shadow: 0px 2px 10px #f3f3f3;
+    border-radius: 5px;
+    padding: 15px;
+}
+
+    .infos .info .block .cell {
+        width: 100%;
+    }
+
+    .infos .info .block .img {
+        width: 35%;
+        height: 100%;
+        border-radius: 5px;
+    }
+
+    .infos .info .block .content {
+        line-height: 40px;
+        margin-left: 10px;
+    }
+
+.tabs .info .block .content {
+    margin-left: 10px;
+    line-height: 55px;
+}
+
+    .tabs .info .block .content .title {
+        font-size: 0.9em;
+    }
+
+.infos .info .block .content .text {
+    font-size: 0.7em;
+}
+
+    .infos .info .block .content .text .lable {
+        padding: 1px 2px;
+        color: #53aaf6;
+        border: 1px solid #53aaf6;
+        border-radius: 5px;
+    }
+
+    .infos .info .block .content .text .time {
+        position: absolute;
+        right: 30px;
+        color: #AAAAAA;
+    }
+
+.infos .info .block .right {
+    margin-left: 10px;
+}
+
+    .infos .info .block .right .title {
+        font-size: 0.9em;
+    }
+
+    .infos .info .block .right .number {
+        font-size: 0.8em;
+        color: #AAAAAA;
+        line-height: 55px;
+    }
+
+.infos .info .block1 {
+    box-shadow: 0px 0px 10px #f3f3f3;
+    border-radius: 5px;
+    padding: 15px;
+}
+
+    .infos .info .block1 .cell .left {
+        font-size: 0.8em;
+        font-weight: bold;
+    }
+
+    .infos .info .block1 .f-7 {
+        font-size: 0.7em;
+        color: #AAAAAA;
+    }
+
+    .infos .info .block1 .doit {
+        font-size: 0.8em;
+        color: #AAAAAA;
+        text-overflow: -o-ellipsis-lastline;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        line-clamp: 2;
+        -webkit-box-orient: vertical;
+    }
+
+    .infos .info .block1 .cell .price {
+        position: absolute;
+        right: 30px;
+        color: #53aaf6;
+        font-size: 0.8em;
+    }
+
+    .infos .info .block1 .source {
+        padding: 5px 0;
+    }
+
+        .infos .info .block1 .source .img {
+            width: 5%;
+            height: auto;
+            border-radius: 50px;
+            background-color: #FFFFFF;
+            vertical-align: middle;
+        }
+
+        .infos .info .block1 .source .name {
+            font-size: 0.8em;
+        }
+
+.resume .myinfo {
+    display: flex;
+    padding: 15px 10px;
+    border-radius: 6px;
+    width: calc(100% - 50px);
+    margin: auto;
+    box-shadow: 0 0 10px 0 #f5f5f5;
+}
+
+    .resume .myinfo .left {
+        width: 15%;
+    }
+
+        .resume .myinfo .left .img {
+            width: 100%;
+            height: auto;
+        }
+
+    .resume .myinfo .right {
+        margin-left: 5px;
+        line-height: 25px;
+    }
+
+        .resume .myinfo .right .t1 {
+            font-size: 0.85em;
+        }
+
+        .resume .myinfo .right .t2 {
+            font-size: 0.75em;
+            color: #AAAAAA;
+        }
+
+            .resume .myinfo .right .t2 .time {
+                margin-left: 10px;
+            }
+
+.search {
+    background-color: #FFFFFF;
+    padding: 0 10px;
+}
+
+    .search .input {
+        padding: 20px 15px;
+        box-shadow: 0px 0px 15px #d3d3d3;
+        border-radius: 10px;
+        margin-top: 40px;
+    }
+
+        .search .input .title {
+            font-size: 0.9em;
+        }
+
+        .search .input .name {
+            display: block;
+            margin-top: 10px;
+            border-bottom: 1px solid #EEEEEE;
+            width: 100%;
+            padding: 10px 0;
+        }
+
+            .search .input .name:focus {
+                border-bottom: 1px solid #02b9ff;
+            }
+
+            .search .input .name::-webkit-input-placeholder {
+                font-size: 0.85em;
+            }
+
+    .search .confirm_button {
+        width: 100%;
+        margin-top: 40px;
+    }
+
+.question {
+}
+
+    .question .jybd, .question .qytm {
+        text-align: center;
+        font-size: 1.3em;
+        width: 90%;
+        margin: 10px auto;
+        border-radius: 8px;
+        color: #FFFFFF;
+        height: 160px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-size: cover;
+        background-position: center center;
+        background-repeat: no-repeat;
+    }
+
+    .question .jybd {
+        background-image: url(../../img/employed/jybd_bg.jpg);
+    }
+
+    .question .qytm {
+        background-image: url(../../img/employed/qytm_bg.jpg);
+    }
+
+        .question .jybd .img,
+        .question .qytm .img {
+            width: 100%;
+            height: auto;
+        }
+
+        .question .jybd p,
+        .question .qytm p {
+            text-shadow: 0 0 2px #e8e8e8;
+        }
+
+.job {
+    padding: 0 15px;
+    padding-bottom: 80px;
+}
+
+    .job .title {
+        font-size: 0.9em;
+        color: #AAAAAA;
+    }
+
+    .job .confirm_button, .resume .confirm_button {
+        position: fixed;
+        bottom: 20px;
+        width: calc(100% - 30px);
+        margin: auto
+    }
+
+.resume .confirm_button {
+    margin-left: 15px;
+}
+
+.job .tab {
+    display: flex;
+    box-shadow: 0px 0px 5px #f3f3f3;
+    border-radius: 6px;
+    padding: 15px 10px;
+}
+
+    .job .tab .left .iconfont {
+        font-size: 3em;
+        color: #ee9d42;
+    }
+
+    .job .tab .right {
+        margin-left: 10px;
+    }
+
+        .job .tab .right .name {
+            font-size: 0.85em;
+        }
+
+        .job .tab .right .info {
+            color: #AAAAAA;
+            font-size: 0.7em;
+        }
+
+            .job .tab .right .info .ml {
+                margin-left: 5px;
+            }
+
+.normal_info {
+    padding-top: 25%;
+}
+
+.pd-15 {
+    padding-bottom: 15px
+}
+
+.interview_title {
+    padding: 10px 15px;
+    font-size: 0.9em;
+}
+
+    .interview_title .tag {
+        color: #AAAAAA;
+        margin-right: 15px;
+    }
+
+    .interview_title .isCheck {
+        font-weight: bold;
+        color: #333333;
+    }
+
+.van-tab--active {
+    font-weight: bold;
+    font-size: 16px;
+    color: #53aaf6;
+}

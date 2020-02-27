@@ -1,0 +1,71 @@
+html,
+body {
+	background: url(../../../img/center/list/all_list_bg.png), no-repeat #29acfc;
+	background-size: 100% auto;
+	background-position: center center;
+}
+
+#app-head {
+	background: rgba(0, 0, 0, 0);
+}
+
+#app-head,
+#app-back-button {
+	color: #FFFFFF;
+}
+
+.content {
+	width: calc(100% - 30px);
+	margin: auto;
+	background: url(../../../img/center/kpl_bg.png) no-repeat #FFFFFF;
+	background-position: center 50%;
+	background-size: 95% auto;
+	border-radius: 5px;
+	position: relative;
+}
+
+.content .head {
+	border-radius: 50px;
+	border: 2px solid #FFFFFF;
+	width: 25%;
+	height: auto;
+	position: absolute;
+}
+
+.content .text {
+	position: relative;
+}
+
+.content .text .v1 {
+	text-align: center;
+	font-size: 1.5em;
+	color: #333333;
+}
+
+.content .text .v2 {
+	    font-size: 3em;
+	color: #eb4826;
+	text-align: center;
+	margin-top: 20px;
+}
+
+.content .text .live {
+	display: flex;
+	margin-top: 20px;
+}
+
+.content .text .live .lv {
+	text-align: center;
+	margin: auto;
+}
+
+.content .text .live .lv .ci {
+	color: #53aaf6;
+	font-size: 1.5em;
+	margin-left: 10px;
+}
+
+.content .text .live .lv .name {
+	font-size: 0.8em;
+	color: #333333;
+}

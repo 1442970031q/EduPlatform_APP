@@ -1,0 +1,172 @@
+html, body {
+    background-color: white;
+}
+
+.tabs {
+    margin-top: 5%;
+}
+
+    .tabs.bg {
+        background-color: #f9f9f9;
+        padding-bottom: 5px;
+    }
+
+    .tabs .cell {
+        padding: 15px;
+        margin-bottom: 5px;
+        color: #757575;
+    }
+
+    .tabs .state {
+        height: 180px;
+        padding: 10px;
+        overflow: hidden;
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+        .tabs .state .score {
+            font-size: 5.5em;
+            color: #02b9ff;
+            text-align: center;
+            font-weight: bold;
+            box-sizing: border-box;
+            position: relative;
+            z-index: 1;
+            text-shadow: 0 0 5px #949494;
+        }
+
+            .tabs .state .score sup {
+                font-size: .25em;
+                margin-left: -5px;
+            }
+
+        .tabs .state .img {
+            width: 150px;
+            height: 147px;
+            display: block;
+            margin: auto;
+            opacity: 0.2;
+            position: absolute;
+            left: 0;
+            right: 0;
+            top: 0;
+            bottom: 0;
+        }
+
+    .tabs .cell .section {
+        font-size: 1em;
+        height: 20px;
+        line-height: 20px;
+        font-weight: bold;
+        color: #636363;
+    }
+
+    .tabs .flex {
+        padding: 7px 0;
+        display: flex;
+    }
+
+        .tabs .flex .left,
+        .tabs .flex .center,
+        .tabs .flex .right {
+            width: 33.333%;
+            text-align: center;
+            font-size: 1.3em;
+            font-weight: bold;
+        }
+
+        .tabs .flex.first .left,
+        .tabs .flex.first .center,
+        .tabs .flex.first .right {
+            font-size: .8em;
+            font-weight: normal;
+        }
+
+        .tabs .flex .bg {
+            padding: 5px 25px;
+            color: #FFFFFF;
+            border-radius: 15px;
+        }
+
+            .tabs .flex .bg.bg1 {
+                background: #02b9ff;
+            }
+
+        .tabs .flex .left {
+            color: #02b9ff
+        }
+
+        .tabs .flex .bg.bg2 {
+            background: #00b12f;
+        }
+
+        .tabs .flex .center {
+            color: #00b12f;
+        }
+
+        .tabs .flex .bg.bg3 {
+            background: #ff1d1d;
+        }
+
+        .tabs .flex .right {
+            color: #ff1d1d
+        }
+
+.buttons {
+    display: flex;
+    width: calc(100% - 30px);
+    margin: 0 auto;
+    margin-top: 30px;
+    border-radius: 6px;
+    overflow: hidden;
+}
+
+    .buttons .button {
+        text-align: center;
+        width: 50%;
+        padding: 10px 0;
+        color: white;
+    }
+
+        .buttons .button.c_1 {
+            background-color: #ff1d1d;
+        }
+
+        .buttons .button.c_2 {
+            background-color: #f9700f;
+        }
+
+        .buttons .button.c_3 {
+            background-color: #02b9ff;
+        }
+
+        .buttons .button.c_1:active {
+            background-color: #ea1b1b;
+        }
+
+        .buttons .button.c_2:active {
+            background-color: #e8690e;
+        }
+
+        .buttons .button.c_3:active {
+            background-color: #06a8e6;
+        }
+
+        .buttons .button .iconfont {
+            font-size: 1.7em;
+            display: block;
+            width: 30px;
+            height: 30px;
+            line-height: 30px;
+            margin: 0 auto;
+        }
+
+        .buttons .button .name {
+            font-size: 0.7em;
+            height: 20px;
+            line-height: 20px;
+            margin-top: 5px;
+        }

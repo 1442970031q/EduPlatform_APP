@@ -1,0 +1,83 @@
+﻿#app-content {
+    padding-bottom: 15px;
+}
+
+.van-collapse.van-hairline--top-bottom::after {
+    border: 0 !important;
+}
+
+.van-cell {
+    width: calc(100% - 30px);
+    margin: auto;
+    padding: 15px;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    margin-top: 10px;
+}
+
+.van-cell__title {
+    font-weight: bold;
+    font-size: 1.1em;
+}
+
+.van-collapse-item__content {
+    width: calc(100% - 30px);
+    margin: auto;
+    padding: 0 !important;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+.word {
+    display: flex;
+    padding: 15px 0;
+}
+
+    .word:active {
+        background-color: #f9f9f9;
+    }
+
+    .word .right {
+        width: 85px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+        .word .right .van-button {
+            font-size: .8em;
+        }
+
+    .word .left {
+        width: 50%;
+        text-align: center;
+    }
+
+        .word .left p {
+            height: 20px;
+            line-height: 20px;
+        }
+
+    .word .center,
+    .word .left {
+        max-height: 40px;
+        overflow-y: hidden;
+    }
+
+    .word .center {
+        width: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .word .left .name {
+        color: #333333;
+        font-size: 1.1em;
+        font-weight: bold;
+    }
+
+    .word .left .voice {
+        font-size: .9em;
+    }

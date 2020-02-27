@@ -1,0 +1,29 @@
+.cell {
+    background-color: #FFFFFF;
+    padding: 15px;
+    width: calc(100% - 20px);
+    box-sizing: border-box;
+    margin: 0 auto;
+    border-radius: 6px;
+}
+
+    .cell .info,
+    .cell .center .info {
+        font-size: 0.9em;
+    }
+
+        .cell .info .right,
+        .cell .center .info .right {
+            color: #929292;
+            float: right;
+        }
+
+    .cell .center {
+        width: 60%;
+        margin: auto;
+    }
+
+.input {
+    width: 80%;
+    color: #53AAF6;
+}

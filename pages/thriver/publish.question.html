@@ -1,0 +1,102 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no,viewport-fit=cover" />
+    <title></title>
+    <link href="../../content/css/base.css" rel="stylesheet" />
+    <link href="../../content/css/vant.css" rel="stylesheet" />
+    <link href="../../content/css/pages/thriver/question.answer.css" rel="stylesheet" />
+    <script src="html5plus://ready"></script>
+</head>
+<body>
+    <div id="app">
+        <div id="app-head" class="van-hairline--bottom" v-bind:style="{'paddingTop': statusbarHeight + 'px'}">
+            <i id="app-back-button" class="iconfont iconbaidifanhuianniux right-back"></i>
+            <div class="app-head-text">发布问题</div>
+        </div>
+        <div id="app-content">
+            <div v-if="isLoadFiles || isLoading" class="loading-box p60">
+                <van-loading color="black"></van-loading>
+                <p class="loading-text">正在加载...</p>
+            </div>
+            <div v-else v-cloak>
+                <div class="answer_content">
+                    <div class="van-hairline--bottom">
+                        <input type="text"
+                               placeholder="点击此处输入标题内容"
+                               class="caption"
+                               maxlength="50"
+                               v-model="form.title"/>
+                    </div>
+                    <textarea class="answer_control small"
+                              rows="8"
+                              placeholder="在此输入问题的详细描述（可不填写）"
+                              @focus="controlFocus"
+                              v-model="pageModel.supplementary"></textarea>
+                    <div class="tags">
+                        <div class="tag blue van-hairline--surround"
+                             v-for="(t, tIndex) in pageModel.tags"
+                             v-bind:key="tIndex"
+                             @click="removeTag(t)">
+                            <span v-text="t"></span>
+                            <i class="iconfont iconguanbianniux delete"></i>
+                        </div>
+                        <div class="tag van-hairline--surround"
+                              @click="isShowPicker = true">
+                            <i class="iconfont iconguanzhuwentix plus"></i>
+                            <span>添加标签</span>
+                        </div>
+                    </div>
+                    <div class="images" v-show="pageModel.images.length !== 0">
+                        <div class="image"
+                             v-for="(item,index) in pageModel.images"
+                             v-bind:key="index">
+                            <div class="mask" v-show="item.isUploading">上传中...</div>
+                            <img v-bind:src="item.src" @click="removeImage(item)" />
+                        </div>
+                    </div>
+                    <div class="actions van-hairline--top-bottom">
+                        <button class="btn" @click="showEmoticon">
+                            <i class="iconfont iconbiaoqing"></i>
+                        </button>
+                        <button class="btn" @click="showActionsheet">
+                            <i class="iconfont icontupian"></i>
+                        </button>
+                    </div>
+                </div>
+                <button class="confirm_button" @click="checkData">提交回答</button>
+                <van-popup class="emot_box"
+                           v-model="isEmoticonShow"
+                           position="bottom">
+                    <div class="title">
+                        <div class="text">选择表情</div>
+                        <div class="cancel" @click="isEmoticonShow = false">取消</div>
+                    </div>
+                    <ul class="emot_content">
+                        <li v-for="(item,index) in pageModel.emtoiconList"
+                            v-bind:key="index">
+                            <img v-bind:src="item.src" @click="selectedEmoticon(item)" />
+                        </li>
+                    </ul>
+                </van-popup>
+                <van-action-sheet v-bind:class="{'safe-area': APP.CONFIG.IsSafeArea()}"
+                                  v-model="isActionsheet"
+                                  v-bind:actions="actions"
+                                  cancel-text="取消"></van-action-sheet>
+                <van-popup v-model="isShowPicker" position="bottom">
+                    <van-picker show-toolbar
+                                title="选择标签"
+                                v-bind:columns="tagColumns"
+                                @cancel="isShowPicker = false"
+                                @confirm="tagConfirm" />
+                </van-popup>
+            </div>
+        </div>
+    </div>
+    <script src="../../content/js/vue.js"></script>
+    <script src="../../content/js/vant.min.js"></script>
+    <script src="../../content/js/base.js"></script>
+    <script src="../../content/js/pages/thriver/publish.question.js"></script>
+</body>
+</html>

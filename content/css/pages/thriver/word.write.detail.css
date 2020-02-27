@@ -1,0 +1,198 @@
+﻿#app-head .app-head-text.small {
+    font-size: 1.1em;
+    font-weight: bold;
+}
+
+#app-head .app-head-text.warn {
+    animation-name: warning;
+    animation-duration: 350ms;
+    animation-iteration-count: 6;
+    animation-direction: alternate;
+}
+
+@keyframes warning {
+    0% {
+        color: #333;
+        transform: scale(1,1);
+    }
+
+    100% {
+        color: red;
+        transform: scale(2,2);
+    }
+}
+
+.word_box {
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    width: 85%;
+    height: 210px;
+    background-color: white;
+    position: absolute;
+    top: 30px;
+    right: 0;
+    left: 0;
+    margin: auto;
+    border-radius: 6px;
+    box-shadow: 0 0 10px #eaeaea;
+    overflow: hidden;
+}
+
+    .word_box .word_explain {
+        padding: 15px;
+        position: relative;
+        box-sizing: border-box;
+        height: 160px;
+    }
+
+        .word_box .word_explain .caption {
+            font-size: 1em;
+            height: 20px;
+            line-height: 20px;
+        }
+
+        .word_box .word_explain .word_explain_line {
+            color: #6b6b6a;
+            margin-top: 10px;
+            font-size: .9em;
+            height: 100px;
+            overflow-y: auto;
+            line-height: 20px;
+        }
+
+    .word_box .write_input {
+        height: 50px;
+        -moz-box-sizing: border-box;
+        -webkit-box-sizing: border-box;
+        box-sizing: border-box;
+        background-color: #f9f9f9;
+        width: 100%;
+        display: flex;
+    }
+
+        .word_box .write_input.van-hairline--top::after {
+            border-color: #f1f1f1 !important;
+        }
+
+        .word_box .write_input input {
+            text-align: center;
+            color: #333;
+            font-weight: bold;
+            width: 100%;
+            height: 50px;
+            padding: 5px 10px;
+            box-sizing: border-box;
+        }
+
+            .word_box .write_input input::-webkit-input-placeholder {
+                font-weight: normal;
+                color: #b5b5b5;
+            }
+
+.actions {
+    position: fixed;
+    bottom: 195px;
+    width: 100%;
+    background-color: white;
+    height: 50px;
+    display: flex;
+}
+
+    .actions.safe {
+        bottom: 220px;
+    }
+
+    .actions .prog {
+        width: calc(100% - 260px);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: .8em;
+    }
+
+    .actions .btn {
+        width: 130px;
+        height: 50px;
+        text-align: center;
+        color: #676767;
+        font-size: .9em;
+    }
+
+        .actions .btn:active {
+            background-color: #f9f9f9;
+        }
+
+        .actions .btn.dis,
+        .actions .btn.dis:active {
+            background-color: #f9f9f9;
+            color: #b1b1b1;
+        }
+
+.van-popup {
+    background-color: #cdcfdb;
+    overflow: initial;
+}
+
+    .van-popup.safe {
+        padding-bottom: 25px;
+    }
+
+.keyboard {
+    padding: 15px 0;
+}
+
+    .keyboard ul.keys {
+        display: flex;
+        margin-bottom: 15px;
+        justify-content: center;
+    }
+
+        .keyboard ul.keys:last-child {
+            margin-bottom: 0;
+        }
+
+        .keyboard ul.keys li {
+            margin: 0 3px;
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 5px;
+            width: 35px;
+            height: 45px;
+            font-size: 1.2em;
+            background-color: white;
+            box-sizing: border-box;
+            border-radius: 4px;
+            box-shadow: 1px 1px 1px #818489;
+        }
+
+            .keyboard ul.keys li .press {
+                position: absolute;
+                background-color: white;
+                width: 50px;
+                color: black;
+                height: 50px;
+                line-height: 50px;
+                text-align: center;
+                top: -40px;
+                border-top-left-radius: 10px;
+                border-top-right-radius: 10px;
+                border-bottom-left-radius: 20px;
+                border-bottom-right-radius: 20px;
+                font-size: 1.5em;
+                font-weight: bold;
+                border-top: 1px solid #f9f9f9;
+            }
+
+            .keyboard ul.keys li.big {
+                width: 50px;
+                background-color: #abafba;
+                color: #3c3c3c;
+                font-size: 1.5em;
+            }
+
+                .keyboard ul.keys li.big:active {
+                    background-color: white;
+                }

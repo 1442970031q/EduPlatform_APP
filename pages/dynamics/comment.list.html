@@ -1,0 +1,113 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
+    <link href="../../content/css/base.css" rel="stylesheet" />
+    <link href="../../content/css/vant.css" rel="stylesheet" />
+    <link href="../../content/css/pages/dynamics/comment.list.css" rel="stylesheet" />
+    <script src="html5plus://ready"></script>
+</head>
+<body>
+    <div id="app">
+        <div id="app-head" class="fixed van-hairline--bottom" v-bind:style="{'paddingTop': statusbarHeight+'px'}">
+            <div id="app-back-button" class="left-button">
+                <i class="iconfont iconbaidifanhuianniux right-back"></i>
+            </div>
+            <div class="app-head-text">评论列表</div>
+        </div>
+        <div id="app-content" v-bind:style="{'paddingTop': (statusbarHeight+45)+'px'}">
+            <div v-if="isLoading" class="loading-box p60">
+                <van-loading color="black"></van-loading>
+                <p class="loading-text">正在加载...</p>
+            </div>
+            <div v-else v-cloak class="lists">
+                <div v-if="data.length === 0" class="normal_info">
+                    <img src="../../content/img/thriver/weekly_norml.png" />
+                    <p class="text">暂时没有任何评论，快来写个评论吧</p>
+                </div>
+                <div v-else 
+                     class="pb-55"
+                     v-bind:class="{'safe': APP.CONFIG.IsSafeArea()}">
+                    <ul>
+                        <li v-for="(item,index) in data" 
+                            v-bind:key="index"
+                            class="cell">
+                            <div class="info" @click="focusclick(item,index)">
+                                <div class="left">
+                                    <img class="img" v-lazy="item.CommenterAvatar" />
+                                </div>
+                                <div class="center">
+                                    <p class="name" v-text="item.Commenter"></p>
+                                    <p class="time" v-text="(index+1)+'楼 '+item.CommentTime"></p>
+                                </div>
+                                <div class="right">
+                                    <div class="icons">
+                                        <i class="iconfont iconzhoubaoneirongpinglunx"></i>
+                                        <span class="number" v-text="item.SonCount"></span>
+                                    </div>
+                                    <div class="icons" v-if="item.IsLike == 'False'">
+                                        <i @click.stop="isLike(item.Id,true,index)" class="iconfont iconpinglunzanx"></i>
+                                        <span class="number" v-text="item.LikeCount"></span>
+                                    </div>
+                                    <div class="icons" v-else>
+                                        <i @click.stop="isLike(item.Id,'False',index)" class="iconfont iconpinglunzanx" style="color: red;"></i>
+                                        <span class="number" v-text="item.LikeCount" style="color: red;"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="content">
+                                <div class="text c1" @click="focusclick(item,index)" v-text="item.CommentContent"></div>
+                                <div class="replay">
+                                    <div v-for="rep in item.SonList" @click="focusclick(rep,index)" class="replaytext">
+                                        <div class="user">
+                                            <span class="lef" v-text="rep.Commenter"></span> 回复 <span class="rig" v-text="rep.Respondent"> </span>
+                                        </div>
+                                        <div class="comment">
+                                            <p class="commenttext" v-text="rep.CommentContent"></p>
+                                            <p class="commenttime" v-text="rep.CommentTime"></p>
+                                        </div>
+                                    </div>
+                                    <p v-if="item.SonList.length==0" @click="focusclick(item,index)" class="hint mt-5">回复</p>
+                                    <p v-else class="hint mt-5" @click="gotoDetail(item,index)">查看全部</p>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                    <div v-if="isLoadMore" class="load_more clearfix">
+                        <van-loading color="black"></van-loading>
+                        <span class="load_text">正在加载...</span>
+                    </div>
+                    <div v-if="isLoadComplete" class="load_more_complete">
+                        <span class="load_text">没有更多的数据了...</span>
+                    </div>
+                </div>
+                <div class="input clearfix"
+                     v-bind:class="{'input_safe': APP.CONFIG.IsSafeArea()}">
+                    <div v-if="isCanComment==='true'">
+                        <div class="in">
+                            <input class="text"
+                                   type="text"
+                                   v-model="repaly.content"
+                                   :placeholder="replayinfo"
+                                   @blur="focusState = false"
+                                   v-focus="focusState" />
+                        </div>
+                        <div class="button">
+                            <button class="bt" @click="replayConmmentAjax">发表评论</button>
+                        </div>
+                    </div>
+                    <div v-else class="disable">
+                        周报暂时不能评论
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="../../content/js/vue.js"></script>
+    <script src="../../content/js/vant.min.js"></script>
+    <script src="../../content/js/base.js"></script>
+    <script src="../../content/js/pages/dynamics/comment.list.js"></script>
+</body>
+</html>

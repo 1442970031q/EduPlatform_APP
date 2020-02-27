@@ -1,0 +1,103 @@
+html,
+body {
+    background: #FFFFFF;
+}
+
+.content {
+    width: 100%;
+}
+
+    .content .img {
+        width: 70%;
+        display: inline-block;
+        margin-left: 15%;
+    }
+
+    .content .title {
+        text-align: center;
+        color: #60b0f6;
+    }
+
+        .content .title .line {
+            background-color: #60b0f6;
+            height: 4px;
+            width: 30px;
+            margin: auto;
+            border-radius: 50px;
+            margin-top: 3px;
+        }
+
+    .content .buttons {
+        width: 70%;
+        margin: auto;
+        border-radius: 50px;
+        padding: 10px;
+        background-image: url(../../content/img/center/list_bottom_bg.png);
+        background-repeat: no-repeat;
+        background-position: 5px center;
+        background-size: auto 90%;
+    }
+
+    .content .b1_c1 {
+        background-color: #fee601;
+    }
+
+    .content .b1_c2 {
+        background-color: #fffb99;
+    }
+
+    .content .b2_c1 {
+        background-color: #64d9d6;
+    }
+
+    .content .b2_c2 {
+        background-color: #74e3e0;
+    }
+
+    .content .b3_c1 {
+        background-color: #de7b53;
+    }
+
+    .content .b3_c2 {
+        background-color: #e4a68d;
+    }
+
+    .content .buttons .head {
+        height: 35px;
+        width: auto;
+        border-radius: 50px;
+        vertical-align: middle
+    }
+
+    .content .buttons .type {
+        font-size: 0.8em;
+        margin-left: 5px;
+    }
+
+    .content .buttons .right {
+        float: right;
+        border-radius: 50px;
+        display: inline-block;
+        height: 30px;
+        width: 30px;
+        line-height: 25px;
+        margin-top: 2px;
+        box-shadow: 0 0 5px #EEEEEE;
+    }
+
+        .content .buttons .right .button {
+            background-color: #fdffff;
+            height: 20px;
+            width: 20px;
+            display: inline-block;
+            border-radius: 50px;
+            font-size: 0.8em;
+            line-height: 20px;
+            margin-left: 5px;
+            box-shadow: 0 0 5px #EEEEEE;
+        }
+
+            .content .buttons .right .button .iconfont {
+                margin-left: 5px;
+                color: #fee601
+            }

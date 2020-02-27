@@ -1,0 +1,63 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no,viewport-fit=cover" />
+    <title></title>
+    <link href="../../content/css/base.css" rel="stylesheet" />
+    <link href="../../content/css/vant.css" rel="stylesheet" />
+    <link href="../../content/css/pages/conversion/product.detail.css" rel="stylesheet" />
+    <script src="html5plus://ready"></script>
+</head>
+<body>
+    <div id="app">
+        <div id="app-head" 
+             class="fixed" 
+             v-bind:class="{'tran': opacityValue <= 0}"
+             v-bind:style="{'paddingTop': statusbarHeight + 'px', 'backgroundColor': 'rgba(255, 255, 255, ' + opacityValue + ')'}">
+            <i id="app-back-button" class="iconfont iconbaidifanhuianniux right-back"></i>
+            <div class="app-head-text" v-bind:style="{'color':'rgba(0, 0, 0, ' + opacityValue + ')'}" v-text="pageModel.Name"></div>
+        </div>
+        <div id="app-content">
+            <div v-if="isLoading" class="loading-box p60">
+                <van-loading color="black"></van-loading>
+                <p class="loading-text">正在加载...</p>
+            </div>
+            <div v-else v-cloak>
+                <div class="tabs">
+                    <div class="swiper">
+                        <img class="img" v-lazy="pageModel.ImageSrc" />
+                    </div>
+                    <div class="van-hairline--bottom mt-10">
+                        <p class="name" v-text="pageModel.Name"></p>
+                        <p class="mt-5">
+                            <span class="price" v-text="numberFormat(pageModel.YCoin, 2) + '云币'"></span>
+                            <span class="residue" v-text="'当前库存 ' + numberFormat(pageModel.StockCount, 0) + ' 件'"></span>
+                        </p>
+                        <div class="number mt-5">
+                            购买数量：
+                            <van-stepper v-model="number"
+                                         v-bind:disable-input="true"
+                                         v-bind:max="pageModel.StockCount" />
+                        </div>
+                    </div>
+                </div>
+                <div class="detail van-hairline--top mt-10" v-bind:class="{'safe': APP.CONFIG.IsSafeArea()}">
+                    <p class="title">图文详情</p>
+                    <div class="content" v-html="filterStyle(pageModel.Des)"></div>
+                </div>
+            </div>
+            <van-submit-bar v-cloak
+                            v-show="!isLoading"
+                            v-bind:class="{'safe': APP.CONFIG.IsSafeArea()}"
+                            v-bind:price="totalPrice" 
+                            button-text="立即购买" 
+                            @submit="onSubmit" />
+        </div>
+    </div>
+    <script src="../../content/js/vue.js"></script>
+    <script src="../../content/js/vant.min.js"></script>
+    <script src="../../content/js/base.js"></script>
+    <script src="../../content/js/pages/conversion/product.detail.js"></script>
+</body>
+</html>

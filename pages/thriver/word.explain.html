@@ -1,0 +1,76 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no,viewport-fit=cover" />
+    <title></title>
+    <link href="../../content/css/base.css" rel="stylesheet" />
+    <link href="../../content/css/vant.css" rel="stylesheet" />
+    <link href="../../content/css/pages/thriver/word.explain.css" rel="stylesheet" />
+    <script src="html5plus://ready"></script>
+</head>
+<body>
+    <div id="app" class="h-100">
+        <div id="app-head" v-bind:style="{'paddingTop': statusbarHeight + 'px'}">
+            <i id="app-back-button" class="iconfont iconbaidifanhuianniux right-back"></i>
+            <div class="app-head-text">词语解析</div>
+        </div>
+        <div id="app-content" v-bind:style="{'height': 'calc(100% - ' + (45 + statusbarHeight) + 'px)'}">
+            <div v-if="isLoading" class="loading-box p60">
+                <van-loading></van-loading>
+                <p class="loading-text">正在加载...</p>
+            </div>
+            <div v-else v-cloak class="container">
+                <p class="course_name" v-text="pageModel.courseName"></p>
+                <p class="des" v-text="pageModel.chapterName"></p>
+                <div class="word_box">
+                    <div class="word_top van-hairline--bottom">
+                        <h3 class="word" v-text="toFirstUpper(pageModel.word.Eng)"></h3>
+                        <div class="word_info">
+                            <van-loading color="black" v-if="isLoadSound"></van-loading>
+                            <div v-else class="word_sound"
+                                 v-bind:class="{'playing': isPlaying}"
+                                 @click="playSound">
+                                <span class="sound_icon"></span>
+                                美
+                                <span v-text="'[' + pageModel.word.Phonetic + ']'"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="word_explain">
+                        <h3 class="caption">释义</h3>
+                        <p class="word_explain_line" v-text="pageModel.word.Chi"></p>
+                        <button v-if="!pageModel.isExist" class="confirm_button" @click="addBook">
+                            <i class="iconfont iconguanzhuwentix"></i>
+                            加入生词本
+                        </button>
+                        <button v-else class="confirm_button dis">
+                            <i class="iconfont iconxiepinglunzhoubaox"></i>
+                            已加入生词本
+                        </button>
+                    </div>
+                    <div class="bottom b_1"></div>
+                    <div class="bottom b_2"></div>
+                    <div class="actions">
+                        <button class="van-hairline--right"
+                                v-bind:class="{'dis': isPlaying || pageModel.index <= 0 }"
+                                @click="!isPlaying && previous()">
+                            <i class="iconfont iconshangyishoushangyige"></i>
+                            上一个
+                        </button>
+                        <button v-bind:class="{'dis': isPlaying || pageModel.index + 1 >= pageModel.list.length}"
+                                @click="!isPlaying && next()">
+                            下一个
+                            <i class="iconfont iconxiayigexiayishou"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="../../content/js/vue.js"></script>
+    <script src="../../content/js/vant.min.js"></script>
+    <script src="../../content/js/base.js"></script>
+    <script src="../../content/js/pages/thriver/word.explain.js"></script>
+</body>
+</html>

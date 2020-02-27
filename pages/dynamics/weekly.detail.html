@@ -1,0 +1,79 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no,viewport-fit=cover" />
+    <title></title>
+    <link href="../../content/css/base.css" rel="stylesheet" />
+    <link href="../../content/css/vant.css" rel="stylesheet" />
+    <link href="../../content/css/pages/dynamics/weekly.detail.css" rel="stylesheet" />
+    <script src="html5plus://ready"></script>
+</head>
+<body>
+    <div id="app">
+        <div id="app-head" 
+             class="fixed" 
+             v-bind:class="{'van-hairline--bottom' : scrollTop > 0}"
+             v-bind:style="{'paddingTop': statusbarHeight + 'px'}">
+            <i id="app-back-button" class="iconfont iconbaidifanhuianniux right-back"></i>
+            <div class="app-head-text">精选周报</div>
+        </div>
+        <div id="app-content" v-bind:style="{'paddingTop': (statusbarHeight+45) + 'px'}">
+            <div v-if="isLoading" class="loading-box p60">
+                <van-loading color="black"></van-loading>
+                <p class="loading-text">正在加载...</p>
+            </div>
+            <div v-cloak v-else>
+                <div class="content"
+                     v-bind:class="{'safe': APP.CONFIG.IsSafeArea()}">
+                    <p class="title" v-text="pageModel.Title"></p>
+                    <div class="info clearfix">
+                        <img v-lazy="pageModel.StudentAvatar" class="img" />
+                        <span v-text="pageModel.StudentName" class="name"></span>
+                        <span v-text="'#' + pageModel.CollegeName + '#'" class="time"></span>
+                    </div>
+                    <div class="text mt-10" v-html="pageModel.WContent"></div>
+                    <div class="action clearfix">
+                        <div class="a_right"
+                             @click="doLikeAjax"
+                             v-bind:class="{'red': pageModel.IsLike}">
+                            <i class="iconfont icongongkaishipindianzanx"></i>
+                            <span v-text="pageModel.LikeCount"></span>
+                        </div>
+                        <div v-if="pageModel.IsShowComment" class="a_right"
+                             @click="gotoMessage">
+                            <i class="iconfont iconzhoubaoneirongpinglunx"></i>
+                            <span v-text="pageModel.CommentCount"></span>
+                        </div>
+                        <div v-else class="a_right" style="color:#c5c5c5">
+                            <i class="iconfont iconzhoubaoneirongpinglunx"></i>
+                            <span>--</span>
+                        </div>
+                    </div>
+                </div>
+                <div v-if="pageModel.IsCanComment"
+                     class="bottom clearfix"
+                     v-bind:class="{'bottom_safe': APP.CONFIG.IsSafeArea()}">
+                    <div class="left">
+                        <input type="text"
+                               class="input"
+                               v-model="repaly.content"
+                               maxlength="100"
+                               placeholder="在此处输入您的评论" />
+                    </div>
+                    <div class="right">
+                        <button class="post" @click="checkReplay">发表评论</button>
+                    </div>
+                </div>
+                <div v-else class="bottom disable">
+                    周报暂时不能评论
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="../../content/js/vue.js"></script>
+    <script src="../../content/js/vant.min.js"></script>
+    <script src="../../content/js/base.js"></script>
+    <script src="../../content/js/pages/dynamics/weekly.deatil.js"></script>
+</body>
+</html>

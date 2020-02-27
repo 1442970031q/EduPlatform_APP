@@ -1,0 +1,111 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no,viewport-fit=cover" />
+    <title></title>
+    <link href="../../content/css/base.css" rel="stylesheet" />
+    <link href="../../content/css/vant.css" rel="stylesheet" />
+    <link href="../../content/css/pages/dynamics/public.video.detail.css" rel="stylesheet" />
+    <script src="html5plus://ready"></script>
+</head>
+<body>
+    <div id="app">
+        <div id="app-head" class="fixed" v-bind:style="{'paddingTop': statusbarHeight + 'px'}">
+            <i id="app-back-button" class="iconfont iconbaidifanhuianniux right-back"></i>
+            <div v-show="!isLoading" class="app-head-text" v-text="pageModel.infoData.Title"></div>
+        </div>
+        <div id="app-content" v-bind:style="{'paddingTop': (statusbarHeight+45) + 'px'}">
+            <div class="content" v-bind:class="{'n_top': isLoading}">
+                <div v-if="isLoading" class="loading-box p60">
+                    <van-loading color="black"></van-loading>
+                    <p class="loading-text">正在加载...</p>
+                </div>
+                <div v-else 
+                     v-cloak 
+                     class="container"
+                     v-bind:class="{'safe_area':APP.CONFIG.IsSafeArea()}">
+                    <div v-bind:style="{'top': (45 + statusbarHeight) + 'px'}"></div>
+                    <div class="block van-hairline--bottom">
+                        <div class="title clearfix">
+                            <span class="txt" v-text="pageModel.infoData.Title"></span>
+                            <span class="info" v-text="pageModel.infoData.FileTime + ' / ' + getSize(pageModel.infoData.FileSize)"></span>
+                        </div>
+                        <p class="text">
+                            <span class="flag" v-text="'#' + pageModel.infoData.CollegeName + '# '"></span>
+                            <span v-text="pageModel.infoData.Des"></span>
+                        </p>
+                        <ul class="ments">
+                            <li class="ment" v-bind:class="{'red': pageModel.infoData.IsLike}">
+                                <i class="iconfont icongongkaishipindianzanx" @click="isLikeVideo(!pageModel.infoData.IsLike)"></i>
+                                <span class="number" v-text="pageModel.infoData.LikeCount"></span>
+                            </li>
+                            <li class="ment">
+                                <i class="iconfont icongongkaishipinfenxiangx" @click="APP.GLOBAL.toastMsg('该功能还没有开放')"></i>
+                                <span class="number" v-text="pageModel.infoData.ShareCount"></span>
+                            </li>
+                            <li class="ment">
+                                <i class="iconfont icongongkaishipinpinglunx"></i>
+                                <span  v-if="pageModel.IsCanComment" class="number" v-text="pageModel.infoData.CommentCount"></span>
+                                <span v-else class="number"  >--</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="block message">
+                        <div class="caption">大家的评论</div>
+                        <div v-if="isLoadingComment" class="loading-box">
+                            <van-loading color="black"></van-loading>
+                            <p class="loading-text">正在加载...</p>
+                        </div>
+                        <div v-else class="message_content">
+                            <div v-if="pageModel.commentList.length===0" class="normal_info">
+                                <img src="../../content/img/thriver/weekly_norml.png" />
+                                <p class="text">暂时没有任何评论，快来写个评论吧</p>
+                            </div>
+                            <ul v-else class="list">
+                                <li v-for="item in pageModel.commentList">
+                                    <img v-lazy="item.CommenterAvatar" class="avatar" />
+                                    <div class="message_right">
+                                        <div class="caption clearfix">
+                                            <span class="nn" v-text="item.Commenter"></span>
+                                            <span class="time" v-text="item.CommentTime"></span>
+                                        </div>
+                                        <div class="message_text" v-text="item.CommentContent"></div>
+                                    </div>
+                                </li>
+                            </ul>
+                            <div v-if="isLoadMore" class="load_more clearfix">
+                                <van-loading color="black"></van-loading>
+                                <span class="load_text">正在加载...</span>
+                            </div>
+                            <div v-if="isLoadComplete" class="load_more_complete">
+                                <span class="load_text">没有更多的数据了...</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="input" v-bind:class="{'safe': APP.CONFIG.IsSafeArea()}">
+                        <div v-if="pageModel.IsCanComment" >
+                            <div class="input_left">
+                                <input class="in"
+                                       type="text"
+                                       v-model="repaly.content"
+                                       placeholder="在此处输入您的评论..." />
+                            </div>
+                            <div class="button">
+                                <button class="bt" @click="replayConmmentAjax">发表评论</button>
+                            </div>
+                        </div>
+                        <div v-else class="disable">
+                            视频暂时不能评论
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="../../content/js/vue.js"></script>
+    <script src="../../content/js/vant.min.js"></script>
+    <script src="../../content/js/base.js"></script>
+    <script src="../../content/js/pages/dynamics/pbulic.video.detail.js"></script>
+</body>
+</html>

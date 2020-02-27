@@ -1,0 +1,32 @@
+﻿.van-cell:not(:last-child)::after {
+    border-color: #f9f9f9 !important;
+}
+
+.avatar_box .avatar {
+    width: 56px;
+    height: 56px;
+    border: 2px solid #f9f9f9;
+    border-radius: 50%;
+}
+
+.avatar_box .van-cell__title {
+    height: 60px;
+}
+
+.avatar_box .van-cell__right-icon {
+    line-height: 60px!important;
+}
+
+.safe-area .van-action-sheet__cancel {
+    padding-bottom: constant(safe-area-inset-bottom);
+    padding-bottom: env(safe-area-inset-bottom);
+}
+
+.van-cell {
+    line-height: 30px;
+}
+
+    .van-cell .van-cell__right-icon {
+        line-height: 30px;
+        height: 30px;
+    }

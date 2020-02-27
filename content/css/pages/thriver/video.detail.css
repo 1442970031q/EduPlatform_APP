@@ -1,0 +1,203 @@
+.van-cell {
+    font-weight: bold;
+}
+
+.container {
+    padding-bottom: 70px;
+}
+
+    .container.normal {
+        padding-bottom: 25px;
+    }
+
+    .container.safe {
+        padding-bottom: 100px !important;
+    }
+
+.top_content {
+    background-color: white;
+    padding: 10px;
+}
+
+    .top_content .title {
+        margin-top: 5px;
+        font-size: 1.1em;
+        height: 25px;
+        line-height: 25px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        font-weight: bold;
+    }
+
+    .top_content .des {
+        font-size: .8em;
+        margin-top: 5px;
+        color: #909090;
+    }
+
+    .top_content .bottom {
+        height: 20px;
+        line-height: 20px;
+        margin-top: 15px;
+        font-size: .7em;
+        color: #545454;
+    }
+
+        .top_content .bottom.progress {
+            height: 25px;
+            line-height: 25px;
+            font-size: .9em;
+        }
+
+        .top_content .bottom .left {
+            float: left;
+        }
+
+        .top_content .bottom .right {
+            float: right;
+        }
+
+        .top_content .bottom .progress-bar {
+            width: 100%;
+            background-color: #f1f1f1;
+            height: 25px;
+            border-radius: 4px;
+            overflow: hidden;
+            text-align: center;
+            position: relative;
+        }
+
+            .top_content .bottom .progress-bar .text {
+                font-size: .8em;
+                color: white;
+                width: 80px;
+                text-align: left;
+                position: relative;
+                z-index: 1;
+                text-shadow: 0 0 1px #4a4a4a;
+            }
+
+            .top_content .bottom .progress-bar .now-progress-bar {
+                background-color: #53aaf6;
+                position: absolute;
+                left: 0;
+                top: 0;
+                height: 25px;
+            }
+
+.chapters {
+    margin-top: 10px;
+}
+
+    .chapters .van-collapse-item__content {
+        padding-top: 5px;
+    }
+
+    .chapters .none_resource {
+        text-align: center;
+        font-size: .9em;
+        padding: 10px 0;
+        color: #d8d8d8
+    }
+
+    .chapters .resources {
+    }
+
+        .chapters .resources li {
+            padding: 5px 15px;
+            margin-bottom: 15px;
+        }
+
+            .chapters .resources li:last-child {
+                margin-bottom: 0;
+            }
+
+            .chapters .resources li:active {
+                background-color: #f9f9f9;
+                border-radius: 4px;
+            }
+
+            .chapters .resources li .line {
+                display: flex;
+                height: 25px;
+                line-height: 25px;
+                align-items: center;
+            }
+
+                .chapters .resources li .line.small {
+                    height: 20px;
+                    line-height: 20px;
+                }
+
+                .chapters .resources li .line img {
+                    display: block;
+                    width: 15px;
+                }
+
+                .chapters .resources li .line .name {
+                    width: calc(100% - 25px);
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                    white-space: nowrap;
+                    margin-left: 10px;
+                    color: #6d6d6d;
+                    font-size: 14px;
+                }
+
+                .chapters .resources li .line .info {
+                    padding-left: 25px;
+                    color: #bbbbbb;
+                }
+
+.actions {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 60px;
+    background-color: white;
+    box-shadow: 0 0 15px #e0e0e0;
+}
+
+    .actions.safe {
+        padding-bottom: 30px;
+    }
+
+    .actions .price {
+        height: 60px;
+        line-height: 60px;
+        float: left;
+        padding: 0 20px;
+        font-size: .9em;
+        color: #02b9ff;
+    }
+
+    .actions .btn {
+        height: 60px;
+        line-height: 60px;
+        background-color: #02b9ff;
+        color: white;
+        text-align: center;
+        padding: 0 15px;
+        font-size: .9em;
+        float: right;
+        width: 120px;
+    }
+
+        .actions .btn:active {
+            background-color: #06a8e6;
+        }
+
+#video {
+    height: 230px;
+    width: 100%;
+    position: relative;
+    overflow: hidden;
+}
+
+    #video .cover {
+        width: 100%;
+        display: block;
+        position: absolute;
+    }

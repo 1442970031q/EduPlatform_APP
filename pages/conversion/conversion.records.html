@@ -1,0 +1,60 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no,viewport-fit=cover" />
+    <title></title>
+    <link href="../../content/css/base.css" rel="stylesheet" />
+    <link href="../../content/css/vant.css" rel="stylesheet" />
+    <link href="../../content/css/pages/conversion/conversion.records.css" rel="stylesheet" />
+    <script src="html5plus://ready"></script>
+</head>
+<body>
+    <div id="app">
+        <div id="app-head" class="fixed van-hairline--bottom" v-bind:style="{'paddingTop': statusbarHeight + 'px'}">
+            <i id="app-back-button" class="iconfont iconbaidifanhuianniux right-back"></i>
+            <div class="app-head-text">兑换记录</div>
+        </div>
+        <div id="app-content" v-bind:style="{'paddingTop': (45 + statusbarHeight) + 'px'}">
+            <div v-if="isLoading" class="loading-box p60">
+                <van-loading color="black"></van-loading>
+                <p class="loading-text">正在加载...</p>
+            </div>
+            <div v-else v-cloak>
+                <div v-if="pageModule.length === 0" class="normal_info">
+                    <img class="img" src="../../content/img/center/cache_bg.png" />
+                    <p class="text">暂无兑换记录</p>
+                </div>
+                <div v-else class="mt-10">
+                    <ul>
+                        <li class="product"
+                            v-for="(item,index) in pageModule"
+                            v-bind:key="index"
+                            v-bind:class="{'van-hairline--bottom': index + 1 !== pageModule.length}">
+                            <div class="left">
+                                <img class="img" v-lazy="item.ImageSrc" />
+                            </div>
+                            <div class="center">
+                                <p class="name" v-text="item.GoodsName"></p>
+                                <p class="number mt-15" v-text="'x'+item.BuyCount"></p>
+                                <p class="price" v-text="item.TotalCoin+' 云币'"></p>
+                            </div>
+                        </li>
+                    </ul>
+                    <div v-if="isLoadMore" class="load_more clearfix">
+                        <van-loading color="black"></van-loading>
+                        <span class="load_text">正在加载...</span>
+                    </div>
+                    <div v-if="isLoadComplete" class="load_more_complete">
+                        <span class="load_text">没有更多的数据了...</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="../../content/js/vue.js"></script>
+    <script src="../../content/js/vant.min.js"></script>
+    <script src="../../content/js/base.js"></script>
+    <script src="../../content/js/pages/conversion/conversion.records.js"></script>
+</body>
+</html>

@@ -1,0 +1,104 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no,viewport-fit=cover" />
+    <title></title>
+    <link href="../../content/css/base.css" rel="stylesheet" />
+    <link href="../../content/css/vant.css" rel="stylesheet" />
+    <link href="../../content/css/pages/thriver/question.detail.css" rel="stylesheet" />
+    <script src="html5plus://ready"></script>
+</head>
+<body>
+    <div id="app">
+        <div id="app-head" class="van-hairline--bottom fixed" v-bind:style="{'paddingTop': statusbarHeight + 'px'}">
+            <i id="app-back-button" class="iconfont iconbaidifanhuianniux right-back"></i>
+            <div class="app-head-text">问题详情</div>
+        </div>
+        <div id="app-content" v-bind:style="{'paddingTop': (statusbarHeight + 45) + 'px'}">
+            <div v-if="isLoading || isLoadEmoticon" class="loading-box p60">
+                <van-loading color="black"></van-loading>
+                <p class="loading-text">正在加载...</p>
+            </div>
+            <div v-else v-cloak>
+                <div class="top_content van-hairline--top">
+                    <img v-lazy="pageModel.Avatar" class="avatar" />
+                    <div class="top_middle">
+                        <p class="name" v-text="pageModel.RealName"></p>
+                        <p class="time" v-text="pageModel.PublishTime"></p>
+                    </div>
+                    <div class="top_right">
+                        <p v-text="pageModel.AttentionCount + '人关注'"></p>
+                        <p class="title">TA的提问</p>
+                    </div>
+                </div>
+                <div class="caption">
+                    <h4 v-text="pageModel.Title"></h4>
+                    <div class="question_content" v-html="filterQuestion(pageModel.Supplementary)"></div>
+                    <div class="images" v-if="getQuestionImages(pageModel.Supplementary).length !== 0">
+                        <div class="image_content"
+                             v-for="img in getQuestionImages(pageModel.Supplementary)">
+                            <img v-lazy="getSrc(img)"
+                                 @click="viewImage(img)" />
+                        </div>
+                    </div>
+                    <div class="tags">
+                        <span class="tag van-hairline--surround"
+                              v-for="tag in pageModel.Tags.split(/,/g)"
+                              v-text="tag"></span>
+                    </div>
+                </div>
+                <div class="actions van-hairline--top-bottom">
+                    <button v-if="!pageModel.IsAttention" class="van-hairline--right" @click="focusQuestion">关注问题</button>
+                    <button v-else class="van-hairline--right gray" @click="focusQuestion">取消关注</button>
+                    <button v-show="pageModel.IsCanComment" v-if="!pageModel.IsAnswer" @click="gotoAnswer">我要回答</button>
+                    <button v-show="pageModel.IsCanComment" v-else class="gray">已回答</button>
+                    <button v-show="!pageModel.IsCanComment" class="gray">禁止评论</button>
+                </div>
+                <div class="answer_content">
+                    <p class="title">
+                        <i class="iconfont iconwenda"></i>
+                        <span v-text="'大家的回答（' + pageModel.CommentCount + '）'"></span>
+                    </p>
+                    <div v-if="pageModel.CommentList.length === 0" class="none-data p20">
+                        <i class="iconfont iconc-kongzhuangtai"></i>
+                        <p class="none-data-text">该问题还没有同学回答</p>
+                    </div>
+                    <div v-else>
+                        <ul class="answer_list">
+                            <li v-for="(item,index) in pageModel.CommentList"
+                                v-bind:key="index"
+                                v-bind:class="{'van-hairline--bottom': index + 1 !== pageModel.CommentList.length}">
+                                <div class="avatar van-hairline--bottom">
+                                    <img v-lazy="item.Avatar" class="avatar_left" />
+                                    <div class="avatar_right" v-text="item.RealName"></div>
+                                    <span class="time" v-text="item.AnswerTime"></span>
+                                </div>
+                                <div class="answer_context" v-html="filterImgTag(item.AnswerContent)"></div>
+                                <div class="images" v-if="getImages(item).length !== 0">
+                                    <div class="image_content"
+                                         v-for="img in getImages(item)">
+                                        <img v-lazy="getSrc(img)"
+                                             @click="viewImage(img)" />
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                        <div v-if="pageModel.isLoadMore" class="load_more clearfix">
+                            <van-loading color="black"></van-loading>
+                            <span class="load_text">正在加载...</span>
+                        </div>
+                        <div v-if="pageModel.isLoadComplete" class="load_more_complete">
+                            <span class="load_text">没有更多的数据了...</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="../../content/js/vue.js"></script>
+    <script src="../../content/js/vant.min.js"></script>
+    <script src="../../content/js/base.js"></script>
+    <script src="../../content/js/pages/thriver/question.detail.js"></script>
+</body>
+</html>

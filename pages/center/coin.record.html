@@ -1,0 +1,62 @@
+﻿<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no,viewport-fit=cover" />
+		<title></title>
+		<link href="../../content/css/base.css" rel="stylesheet" />
+		<link href="../../content/css/vant.css" rel="stylesheet" />
+		<link href="../../content/css/pages/center/coin.record.css" rel="stylesheet" />
+		<script src="html5plus://ready"></script>
+	</head>
+
+	<body>
+		<div id="app">
+			<div id="app-head" class="fixed van-hairline--bottom" v-bind:style="{'paddingTop': statusbarHeight + 'px'}">
+				<i id="app-back-button" class="iconfont iconbaidifanhuianniux right-back"></i>
+				<div class="app-head-text">云币记录</div>
+			</div>
+			<div id="app-content" v-bind:style="{'paddingTop': (45 + statusbarHeight) + 'px'}">
+				<div v-if="isLoading" class="loading-box p60">
+					<van-loading color="black"></van-loading>
+					<p class="loading-text">正在加载...</p>
+				</div>
+				<div v-else v-cloak>
+					<div v-if="pageModule.length===0" class="normal_info">
+						<img class="img" src="../../content/img/center/cache_bg.png" />
+						<p class="text">
+							没有相关的记录
+						</p>
+					</div>
+					<div v-else>
+						<div class="cell mt-5" v-for="item in pageModule">
+							<div class="row">
+								<div class="w7" v-text="item.OperateTypeName">
+								</div>
+								<div class="w3" v-text="(item.IsAdd?'+':'-')+item.OperateCoin">
+								</div>
+							</div>
+							<p class="row2" v-text="'剩余云币：'+item.CurrentCoin">
+							</p>
+							<p class="row3 mt-5" v-text="'支付时间：'+item.CreateTime">
+							</p>
+						</div>
+						<div v-if="isLoadMore" class="load_more clearfix">
+							<van-loading color="black"></van-loading>
+							<span class="load_text">正在加载...</span>
+						</div>
+						<div v-if="isLoadComplete" class="load_more_complete">
+							<span class="load_text">没有更多的数据了...</span>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<script src="../../content/js/vue.js"></script>
+		<script src="../../content/js/vant.min.js"></script>
+		<script src="../../content/js/base.js"></script>
+		<script src="../../content/js/pages/center/coin.record.js"></script>
+	</body>
+
+</html>

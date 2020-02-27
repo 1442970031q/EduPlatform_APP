@@ -1,0 +1,51 @@
+.cell {
+	box-shadow: 0 0 10px #f3f3f3;
+	border-radius: 8px;
+	padding: 15px 10px;
+	margin-bottom: 10px;
+	width: 90%;
+	margin: auto;
+	background: #ffffff;
+}
+
+.cell p {
+	font-size: 0.85em;
+	line-height: 25px;
+	color: #4f4f4f;
+	margin: auto
+}
+
+.cell p .left {
+	float: right;
+}
+
+.cell .icon {
+	text-align: center;
+}
+
+.cell .icon .van-icon {
+	width: auto;
+	font-size: 5em;
+	display: inline-block;
+	color: #f0f0f0;
+}
+
+.checkTime {
+	padding: 10px 15px;
+}
+
+.checkTime .tabs {
+	font-size: 0.8em;
+	padding: 3px 5px;
+	display: inline-block
+}
+
+.checkTime .isCheck {
+	background: #1989fa;
+	border-radius: 5px;
+	color: white;
+}
+
+.pdding_bottom {
+	padding-bottom: 15px;
+}

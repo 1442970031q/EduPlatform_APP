@@ -1,0 +1,29 @@
+.cell {
+    background-color: #FFFFFF;
+    padding: 10px;
+}
+
+    .cell:active {
+        background-color: #EEEEEE;
+    }
+
+    .cell .title {
+        color: #676767;
+        text-indent: 5px;
+    }
+
+    .cell .img {
+        width: 100%;
+        height: auto;
+        border-radius: 5px;
+    }
+
+    .cell .info {
+        padding-top: 5px;
+        font-size: 0.8em;
+        color: #AAAAAA;
+    }
+
+        .cell .info .number {
+            float: right;
+        }

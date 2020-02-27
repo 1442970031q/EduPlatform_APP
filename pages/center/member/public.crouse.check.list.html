@@ -1,0 +1,81 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no,viewport-fit=cover" />
+    <title></title>
+    <link href="../../../content/css/base.css" rel="stylesheet" />
+    <link href="../../../content/css/vant.css" rel="stylesheet" />
+    <link href="../../../content/css/pages/center/member/public.crouse.check.list.css" rel="stylesheet" />
+    <script src="html5plus://ready"></script>
+</head>
+
+<body>
+    <div id="app">
+        <div id="app-head" class="fixed van-hairline--bottom" v-bind:style="{'paddingTop': statusbarHeight + 'px'}">
+            <i id="app-back-button" class="iconfont iconbaidifanhuianniux right-back"></i>
+            <div class="app-head-text">考勤</div>
+        </div>
+        <div id="app-content" v-bind:style="{'paddingTop': (45 + statusbarHeight) + 'px'}">
+            <!--<p class="title">每个学生只能<b> 修改一次 </b>，请谨慎操作</p>-->
+            <div v-show="show" class="cell" v-for="(item ,index) in pageModule.two.Data">
+                <div class="name">
+                    <span v-text="item.StudentName"></span>
+                    <span class="state" v-if="item.State==1">正常</span>
+                    <span class="state" v-if="item.State==2">迟到</span>
+                    <span class="state" v-if="item.State==3">早退</span>
+                    <span class="state" v-if="item.State==4">病假</span>
+                    <span class="state" v-if="item.State==5">事假</span>
+                    <span class="state" v-if="item.State==6">旷课</span>
+                </div>
+                <div class="right">
+                    <div v-if="item.State==0" class="button" @click="sigin(item,index)">
+                        签到
+                    </div>
+                    <!--<div v-if="item.State!=0&&!item.IsModified" @click="gotoAmend(item,index,1)" class="button c1">
+                        修改
+                    </div>-->
+                    <div v-if="item.State==0" class="button c2" @click="gotoAmend(item,index,2)">
+                        其它
+                    </div>
+                    <div class="w" v-show="item.State!=0">
+                        <i class="iconfont iconduihao2"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="cell" v-for="(item ,index) in pageModule.one">
+                <div class="name">
+                    <span v-text="item.RealName"></span>
+                    <span class="state" v-if="item.State==1">正常</span>
+                    <span class="state" v-if="item.State==2">迟到</span>
+                    <span class="state" v-if="item.State==3">早退</span>
+                    <span class="state" v-if="item.State==4">病假</span>
+                    <span class="state" v-if="item.State==5">事假</span>
+                    <span class="state" v-if="item.State==6">旷课</span>
+                </div>
+                <div class="right">
+                    <div v-if="item.State==0" class="button" @click="sigin(item,index)">
+                        签到
+                    </div>
+                    <!--<div v-if="item.State!=0&&!item.IsModified" @click="gotoAmend(item,index,1)" class="button c1">
+                        修改
+                    </div>-->
+                    <div v-if="item.State==0" class="button c2" @click="gotoAmend(item,index,2)">
+                        其它
+                    </div>
+                    <div class="w" v-show="item.State!=0">
+                        <i class="van-icon van-icon-certificate"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="../../../content/js/vue.js"></script>
+    <script src="../../../content/js/vant.min.js"></script>
+    <script src="../../../content/js/base.js"></script>
+    <script src="../../../content/js/pages/center/member/public.crouse.check.list.js"></script>
+
+</body>
+
+</html>

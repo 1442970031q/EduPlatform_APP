@@ -1,0 +1,60 @@
+html,
+body {
+	background-color: #FFFFFF;
+}
+
+#app-head {
+	border-bottom: 1px solid #EEEEEE;
+}
+
+#app-content {
+	padding-bottom: 20px;
+}
+
+.title {
+	text-align: center;
+	color: #53aaf6;
+	font-weight: bold;
+}
+
+.form {
+	padding: 0 15px;
+}
+
+.form .name {
+	font-size: 0.9em;
+}
+
+.form .content1 {
+	border-radius: 10px;
+	padding: 15px 10px;
+	background-color: #f3f3f3;
+}
+
+.form .content1 .cell {
+	line-height: 32px;
+}
+.form .content1 .cell .iconfont{
+	color: #53AAF6;
+	font-size: 1em;
+}
+.form .content1 .cell .hint {
+	font-size: 0.8em;
+	display: inline-block;
+	width: 30%;
+}
+
+.form .content1 .cell .input {
+	border: 1px solid #dcdcdc;
+	border-radius: 5px;
+	height: 30px;
+	width: calc(70% - 10px);
+	font-size: 0.8em;
+	text-indent: 5px;
+}
+.c1{
+	color: #8f8f8f;
+}
+.form .name:before {
+	content: '* ';
+}

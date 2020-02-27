@@ -1,0 +1,65 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no,viewport-fit=cover" />
+    <title></title>
+    <link href="../../content/css/base.css" rel="stylesheet" />
+    <link href="../../content/css/vant.css" rel="stylesheet" />
+    <link href="../../content/css/pages/thriver/my.crouse.css" rel="stylesheet" />
+    <script src="html5plus://ready"></script>
+</head>
+<body>
+    <div id="app">
+        <div id="app-head" class="fixed van-hairline--bottom" v-bind:style="{'paddingTop': statusbarHeight + 'px'}">
+            <i id="app-back-button" class="iconfont iconbaidifanhuianniux right-back"></i>
+            <div class="app-head-text">我的课程</div>
+        </div>
+        <div id="app-content" v-bind:style="{'paddingTop': (statusbarHeight+45) + 'px'}">
+            <div v-if="isLoading" class="loading-box p60">
+                <van-loading></van-loading>
+                <p class="loading-text">正在加载...</p>
+            </div>
+            <div v-else v-cloak>
+                <div v-if="pageModel.list.length === 0" class="none-data p60">
+                    <i class="iconfont iconkecheng small"></i>
+                    <p class="none-data-text">暂无课程信息</p>
+                </div>
+                <div class="content" 
+                     v-for="(item, index) in pageModel.list"
+                     v-bind:key="index">
+                    <p class="caption" v-text="item.Key"></p>
+                    <div v-if="item.Values.length === 0" class="none-data">
+                        <p class="none-data-text">这个学期还没有课程信息</p>
+                    </div>
+                    <div v-else class="cell van-hairline--top-bottom">
+                        <div class="item"
+                             v-for="(crouse, cIndex) in item.Values"
+                             v-bind:key="cIndex"
+                             v-bind:class="{'van-hairline--bottom': cIndex !== item.Values.length - 1}"
+                             @click="gotoDetail(crouse)">
+                            <div class="left">
+                                <img v-lazy="crouse.ImageSrc" class="img" />
+                            </div>
+                            <div class="right">
+                                <p class="name" v-text="crouse.Name"></p>
+                                <p class="intro mt-10" v-text="filterHtml(crouse.Introduce)"></p>
+                                <div class="bottom mt-5">
+                                    <div class="progress-bar">
+                                        <div class="now-progress-bar" v-bind:style="{'width': crouse.Speed + '%'}"></div>
+                                    </div>
+                                    <span class="now" v-text="'已学习：'+ crouse.Speed + '%'"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="../../content/js/vue.js"></script>
+    <script src="../../content/js/vant.min.js"></script>
+    <script src="../../content/js/base.js"></script>
+    <script src="../../content/js/pages/thriver/my.crouse.js"></script>
+</body>
+</html>

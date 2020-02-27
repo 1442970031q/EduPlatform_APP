@@ -1,0 +1,75 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no,viewport-fit=cover" />
+    <title></title>
+    <link href="../../content/css/base.css" rel="stylesheet" />
+    <link href="../../content/css/vant.css" rel="stylesheet" />
+    <link href="../../content/css/pages/thriver/question.answer.css" rel="stylesheet" />
+    <script src="html5plus://ready"></script>
+</head>
+<body>
+    <div id="app">
+        <div id="app-head" class="van-hairline--bottom fixed" v-bind:style="{'paddingTop': statusbarHeight + 'px'}">
+            <i id="app-back-button" class="iconfont iconbaidifanhuianniux right-back"></i>
+            <div class="app-head-text">回答问题</div>
+        </div>
+        <div id="app-content" v-bind:style="{'paddingTop': (statusbarHeight + 45) + 'px'}">
+            <div v-if="isLoading" class="loading-box p60">
+                <van-loading color="black"></van-loading>
+                <p class="loading-text">正在加载...</p>
+            </div>
+            <div v-else v-cloak>
+                <div class="answer_content">
+                    <textarea class="answer_control"
+                              rows="8"
+                              placeholder="轻触此处输入您的回答"
+                              @focus="controlFocus"
+                              v-model="pageModel.answer"></textarea>
+                    <div class="images" v-show="pageModel.images.length !== 0">
+                        <div class="image"
+                             v-for="(item,index) in pageModel.images"
+                             v-bind:key="index">
+                            <div class="mask" v-show="item.isUploading">上传中...</div>
+                            <img v-bind:src="item.src" @click="removeImage(item)" />
+                        </div>
+                    </div>
+                    <div class="actions van-hairline--top-bottom">
+                        <button class="btn" @click="showEmoticon">
+                            <i class="iconfont iconbiaoqing"></i>
+                        </button>
+                        <button class="btn" @click="showActionsheet">
+                            <i class="iconfont icontupian"></i>
+                        </button>
+                    </div>
+                </div>
+                <button class="confirm_button" @click="checkData">提交回答</button>
+                <van-popup class="emot_box"
+                           v-model="isEmoticonShow"
+                           position="bottom"
+                           v-bind:overlay="false">
+                    <div class="title">
+                        <div class="text">选择表情</div>
+                        <div class="cancel" @click="isEmoticonShow = false">取消</div>
+                    </div>
+                    <ul class="emot_content">
+                        <li v-for="(item,index) in pageModel.emtoiconList"
+                            v-bind:key="index">
+                            <img v-bind:src="item.src" @click="selectedEmoticon(item)" />
+                        </li>
+                    </ul>
+                </van-popup>
+                <van-action-sheet v-bind:class="{'safe-area': APP.CONFIG.IsSafeArea()}"
+                                  v-model="isActionsheet"
+                                  v-bind:actions="actions"
+                                  cancel-text="取消"></van-action-sheet>
+            </div>
+        </div>
+    </div>
+    <script src="../../content/js/vue.js"></script>
+    <script src="../../content/js/vant.min.js"></script>
+    <script src="../../content/js/base.js"></script>
+    <script src="../../content/js/pages/thriver/question.answer.js"></script>
+</body>
+</html>

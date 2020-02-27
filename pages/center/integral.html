@@ -1,0 +1,78 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no,viewport-fit=cover" />
+    <title></title>
+    <link href="../../content/css/base.css" rel="stylesheet" />
+    <link href="../../content/css/vant.css" rel="stylesheet" />
+    <link href="../../content/css/pages/center/integral.css" rel="stylesheet" />
+    <script src="html5plus://ready"></script>
+</head>
+<body>
+    <div id="app">
+        <div id="app-head" class="fixed " v-bind:style="{'paddingTop': statusbarHeight + 'px'}">
+            <i id="app-back-button" class="iconfont iconbaidifanhuianniux right-back"></i>
+            <div class="app-head-text">我的积分</div>
+            <!-- <div class="submit-button" @click="APP.GLOBAL.gotoNewWindow('integral.rule')">规则</div> -->
+        </div>
+        <div id="app-content">
+            <div id="top" class="top">
+                <div class="content" v-bind:style="{'paddingTop': (45 + statusbarHeight) + 'px'}">
+                    <span class="title">可用积分</span>
+                    <p class="values" v-text="currentUser.ResidualIntegral"></p>
+                    <p class="button">
+                        <span class="value" v-text="'累计积分:  '+currentUser.CumulativeIntegral"> </span>
+                        <span class="btn" @click="gotoExchangeCoin">兑换</span>
+                    </p>
+                </div>
+				<ul class="tag">
+					<li :class="{'isCheck':form.ty===''}" @click="changeTab('')">全部记录</li>
+					<li :class="{'isCheck':form.ty===1}"  @click="changeTab(1)">兑换记录</li>
+				</ul>
+            </div>
+            <div class="content"  >
+				<div v-if="isLoading" class="loading-box p60">
+				    <van-loading color="black"></van-loading>
+				    <p class="loading-text">正在加载...</p>
+				</div>
+				<div v-else>
+				    <div v-if="pageModel.length===0" class="normal_info">
+				        <img class="img" src="../../content/img/center/cache_bg.png" />
+				        <p class="text">
+				            没有相关的记录
+				        </p>
+				    </div>
+				    <div v-else class="mt-10">
+				        <div class="cell" v-for="item in pageModel">
+				            <div class="row">
+				                <div class="w7" v-text="item.OperateTypeName">
+				                </div>
+				                <div class="w3" 
+                                     v-text="(item.IsAdd?'+':'-')+item.OperateIntegral"
+                                     v-bind:class="[item.IsAdd ? 'green' : 'red']"></div>
+				            </div>
+				            <p class="row2" v-text="'剩余积分：'+item.CurrentIntegral">
+				            </p>
+				            <p class="row3 mt-5" v-text="item.CreateTime">
+				            </p>
+				        </div>
+				        <div v-if="isLoadMore" class="load_more clearfix">
+				            <van-loading color="black"></van-loading>
+				            <span class="load_text">正在加载...</span>
+				        </div>
+				        <div v-if="isLoadComplete" class="load_more_complete">
+				            <span class="load_text">没有更多的数据了...</span>
+				        </div>
+				    </div>
+				</div>
+				  
+			</div>
+        </div>
+    </div>
+    <script src="../../content/js/vue.js"></script>
+    <script src="../../content/js/vant.min.js"></script>
+    <script src="../../content/js/base.js"></script>
+    <script src="../../content/js/pages/center/integral.js"></script>
+</body>
+</html>

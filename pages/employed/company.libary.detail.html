@@ -1,0 +1,80 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no,viewport-fit=cover" />
+		<title></title>
+		<link href="../../content/css/base.css" rel="stylesheet" />
+		<link href="../../content/css/vant.css" rel="stylesheet" />
+        <style>
+            html,
+            body {
+                background-color: #FFFFFF;
+            }
+
+            .iframe {
+                border: 0;
+            }
+        </style>
+		<script src="html5plus://ready"></script>
+	</head>
+	<body>
+		<div id="app">
+			<div id="app-head" class="fixed van-hairline--bottom" v-bind:style="{'paddingTop': statusbarHeight + 'px'}">
+				<i id="app-back-button" class="iconfont iconbaidifanhuianniux right-back"></i>
+				<div class="app-head-text" v-text="request.item.Title"></div>
+			</div>
+			<div id="app-content" v-bind:style="{'paddingTop': (45 + statusbarHeight) + 'px'}">
+			</div>
+		</div>
+		<script src="../../content/js/vue.js"></script>
+		<script src="../../content/js/vant.min.js"></script>
+		<script src="../../content/js/base.js"></script>
+		<script>
+			var _vue = new Vue({
+				el: '#app',
+				data: {
+					'currentUser': APP.GLOBAL.getUserModel(),
+					'statusbarHeight': 20,
+					'isLoading': true,
+					'request': {
+						'item':''
+					},
+					'height': document.body.clientHeight,
+					'width': document.body.clientWidth,
+					'url': ''
+				},
+                methods: {
+					'createChild': function() {
+						var self = plus.webview.currentWebview();
+						var sub = plus.webview.create(
+							 this.url, //子页url
+							'protocol_1.1Page', {
+								top: 45 + this.statusbarHeight + 'px', //设置距离顶部的距离
+								bottom:APP.CONFIG.IsSafeArea()?25:0, //设置距离底部的距离
+								zindex: 0,
+								scalable: false,
+								kernel: 'WKWebview',
+								progress: {
+									color: '#02b9ff'
+								}
+							}
+						);
+						sub.setCssText('.phonecontent{top:0!important}#nav{display:none!important}');
+						self.append(sub);
+					}
+                },
+				created: function() {
+                    if (APP.CONFIG.IS_RUNTIME) {
+                        this.statusbarHeight = plus.navigator.getStatusbarHeight();
+
+                        var wb = plus.webview.currentWebview();
+                        this.request.item = wb.paramObject;
+                        this.url = 'http://www.xdocin.com/xdoc?_xdoc=' + this.request.item.FileSrc;
+                        this.createChild();
+                    }
+                }
+			});
+		</script>
+	</body>
+</html>

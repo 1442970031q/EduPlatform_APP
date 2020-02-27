@@ -1,0 +1,88 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no,viewport-fit=cover" />
+    <title></title>
+    <link href="../../content/css/base.css" rel="stylesheet" />
+    <link href="../../content/css/vant.css" rel="stylesheet" />
+    <link href="../../content/css/pages/center/my.coin.css" rel="stylesheet" />
+    <script src="html5plus://ready"></script>
+</head>
+<body>
+    <div id="app">
+        <div id="app-head" class="fixed " v-bind:style="{'backgroundColor': 'rgba(250, 250, 250, ' + backgroundOpacity +')', 'paddingTop': statusbarHeight + 'px'}">
+            <i v-if="backgroundOpacity==0" id="app-back-button" class="iconfont iconbaidifanhuianniux right-back"></i>
+            <i v-else v-bind:style="{'color': 'rgba(51,51,51, ' + backgroundOpacity +')'}" id="app-back-button" class="iconfont iconbaidifanhuianniux right-back"></i>
+            <div v-if="backgroundOpacity==0" class="app-head-text">
+                我的云币
+            </div>
+            <div v-else v-bind:style="{'color': 'rgba(51,51,51, ' + backgroundOpacity +')'}" class="app-head-text">
+                我的云币
+            </div>
+            <div v-if="backgroundOpacity==0" @click="APP.GLOBAL.gotoNewWindow('top.up')" class="submit-button">
+                充值
+            </div>
+            <div v-else v-bind:style="{'color': 'rgba(51,51,51, ' + backgroundOpacity +')'}" @click="APP.GLOBAL.gotoNewWindow('top.up')" class="submit-button">
+                充值
+            </div>
+        </div>
+        <div id="app-content">
+            <div class="top">
+                <div class="content" v-bind:style="{'paddingTop': (45 + statusbarHeight) + 'px'}">
+                    <p class="coin">256912</p>
+                    <p class="name">你目前的云币</p>
+                </div>
+                <ul class="ment">
+                    <li class="lis">
+                        <i class="iconfont iconduanxin"></i>
+                        <p class="title">云币明细</p>
+                    </li>
+                    <li class="lis">
+                        <i class="iconfont iconduanxin"></i>
+                        <p class="title">兑换记录</p>
+                    </li>
+                </ul>
+            </div>
+            <div class="tabs">
+                <p class="title">
+                    <span class="text">推荐礼品</span>
+                    <span class="right">
+                        查看全部
+                        <i class="iconfont iconright"></i>
+                    </span>
+                </p>
+                <div class="tab mt-15">
+                    <img class="img" src="../../content/img/default/product_bg.jpg" />
+                    <p class="name">冰晶手镯</p>
+                    <p class="price">1999云币</p>
+                </div>
+                <div class="tab mt-15">
+                    <img class="img" src="../../content/img/default/product_bg.jpg" />
+                    <p class="name">冰晶手镯</p>
+                    <p class="price">1999云币</p>
+                </div>
+                <div class="tab mt-15">
+                    <img class="img" src="../../content/img/default/product_bg.jpg" />
+                    <p class="name">冰晶手镯</p>
+                    <p class="price">1999云币</p>
+                </div>
+                <div class="tab mt-15">
+                    <img class="img" src="../../content/img/default/product_bg.jpg" />
+                    <p class="name">冰晶手镯</p>
+                    <p class="price">1999云币</p>
+                </div>
+                <div class="tab mt-15">
+                    <img class="img" src="../../content/img/default/product_bg.jpg" />
+                    <p class="name">冰晶手镯</p>
+                    <p class="price">1999云币</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="../../content/js/vue.js"></script>
+    <script src="../../content/js/vant.min.js"></script>
+    <script src="../../content/js/base.js"></script>
+    <script src="../../content/js/pages/center/my.coin.js"></script>
+</body>
+</html>

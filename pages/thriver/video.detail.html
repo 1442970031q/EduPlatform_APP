@@ -1,0 +1,90 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no,viewport-fit=cover" />
+    <title></title>
+    <link href="../../content/css/base.css" rel="stylesheet" />
+    <link href="../../content/css/vant.css" rel="stylesheet" />
+    <link href="../../content/css/pages/thriver/video.detail.css" rel="stylesheet" />
+    <script src="html5plus://ready"></script>
+</head>
+<body>
+    <div id="app">
+        <div id="app-head" class="fixed" v-bind:style="{'paddingTop': statusbarHeight + 'px'}">
+            <i id="app-back-button" class="iconfont iconbaidifanhuianniux right-back"></i>
+            <div v-if="!isLoading" class="app-head-text" v-text="pageModel.Name"></div>
+        </div>
+        <div id="app-content" v-bind:style="{'paddingTop': (45 + statusbarHeight) + 'px'}">
+            <div v-if="isLoading" class="loading-box p70">
+                <van-loading color="black"></van-loading>
+                <p class="loading-text">正在加载...</p>
+            </div>
+            <div v-else
+                 v-cloak
+                 class="container"
+                 v-bind:class="{'safe': request.ty === '3' && APP.CONFIG.IsSafeArea(), 'normal': request.ty !== '3'}">
+                <div id="video">
+                    <img v-lazy="pageModel.ImageSrc" class="cover" />
+                </div>
+                <div class="top_content van-hairline--bottom">
+                    <p class="title" v-text="pageModel.Name"></p>
+                    <p class="des" v-html="pageModel.Introduce"></p>
+                    <div class="bottom clearfix" v-if="request.ty === '3'">
+                        <span v-text="pageModel.BuyCount + '人购买'" class="left"></span>
+                        <span v-text="numberFormat(pageModel.Price, 2) + '云币'" class="right"></span>
+                    </div>
+                    <div class="bottom progress" v-else>
+                        <div class="progress-bar">
+                            <span class="text" v-text="'已学习：' + pageModel.Speed + '%'"></span>
+                            <div class="now-progress-bar" v-bind:style="{'width': pageModel.Speed + '%'}"></div>
+                        </div>
+                    </div>
+                </div>
+                <van-collapse v-model="activeNames"
+                              v-bind:border="false"
+                              class="chapters">
+                    <van-collapse-item v-for="(item,index) in pageModel.chapterList"
+                                       v-bind:key="index"
+                                       v-bind:title="padLeft(index + 1) + ' - ' + item.Name"
+                                       v-bind:name="index + 1"
+                                       v-bind:border="false">
+                        <div v-if="item.ResourceList.length === 0" class="none_resource">
+                            该章节没有上传资源，请通知管理员上传
+                        </div>
+                        <ul v-else class="resources">
+                            <li v-for="(r, rIndex) in item.ResourceList"
+                                v-bind:key="rIndex"
+                                @click="openReource(item, r)">
+                                <div class="line">
+                                    <img v-if="r.ResType === 2"
+                                         src="../../content/img/thriver/icon-files.png" />
+                                    <img v-else
+                                         src="../../content/img/thriver/icon-video.png" />
+                                    <span class="name" v-text="r.Name"></span>
+                                </div>
+                                <div class="line small" v-if="r.ResType === 2">
+                                    <p class="info" v-text="'压缩文件 / ' + getSize(r.FileSize)"></p>
+                                </div>
+                                <div class="line small" v-else>
+                                    <p class="info" v-text="r.FileTime + ' / ' + getSize(r.FileSize)"></p>
+                                </div>
+                            </li>
+                        </ul>
+                    </van-collapse-item>
+                </van-collapse>
+                <div v-if="request.ty === '3'"
+                     class="actions clearfix"
+                     v-bind:class="{'safe': APP.CONFIG.IsSafeArea()}">
+                    <span class="price" v-text="'支付 ' + numberFormat(pageModel.Price, 2) + ' 云币'"></span>
+                    <button class="btn" @click="gotoBuyVoid">立即购买</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="../../content/js/vue.js"></script>
+    <script src="../../content/js/vant.min.js"></script>
+    <script src="../../content/js/base.js"></script>
+    <script src="../../content/js/pages/thriver/video.detail.js"></script>
+</body>
+</html>

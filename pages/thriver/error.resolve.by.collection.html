@@ -1,0 +1,68 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no,viewport-fit=cover" />
+    <title></title>
+    <link href="../../content/css/base.css" rel="stylesheet" />
+    <link href="../../content/css/vant.css" rel="stylesheet" />
+    <link href="../../content/css/pages/thriver/error.resolve.css" rel="stylesheet" />
+    <style>
+        .van-cell__title {
+            font-size: .9em;
+            font-weight:normal;
+        }
+    </style>
+    <script src="html5plus://ready"></script>
+</head>
+<body>
+    <div id="app">
+        <div id="app-head" class="fixed van-hairline--bottom" v-bind:style="{'paddingTop': statusbarHeight + 'px'}">
+            <i id="app-back-button" class="iconfont iconbaidifanhuianniux right-back"></i>
+            <div class="app-head-text" v-text="getTitle()">错题解析</div>
+        </div>
+        <div id="app-content" v-bind:style="{'paddingTop': (45 + statusbarHeight) + 'px'}">
+            <div v-if="isLoading" class="loading-box p60">
+                <van-loading color="black"></van-loading>
+                <p class="loading-text">正在加载...</p>
+            </div>
+            <div v-else v-cloak>
+                <div v-if="pageModel.ChoiceList.length === 0" class="none-data p60">
+                    <i class="iconfont iconlunwentimu"></i>
+                    <p class="none-data-text">本章节暂无错题信息</p>
+                </div>
+                <div v-else class="content">
+                    <van-collapse v-model="currentSelected" accordion>
+                        <van-collapse-item v-for="(question, qIndex) in pageModel.ChoiceList"
+                                           v-bind:key="qIndex"
+                                           v-bind:name="qIndex">
+                            <p slot="title">
+                                <b v-text="'[第' + (qIndex + 1) + '题]'"></b>
+                                <span v-text="filterHtml(question.Question)"></span>
+                            </p>
+                            <div class="problem">
+                                <div class="question" v-html="question.Question"></div>
+                                <div v-for="(option, index) in question.Options"
+                                     v-bind:key="index">
+                                    <div v-if="question.Answer.indexOf(option.Caption) !== -1" class="answer green">
+                                        <p v-html="getOptionIndex(option, index)"></p>
+                                        <i class="iconfont iconxuanzeduihaox"></i>
+                                    </div>
+                                    <div v-else class="answer">
+                                        <p v-html="getOptionIndex(option, index)"></p>
+                                    </div>
+                                </div>
+                                <button class="remove_button" @click="removeConfirm(question)">从错题集中移除</button>
+                            </div>
+                        </van-collapse-item>
+                    </van-collapse>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="../../content/js/vue.js"></script>
+    <script src="../../content/js/vant.min.js"></script>
+    <script src="../../content/js/base.js"></script>
+    <script src="../../content/js/pages/thriver/error.resolve.by.collection.js"></script>
+</body>
+</html>

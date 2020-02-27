@@ -1,0 +1,66 @@
+html,
+body {
+    background-color: #FFFFFF;
+}
+
+.content {
+    padding: 0 10px;
+}
+
+    .content .tabs {
+        display: flex;
+        margin-bottom: 15px;
+    }
+
+        .content .tabs:last-child {
+            margin-bottom: 0;
+        }
+
+        .content .tabs .left {
+            width: 80px;
+        }
+
+            .content .tabs .left .img {
+                width: 100%;
+                display: block;
+                border-radius: 8px;
+            }
+
+        .content .tabs .right {
+            width: calc(100% - 90px);
+            margin-left: 10px;
+        }
+
+            .content .tabs .right .info1 {
+                height: 25px;
+                line-height: 25px;
+            }
+
+                .content .tabs .right .info1 .nick {
+                    font-size: 1em;
+                }
+
+            .content .tabs .right .info2 {
+                font-size: 0.85em;
+                color: #AAAAAA;
+                height: 20px;
+                line-height: 20px;
+                margin-top: 5px;
+                width: 100%;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                white-space: nowrap;
+            }
+
+            .content .tabs .right .info1 .schoolname {
+                font-size: 0.8em;
+                color: #53aaf6;
+                float: right;
+            }
+
+            .content .tabs .right .info3 {
+                height: 25px;
+                line-height: 25px;
+                font-size: 0.8em;
+                color: #737373;
+            }

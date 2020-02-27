@@ -1,0 +1,48 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no,viewport-fit=cover" />
+    <title></title>
+    <link href="../../content/css/base.css" rel="stylesheet" />
+    <link href="../../content/css/vant.css" rel="stylesheet" />
+    <link href="../../content/css/pages/conversion/conversion.success.css" rel="stylesheet" />
+    <script src="html5plus://ready"></script>
+</head>
+<body>
+    <div id="app">
+        <div id="app-head" class="fixed" v-bind:style="{'paddingTop': statusbarHeight + 'px'}">
+            <i id="app-back-button" class="iconfont iconbaidifanhuianniux right-back"></i>
+            <div class="app-head-text">兑换成功</div>
+        </div>
+        <div id="app-content" v-bind:style="{'paddingTop': (45 + statusbarHeight) + 'px'}">
+            <div class="normal_info">
+                <img src="../../content/img/conversion/conversion_success.png" class="img" />
+                <p class="text">
+                    订单已提交到后台处理
+                </p>
+            </div>
+            <div class="confirm_button1 mt-10" @click="APP.GLOBAL.closeWindow()">
+                继续兑换
+            </div>
+        </div>
+    </div>
+    <script src="../../content/js/vue.js"></script>
+    <script src="../../content/js/vant.min.js"></script>
+    <script src="../../content/js/base.js"></script>
+    <script>
+        var _vue = new Vue({
+            el: '#app',
+            data: {
+                'currentUser': APP.GLOBAL.getUserModel(),
+                'statusbarHeight': 20,
+            },
+            created: function () {
+                if (APP.CONFIG.IS_RUNTIME) {
+                    this.statusbarHeight = plus.navigator.getStatusbarHeight();
+                }
+            }
+        });
+    </script>
+</body>
+</html>

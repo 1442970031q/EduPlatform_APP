@@ -1,0 +1,67 @@
+﻿.tabs {
+    width: calc(100% - 50px);
+    margin: auto;
+    padding:10px;
+    border: 1px solid #EEEEEE;
+    border-radius: 8px;
+    box-shadow: 1px 1px 1px #EEEEEE;
+    background-color: #fff;
+    display: flex;
+}
+.tabs .flex_l{
+    width: 80%;
+}
+.tabs .flex_r{
+    width: 20%;
+    line-height: 60px;
+    text-align: right;
+    color: #53aaf6;
+    font-size: 1.5em;
+}
+    .tabs .name {
+        font-size: 0.9em;
+        white-space: nowrap;
+        overflow-x: hidden;
+        text-overflow: ellipsis;
+    }
+
+    .tabs .detail {
+        font-size: 0.7em;
+        color: #a2a2a2;
+    }
+
+    .tabs .type {
+        font-size: 0.6em;
+        color: #6f6f71;
+        background-color: #f4f4f4;
+        padding: 2px 5px;
+        border-radius: 5px;
+    }
+
+    .tabs .complete .left {
+        font-size: 0.85em;
+        color: #6f6f71;
+    }
+    .tabs .complete .left .c1{
+        color: #53aaf6;
+        font-size: 1.5em;
+    }
+    .tabs .more .right {
+        padding: 3px 15px;
+        border-radius: 50px;
+        color: #aaaaaa;
+        font-size: 0.7em;
+        float: right;
+        border: 1px solid #EEEEEE;
+        position: relative;
+        top: -30px;
+    }
+
+    .tabs .complete .right {
+        padding: 3px 15px;
+        border-radius: 50px;
+        background-color: #53aaf6;
+        color: #FFFFFF;
+        font-size: 0.7em;
+        float: right;
+    }

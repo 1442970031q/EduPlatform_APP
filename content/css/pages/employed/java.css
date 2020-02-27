@@ -1,0 +1,49 @@
+.content .left {
+	overflow-y: auto;
+	float: left;
+	position: fixed;
+	width: 20%;
+	text-align: center;
+	height: 100%;
+}
+
+.content .isCheck {
+	background-color: #FFFFFF;
+	border-right: 1px solid #53aaf6;
+}
+
+.content .left .sidebar {
+	padding: 10px 0;
+	overflow: hidden;
+}
+
+.content .left .sidebar:checked {
+	padding: 10px 0;
+	overflow: hidden;
+}
+
+.content .right {
+	width: 80%;
+	background-color: #FFFFFF;
+	float: right;
+	height: 100%;
+}
+
+.content .right .question {
+	padding: 3px 5px;
+	font-size: 0.7em;
+	color: #FFFFFF;
+	background: url(../../../img/question_bg.png) no-repeat;
+	background-size: 100% auto;
+	line-height: 15px;
+}
+.content .right .van-divider{
+	margin: 5px;
+	color: #53aaf6;
+}
+.content .right .titletext p{
+	display: inline;
+}
+ .tran{
+	  padding-bottom: 50%;
+ }

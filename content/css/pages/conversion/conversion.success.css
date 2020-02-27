@@ -1,0 +1,40 @@
+html,
+body {
+	background-color: #FFFFFF;
+}
+
+.normal_info {
+	padding-top: 15%;
+}
+
+.normal_info .img {
+	width: 80%;
+}
+
+.confirm_button2 {
+	width: 60%;
+	font-size: .9em;
+	border-radius: 50px;
+	background-color: #02b9ff;
+	color: #FFFFFF;
+	line-height: 20px;
+	margin: 0 auto;
+	padding: 10px 0;
+	text-align: center;
+	margin-top: 10%;
+}
+
+.confirm_button1 {
+	width: 60%;
+	font-size: .9em;
+	border-radius: 50px;
+	border: 1px solid #02b9ff;
+	color: #02b9ff;
+	line-height: 20px;
+	margin: 0 auto;
+	padding: 10px 0;
+	text-align: center;
+}
+.mt-30 {
+    margin-top:30px !important;
+}

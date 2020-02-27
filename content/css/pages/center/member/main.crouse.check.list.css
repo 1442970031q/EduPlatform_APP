@@ -1,0 +1,62 @@
+.cell {
+    background-color: #fff;
+    padding: 15px;
+    display: flex;
+    border-bottom: 1px solid #f9f9f9;
+}
+
+    .cell:last-child {
+        border-bottom: 0;
+    }
+
+    .cell .name {
+        width: 150px;
+    }
+
+        .cell .name .state {
+            margin-left: 15px;
+            font-size: 0.8em;
+            color: #aaaaaa
+        }
+
+    .cell .right {
+        width: calc(100% - 150px);
+        justify-content: flex-end;
+        display: flex;
+        align-items: center;
+    }
+
+        .cell .right .button {
+            background-color: #008f00;
+            font-size: 0.8em;
+            padding: 8px 15px;
+            color: #fff;
+            border-radius: 5px;
+            margin-left: 15px;
+        }
+
+            .cell .right .button.c2 {
+                background-color: #46acce;
+            }
+
+            .cell .right .button.c1 {
+                background-color: #d48421;
+            }
+
+        .cell .right .w {
+            width: 30px;
+            text-align: right;
+        }
+
+            .cell .right .w .iconfont {
+                font-size: 1.5em;
+                color: green;
+            }
+
+.title {
+    font-size: 0.8em;
+    color: #aaaaaa;
+    padding: 10px;
+    padding-top: 20px;
+    padding-bottom: 5px;
+}

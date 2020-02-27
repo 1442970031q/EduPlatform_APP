@@ -1,0 +1,75 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no,viewport-fit=cover" />
+    <title></title>
+    <link href="../../content/css/base.css" rel="stylesheet" />
+    <link href="../../content/css/vant.css" rel="stylesheet" />
+    <link href="../../content/css/pages/dynamics/crouse.public.css" rel="stylesheet" />
+    <script src="html5plus://ready"></script>
+</head>
+<body>
+    <div id="app">
+        <div id="app-head" class="fixed van-hairline--bottom" v-bind:style="{'paddingTop': statusbarHeight + 'px'}">
+            <i id="app-back-button" class="iconfont iconbaidifanhuianniux right-back"></i>
+            <div class="app-head-text">公开课程</div>
+        </div>
+        <div id="app-content" v-bind:style="{'paddingTop': (statusbarHeight+45) + 'px'}">
+            <div v-if="isLoading" class="loading-box p60">
+                <van-loading color="black"></van-loading>
+                <p class="loading-text">正在加载...</p>
+            </div>
+            <div v-else v-cloak>
+                <div id="tags" class="tags tag" v-bind:style="{'top': (statusbarHeight+45) + 'px'}">
+                    <span class="tag" v-bind:class="{'isCheck':isCheck==0}" @click="switchTags(0,'')">
+                        <span v-text="'全部(' + tagSum + ')'"></span>
+                    </span>
+                    <span v-for="(item,index) in tags" 
+                          class="tag" 
+                          v-bind:class="{'isCheck':index+1 === isCheck}" 
+                          @click="switchTags(index+1,item.Tag)">
+                        <span v-text="item.Tag + '(' + item.Num + ')'"></span>
+                    </span>
+                </div>
+                <div class="content">
+                    <div v-if="isLoadingContent" class="loading-box p50">
+                        <van-loading color="black"></van-loading>
+                        <p class="loading-text">正在加载...</p>
+                    </div>
+                    <div v-else>
+                        <div v-if="data.length === 0" class="normal_info">
+                            <img class="img" src="../../content/img/center/cache_bg.png" />
+                            <p class="text">暂无公开课程信息</p>
+                        </div>
+                        <div v-else class="cell" v-for="item in data" @click="gotoDeatil(item)">
+                            <div class="left">
+                                <img v-lazy="item.ImageSrc" class="img" />
+                            </div>
+                            <div class="right">
+                                <p class="name" v-text="item.Name"></p>
+                                <p class="intro" v-text="!item.Introduce ? '暂无介绍' : item.Introduce"></p>
+                                <div class="bottom clearfix">
+                                    <span class="time" v-text="'学时：' + item.Hours + '小时'"></span>
+                                    <span class="number" v-text="item.BuyCount + '人加入学习'"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div v-if="isLoadMore" class="load_more clearfix">
+                            <van-loading color="black"></van-loading>
+                            <span class="load_text">正在加载...</span>
+                        </div>
+                        <div v-if="isLoadComplete" class="load_more_complete">
+                            <span class="load_text">没有更多的数据了...</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="../../content/js/vue.js"></script>
+    <script src="../../content/js/vant.min.js"></script>
+    <script src="../../content/js/base.js"></script>
+    <script src="../../content/js/pages/dynamics/crouse.public.js"></script>
+</body>
+</html>

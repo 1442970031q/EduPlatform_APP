@@ -1,0 +1,20 @@
+html,
+body {
+	background-color: #fff;
+}
+
+.content {
+	padding: 10px 15px;
+}
+
+.content .text {
+	font-size: 0.9em;
+	color: #333333;
+	text-indent: 15px;
+}
+
+.content .time {
+	font-size: 0.8em;
+	color: #AAAAAA;
+	text-align: right
+}

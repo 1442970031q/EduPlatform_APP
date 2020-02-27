@@ -1,0 +1,80 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no,viewport-fit=cover" />
+    <title></title>
+    <link href="../../content/css/base.css" rel="stylesheet" />
+    <link href="../../content/css/vant.css" rel="stylesheet" />
+    <link href="../../content/css/pages/thriver/small.test.css" rel="stylesheet" />
+    <script src="html5plus://ready"></script>
+</head>
+<body>
+    <div id="app">
+        <div id="app-head" class="fixed van-hairline--bottom" v-bind:style="{'paddingTop': statusbarHeight + 'px'}">
+            <i id="app-back-button" class="iconfont iconbaidifanhuianniux right-back"></i>
+            <div class="app-head-text" v-text="getTitle()"></div>
+			<div v-if="!isLoading" class="submit-button" @click="gotoQuestionFeedback()">问题反馈</div>
+        </div>
+        <div id="app-content" v-bind:style="{'paddingTop': (statusbarHeight + 45) + 'px'}">
+            <div v-if="isLoading" class="loading-box p60">
+                <van-loading color="black"></van-loading>
+                <p class="loading-text">正在加载...</p>
+            </div>
+            <div v-else v-cloak>
+                <div v-if="pageModel.ChoiceList.length === 0" class="none-data p60">
+                    <i class="iconfont iconlunwentimu"></i>
+                    <p class="none-data-text">该课程暂无题库信息</p>
+                </div>
+                <div v-else>
+                    <div class="content" v-bind:class="{'safe': APP.CONFIG.IsSafeArea()}">
+                        <div class="problem">
+                            <div class="question" v-html="pageModel.ChoiceList[currentSelected - 1].Question"></div>
+                            <div v-for="(item, index) in pageModel.ChoiceList[currentSelected - 1].Options"
+                                 v-bind:key="index"
+                                 class="answer"
+                                 v-bind:class="{'isCheck': checkSelected(item)}"
+                                 @click="checkAnswer(item)"
+                                 v-html="getOptionIndex(index, item)">
+                            </div>
+                        </div>
+                        <div class="bottom" v-bind:class="{'safe': APP.CONFIG.IsSafeArea()}">
+                            <div class="flex text_center van-hairline--right" @click="isPopShow = true">
+                                <i class="submit-button iconfont icondatikax"></i>答题卡
+                            </div>
+                            <div class="flex btn van-hairline--right">
+                                <span class="button" v-bind:class="{'dis': currentSelected === 1}" @click="currentSelected !== 1 && last()">上一题</span>
+                            </div>
+                            <div class="flex btn">
+                                <span class="button" @click="next" v-text="currentSelected === pageModel.ChoiceList.length ? '交卷' : '下一题'"></span>
+                            </div>
+                        </div>
+                        <van-popup v-model="isPopShow"
+                                   position="bottom"
+                                   class="content_popup">
+                            <div class="bg-white">
+                                <p class="title">答题卡</p>
+                                <span class="option"
+                                      v-for="(item, cIndex) in pageModel.ChoiceList"
+                                      v-bind:key="cIndex"
+                                      v-text="cIndex + 1"
+                                      v-bind:class="{'active': getCardActive(cIndex)}"
+                                      @click="gotoQuestion(item,cIndex)"></span>
+                                <p class="colors">
+                                    <span class="color1"></span><span class="ml_10">未选择</span>
+                                    <span class="color2 ml_10"></span><span class="ml_10">已选择</span>
+                                </p>
+                            </div>
+                            <van-icon name="close" class="close mt-15" @click="isPopShow = false"></van-icon>
+                        </van-popup>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="../../content/js/vue.js"></script>
+    <script src="../../content/js/vant.min.js"></script>
+    <script src="../../content/js/base.js"></script>
+    <script src="../../content/js/pages/thriver/homework.detail.js"></script>
+</body>
+</html>

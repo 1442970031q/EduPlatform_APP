@@ -1,0 +1,48 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no,viewport-fit=cover" />
+    <title></title>
+    <link href="../../../content/css/base.css" rel="stylesheet" />
+    <link href="../../../content/css/vant.css" rel="stylesheet" />
+    <link href="../../../content/css/pages/center/member/main.crouse.check.amend.css" rel="stylesheet" />
+    <script src="html5plus://ready"></script>
+</head>
+<body>
+    <div id="app">
+        <div id="app-head" class="fixed van-hairline--bottom" v-bind:style="{'paddingTop': statusbarHeight + 'px'}">
+            <i id="app-back-button" class="iconfont iconbaidifanhuianniux right-back"></i>
+            <div class="app-head-text" v-text="obj.title"></div>
+        </div>
+        <div id="app-content" v-bind:style="{'paddingTop': (45 + statusbarHeight) + 'px'}">
+            <div v-if="isLoading" class="loading-box p60">
+                <van-loading color="black"></van-loading>
+                <p class="loading-text">正在加载...</p>
+            </div>
+            <div v-else v-cloak>
+                <van-cell-group>
+                    <van-cell title="姓名" :value="obj.name"></van-cell>
+                    <van-cell title="时间" :value="'第 '+obj.segNum+' 节课'"></van-cell>
+                    <van-cell title="考勤状态" @click="show=true" is-link :value="state"></van-cell>
+                </van-cell-group>
+                <textarea class="textarea" 
+                          v-model="module.remek" 
+                          placeholder="点击此处输入备注信息（最多100字）" 
+                          maxlength="100"></textarea>
+                <div class="confirm_button" @click="closewindow">
+                    确认提交
+                </div>
+                <van-popup v-model="show" position="bottom">
+                    <van-picker show-toolbar value-key="Value" :columns="columns" @cancel="show=false" @confirm="onConfirm">
+                    </van-picker>
+                </van-popup>
+            </div>
+        </div>
+    </div>
+    <script src="../../../content/js/vue.js"></script>
+    <script src="../../../content/js/vant.min.js"></script>
+    <script src="../../../content/js/base.js"></script>
+    <script src="../../../content/js/pages/center/member/main.crouse.check.amend.js"></script>
+</body>
+</html>

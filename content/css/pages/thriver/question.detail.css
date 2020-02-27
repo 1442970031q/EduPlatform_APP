@@ -1,0 +1,258 @@
+﻿.small_emoticon {
+    display: inline-block;
+    width: 20px;
+    margin: 0 2px;
+}
+
+.top_content {
+    padding: 15px;
+    background-color: white;
+    display: flex;
+    margin-top: 10px;
+    padding-bottom: 10px;
+}
+
+    .top_content .avatar {
+        display: block;
+        width: 45px;
+        height: 45px;
+        border-radius: 50%;
+        box-shadow: 0 0 5px #eaeaea;
+    }
+
+    .top_content .top_middle {
+        width: calc(100% - 140px);
+        height: 45px;
+        margin-left: 15px;
+    }
+
+        .top_content .top_middle .name {
+            height: 25px;
+            line-height: 25px;
+            font-weight: bold;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+        .top_content .top_middle .time {
+            height: 20px;
+            line-height: 20px;
+            font-size: .8em;
+            color: #8a8a8a;
+        }
+
+    .top_content .top_right {
+        font-size: .7em;
+        width: 85px;
+        text-align: right;
+        color: #8a8a8a;
+    }
+
+        .top_content .top_right p {
+            height: 22.5px;
+            line-height: 22.5px;
+        }
+
+            .top_content .top_right p.title {
+                font-size: .8em;
+                margin-bottom: 10px;
+                color: #909090;
+            }
+
+.caption {
+    padding: 15px;
+    padding-top: 5px;
+    background-color: white;
+}
+
+    .caption .question_content {
+        margin-top: 10px;
+        font-size: .8em;
+        color: #484848;
+    }
+
+        .caption .question_content p {
+            display: flex;
+            align-items: center;
+            margin: 3px 0;
+            flex-wrap: wrap;
+        }
+
+    .caption .images {
+        margin-top: 15px;
+        height: 70px;
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+        .caption .images .image_content {
+            width: 70px;
+            overflow: hidden;
+            position: relative;
+            margin-right: 10px;
+            border-radius: 4px;
+            background-color: #f9f9f9;
+        }
+
+            .caption .images .image_content img {
+                display: block;
+                width: 100%;
+                position: absolute;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                margin: auto;
+            }
+
+    .caption .tags {
+        display: flex;
+        flex-wrap: wrap;
+        line-height: 20px;
+        margin-top: 15px;
+    }
+
+        .caption .tags .tag {
+            font-size: .7em;
+            padding: 0 5px;
+            border-radius: 4px;
+            color: #53aaf6;
+            margin-right: 8px;
+            margin-bottom: 5px;
+        }
+
+            .caption .tags .tag.van-hairline--surround::after {
+                border-radius: 6px;
+                border-color: #227aff;
+            }
+
+    .caption.van-hairline--bottom::after {
+        border-color: #f3f3f3 !important;
+    }
+
+.actions {
+    height: 45px;
+    display: flex;
+    background-color: white;
+}
+
+    .actions button {
+        width: 50%;
+        text-align: center;
+        height: 45px;
+        line-height: 45px;
+        font-size: .9em;
+        color: #02b9ff;
+    }
+
+        .actions button.gray {
+            color: #bbbbbb;
+        }
+
+        .actions button.red.van-hairline--right::after {
+            height: 40px;
+            top: 5px;
+        }
+
+        .actions button:active {
+            background-color: #f9f9f9;
+        }
+
+.answer_content {
+    margin: 10px 0;
+    padding: 15px 10px;
+    padding-bottom: 0;
+    margin-bottom: 0;
+}
+
+    .answer_content .title {
+        font-weight: bold;
+        font-size: .9em;
+        color: #02b9ff;
+    }
+
+    .answer_content .answer_list {
+        margin-top: 10px;
+    }
+
+        .answer_content .answer_list li {
+            margin-bottom: 10px;
+            padding: 10px 15px;
+            background-color: white;
+            border-radius: 4px;
+            overflow: hidden;
+            box-shadow: 0 0 15px #f3f3f3;
+        }
+
+            .answer_content .answer_list li:last-child {
+                margin-bottom: 0;
+            }
+
+            .answer_content .answer_list li .avatar {
+                display: flex;
+                padding-bottom: 15px;
+                align-items: center;
+            }
+
+                .answer_content .answer_list li .avatar .avatar_left {
+                    width: 25px;
+                    height: 25px;
+                    display: block;
+                    border-radius: 50%;
+                }
+
+                .answer_content .answer_list li .avatar .avatar_right {
+                    width: calc(100% - 135px);
+                    height: 25px;
+                    line-height: 25px;
+                    margin-left: 10px;
+                    font-size: .9em;
+                }
+
+                .answer_content .answer_list li .avatar .time {
+                    font-size: .7em;
+                    color: #a7a7a7;
+                    width: 100px;
+                    text-align: right;
+                }
+
+            .answer_content .answer_list li .answer_context {
+                margin-top: 15px;
+            }
+
+                .answer_content .answer_list li .answer_context p {
+                    font-size: .8em !important;
+                    color: #545454 !important;
+                    margin-bottom: 5px !important;
+                    display: flex;
+                    align-items: center;
+                    flex-wrap:wrap;
+                }
+
+            .answer_content .answer_list li .images {
+                margin-top: 15px;
+                height: 70px;
+                display: flex;
+                flex-wrap: wrap;
+            }
+
+                .answer_content .answer_list li .images .image_content {
+                    width: 70px;
+                    overflow: hidden;
+                    position: relative;
+                    margin-right: 10px;
+                    border-radius: 4px;
+                    background-color: #f9f9f9;
+                }
+
+                    .answer_content .answer_list li .images .image_content img {
+                        display: block;
+                        position: absolute;
+                        top: 0;
+                        left: 0;
+                        width: 100%;
+                        right: 0;
+                        bottom: 0;
+                        margin: auto;
+                    }

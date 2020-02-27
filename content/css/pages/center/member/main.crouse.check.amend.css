@@ -1,0 +1,37 @@
+.van-cell-group {
+    width: calc(100% - 30px);
+    margin: 0 auto;
+    margin-top: 15px;
+    border-top-left-radius: 6px;
+    border-top-right-radius: 6px;
+    overflow: hidden;
+}
+
+.van-cell,
+.van-cell__right-icon {
+    line-height: 30px;
+}
+
+
+.textarea {
+    height: 150px;
+    background-color: white;
+    width: calc(100% - 30px);
+    margin: 0 auto;
+    padding: 10px;
+    box-sizing: border-box;
+    display: block;
+    resize: none;
+    font-size: .9em;
+    border-bottom-left-radius: 6px;
+    border-bottom-right-radius: 6px;
+}
+
+    .textarea::-webkit-input-placeholder {
+        color: #bdbdbd;
+    }
+
+.confirm_button {
+    margin-top: 15px;
+    width: calc(100% - 30px);
+}

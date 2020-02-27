@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
+    <title></title>
+    <script type="text/javascript">
+        var DEFAULT_MODEL = {
+            'Id': 0,
+            'Key': ''
+        };
+
+		var domain = 'api.ysdjypt.com';
+		//var domain = "47.92.108.219:8102";
+        var MODEL_KEY = 'Student__user_model';
+        var userModel = null;
+
+        function plusReadyAction() {
+            plus.push.getClientInfo().clientid;
+
+            var modelText = plus.storage.getItem(MODEL_KEY);
+            if (!modelText) {
+                nextPage(true);
+                return;
+            }
+
+            try {
+                userModel = JSON.parse(modelText);
+                if (!userModel.Key) {
+                    nextPage(true);
+                    return;
+                }
+            } catch (e) {
+                nextPage(true);
+                return;
+            }
+
+            var postData = 'key=' + userModel.Key;
+            var xhr = new XMLHttpRequest();
+            xhr.ontimeout = function () {
+                document.getElementById('msg').innerText = '连接超时，请检查您的网络';
+                plus.navigator.closeSplashscreen();
+            };
+
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState === 4) {
+                    if (xhr.status === 200) {
+                        try {
+                            var json = JSON.parse(xhr.responseText || xhr.response);
+                            nextPage(json.Error);
+                        } catch (e) {
+                            document.getElementById('msg').innerText = e.message;
+                        }
+                    } else {
+                        document.getElementById('msg').innerText = '网络异常，请联系客服人员';
+                    }
+                }
+            };
+
+            xhr.open('POST', 'https://' + domain + '/StuAPI/VerificationKey', true);
+            xhr.timeout = 5000;
+            xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded;charset=utf-8');
+            xhr.send(postData);
+        }
+
+        function nextPage(isClearModel) {
+            var pageUrl = '';
+            var pageId = '';
+
+            if (isClearModel) {
+                pageId = 'loginPage';
+                pageUrl = 'pages/account/login.html?from=index';
+                plus.storage.setItem(MODEL_KEY, JSON.stringify(DEFAULT_MODEL));
+            } else {
+                pageId = 'mainPage';
+                pageUrl = 'pages/main.html';
+            }
+
+            var _openw = plus.webview.create(pageUrl, pageId, {
+                scrollIndicator: 'none',
+                scalable: false,
+                kernel: 'WKWebview',
+                popGesture: 'none',
+                contentAjust: false
+            });
+
+            _openw.addEventListener('loaded', function () {
+                //if (!isClearModel) {
+                //    plus.webview.getWebviewById('mainPage').evalJS('_vue.firstScreen()');
+                //}
+				
+				_openw.show('none');
+
+                plus.navigator.closeSplashscreen();
+                plus.webview.currentWebview().close('none');
+            });
+        }
+
+        document.addEventListener('plusready', function () {
+            try {
+                plusReadyAction();
+            } catch (e) {
+                document.getElementById('title').innerText = 'Error';
+                document.getElementById('msg').innerText = e.message;
+
+                plus.navigator.closeSplashscreen();
+            }
+        });
+    </script>
+</head>
+<body>
+    <h1 id="title" style="text-align:center;padding:50% 0;">LOADING....</h1>
+    <h4 id="msg" style="text-align:center"></h4>
+</body>
+</html>

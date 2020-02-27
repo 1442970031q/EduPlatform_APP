@@ -1,0 +1,71 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no,viewport-fit=cover" />
+    <title></title>
+    <link href="../../content/css/base.css" rel="stylesheet" />
+    <link href="../../content/css/vant.css" rel="stylesheet" />
+    <link href="../../content/css/pages/thriver/new.homework.css" rel="stylesheet" />
+    <script src="html5plus://ready"></script>
+</head>
+<body>
+    <div id="app">
+        <div id="app-head" class="van-hairline--bottom" v-bind:style="{'paddingTop': statusbarHeight + 'px'}">
+            <i id="app-back-button" class="iconfont iconbaidifanhuianniux right-back"></i>
+            <div class="app-head-text">提交作业</div>
+        </div>
+        <div id="app-content">
+            <div class="input_group">
+                <div class="input_line van-hairline--bottom">
+                    <span class="input_text">章节名称</span>
+                    <div class="input_control r-1"
+                         v-bind:class="{'gray': !form.tpId}"
+                         v-text="form.tpId ? display.chapterName : '请选择作业的章节名称'"
+                         @click="isShowPicker = true"></div>
+                    <i class="iconfont iconchakanquanbux arrow"></i>
+                </div>
+                <div class="input_line full">
+                    <textarea class="full_control" 
+                              v-model="form.remarks" 
+                              maxlength="200" 
+                              rows="4" 
+                              placeholder="备注信息（最多200字，可不填写）"></textarea>
+                </div>
+            </div>
+            <div class="input_group">
+                <p class="caption">上传图片（最多5张）</p>
+                <div class="images">
+                    <div class="image_content"
+                         v-for="(item,index) in pageModel.images"
+                         v-bind:key="index">
+                        <div class="mask" v-show="item.isUploading">上传中...</div>
+                        <img v-bind:src="item.src" @click="removeImage(item)" />
+                    </div>
+                    <div v-if="pageModel.images.length < 5"
+                         class="image_content new"
+                         @click="isActionsheet = true">
+                        <i class="iconfont iconguanzhuwentix"></i>
+                    </div>
+                </div>
+            </div>
+            <button class="confirm_button" @click="checkData">提交作业</button>
+            <van-popup v-model="isShowPicker" position="bottom">
+                <van-picker show-toolbar
+                            title="选择作业章节"
+                            v-bind:columns="pageModel.chapters"
+                            @cancel="isShowPicker = false"
+                            @confirm="chapterConfirm" />
+            </van-popup>
+            <van-action-sheet v-bind:class="{'safe-area': APP.CONFIG.IsSafeArea()}"
+                              v-model="isActionsheet"
+                              v-bind:actions="actions"
+                              cancel-text="取消"></van-action-sheet>
+        </div>
+    </div>
+    <script src="../../content/js/vue.js"></script>
+    <script src="../../content/js/vant.min.js"></script>
+    <script src="../../content/js/base.js"></script>
+    <script src="../../content/js/pages/thriver/new.homework.js"></script>
+</body>
+</html>

@@ -1,0 +1,129 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <link href="../../content/css/vant.css" rel="stylesheet" />
+    <link href="../../content/css/base.css" rel="stylesheet" />
+    <link href="../../content/css/pages/subpages/scan.qr.css" rel="stylesheet" />
+    <script src="html5plus://ready"></script>
+</head>
+<body>
+    <div id="app">
+        <div id="app-head" v-bind:style="{'paddingTop': statusbarHeight + 'px'}">
+            <i id="app-back-button" class="iconfont iconbaidifanhuianniux right-back"></i>
+            <div class="app-head-text">扫描二维码</div>
+        </div>
+        <div id="scanControl" v-bind:style="{'top': (45 + statusbarHeight) + 'px', 'height': controlHeight}"></div>
+        <footer class="text" v-bind:class="{'safe': APP.CONFIG.IsSafeArea()}">
+            <button @click="openFlash">
+                <i v-if="!isOpenFlash" class="iconfont iconflash_open"></i>
+                <i v-else class="iconfont iconflash_close"></i>
+                <span v-text="isOpenFlash ? '关闭闪光灯' : '开启闪光灯'"></span>
+            </button>
+        </footer>
+    </div>
+    <script src="../../content/js/vue.js"></script>
+    <script src="../../content/js/vant.min.js"></script>
+    <script src="../../content/js/base.js"></script>
+    <script>
+        var _vue = new Vue({
+            el: '#app',
+            data: {
+                'currentUser': APP.GLOBAL.getUserModel(),
+                'statusbarHeight': 20,
+                'isOpenFlash': false,
+                'bc': null
+            },
+            methods: {
+                'init': function () {
+                    this.bc = new plus.barcode.Barcode('scanControl', plus.barcode.QR, {
+                        'frameColor': '#02b9ff',
+                        'scanbarColor': '#02b9ff'
+                    });
+
+                    this.bc.onmarked = this.scanComplete;
+                    this.bc.start();
+                },
+                'openFlash': function () {
+                    if (this.bc == null) return;
+
+                    this.isOpenFlash = !this.isOpenFlash;
+                    this.bc.setFlash(this.isOpenFlash);
+                },
+                'openGallery': function () {
+                    plus.gallery.pick(function (path) {
+                        plus.barcode.scan(path, _vue.scanComplete, function (error) {
+                            plus.nativeUI.alert('无法识别此图片中的二维码信息，请确保二维码清晰可见', null, '无法识别');
+                        });
+                    }, function (err) {
+                        if (err.code !== 12) {
+                            plus.nativeUI.alert(err.message);
+                        }
+                    });
+                },
+                'scanComplete': function (type, code, file) {
+                    this.bc.setFlash(false);
+
+                    if (code && code[0].charCodeAt() === 65279) {
+                        code = code.substring(1);
+                    }
+
+                    try {
+                        var resultObjec = JSON.parse(code);
+                    } catch (e) {
+                        APP.GLOBAL.toastMsg('这不是一个有效的上机二维码');
+                    }
+
+                    //var wb = plus.webview.getWebviewById('registerPage');
+                    //if (wb !== null) {
+                    //    wb.evalJS('_vue.scanComplete("' + code + '")');
+                    //}
+
+                    
+                },
+                'doSubmitAjax': function () {
+                    APP.GLOBAL.ajax({
+                        url: APP.CONFIG.BASE_URL + '',
+                        data: {},
+                        success: function (result) {
+                            if (result.Error) {
+                                APP.GLOBAL.toastMsg(result.Msg);
+                                return;
+                            }
+
+                            window.onPageClose();
+                        }
+                    });
+                }
+            },
+            computed: {
+                'controlHeight': function () {
+                    if (APP.CONFIG.IsSafeArea()) {
+                        return 'calc(100% - ' + (45 + this.statusbarHeight + 80) + 'px)';
+                    } else {
+                        return 'calc(100% - ' + (45 + this.statusbarHeight + 50) + 'px)';
+                    }
+                }
+            },
+            created: function () {
+                if (APP.CONFIG.IS_RUNTIME) {
+                    this.statusbarHeight = plus.navigator.getStatusbarHeight();
+                }
+
+                window.onPageClose = function () {
+                    if (_vue.bc !== null) {
+                        _vue.bc.close();
+                    }
+
+                    plus.webview.currentWebview().close();
+                };
+            },
+            mounted: function () {
+                plus.navigator.setStatusBarStyle('light');
+            }
+        });
+    </script>
+</body>
+</html>

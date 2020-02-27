@@ -1,0 +1,136 @@
+#app-head {
+    background: rgba(0, 0, 0, 0);
+    color: #FFFFFF;
+}
+
+#app-back-button {
+    color: #FFFFFF;
+}
+
+.top {
+    background: url(../../../img/center/coin_bg.png), no-repeat linear-gradient(to right top, #4b5dfb, #29acfc);
+    background-size: 100%;
+    background-position: center -10%;
+    padding-bottom: 40px;
+    width: 100%;
+    position: fixed;
+}
+
+.tag {
+    display: flex;
+    padding: 10px 0;
+    width: 95%;
+    background-color: #FFFFFF;
+    border-radius: 5px;
+    position: absolute;
+    margin-left: 2.5%;
+    margin-top: 10px;
+}
+
+    .tag li {
+        margin: auto;
+        font-size: 0.9em;
+        color: #AAAAAA;
+    }
+
+.top .content {
+    width: 90%;
+    margin: auto;
+}
+
+    .top .content .title {
+        font-size: 0.8em;
+        color: #FFFFFF;
+    }
+
+    .top .content .values {
+        font-size: 1.5em;
+        color: #FFFFFF;
+    }
+
+    .top .content .button {
+        height: 30px;
+        line-height: 30px;
+    }
+
+        .top .content .button .value {
+            font-size: 0.8em;
+            color: #FFFFFF;
+        }
+
+        .top .content .button .btn {
+            padding: 0px 30px;
+            border-radius: 50px;
+            background-color: #23d4f7;
+            color: #FFFFFF;
+            font-size: 0.9em;
+            position: absolute;
+            right: 5%;
+        }
+
+.content {
+    padding-top: 200px;
+}
+
+    .content .cell {
+        width: calc(100% - 20px);
+        margin: auto;
+        background: white;
+        padding: 10px 15px;
+        border-radius: 6px;
+        margin-bottom: 10px;
+        -moz-box-sizing: border-box;
+        -webkit-box-sizing: border-box;
+        box-sizing: border-box;
+    }
+
+        .content .cell .row {
+            display: flex;
+            height: 35px;
+            line-height: 35px;
+        }
+
+            .content .cell .row .w7 {
+                width: 70%;
+                overflow: hidden;
+                word-break: keep-all;
+                white-space: nowrap;
+                overflow-x: hidden;
+                text-overflow: ellipsis;
+                font-size: 0.9em;
+                line-height: 30px;
+            }
+
+            .content .cell .row .w3 {
+                width: 30%;
+                font-weight: 500;
+                font-size: 1.2em;
+                text-align: right;
+            }
+
+                .content .cell .row .w3.green {
+                    color: green;
+                }
+
+                .content .cell .row .w3.red {
+                    color: red;
+                }
+
+        .content .cell .row2 {
+            font-size: 0.7em;
+            height: 20px;
+            line-height: 20px;
+            color: #b3b3b3;
+        }
+
+        .content .cell .row3 {
+            font-size: 0.7em;
+            color: #aaaaaa;
+            height: 20px;
+            line-height: 20px;
+            text-align: right;
+        }
+
+.isCheck {
+    color: #53AAF6 !important;
+}

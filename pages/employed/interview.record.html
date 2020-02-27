@@ -1,0 +1,203 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no,viewport-fit=cover" />
+		<title></title>
+		<link href="../../content/css/base.css" rel="stylesheet" />
+		<link href="../../content/css/vant.css" rel="stylesheet" />
+		<link href="../../content/css/pages/employed/interview.recorde.css" rel="stylesheet" />
+		<script src="html5plus://ready"></script>
+	</head>
+	<body>
+		<div id="app">
+			<div id="app-head" class="fixed" v-bind:style="{'paddingTop': statusbarHeight + 'px'}">
+				<i id="app-back-button" class="iconfont iconbaidifanhuianniux right-back"></i>
+				面试登记
+			</div>
+			<div id="app-content" v-bind:style="{'paddingTop': (45 + statusbarHeight) + 'px'}">
+				<div class="form mt-15">
+					<p class="name">
+						1 基本信息:
+					</p>
+					<div class="content1 mt-10">
+						<p class="cell">
+							<span class="hint">姓名：</span>
+							<input class="input c1" v-model="form.name" readonly type="text" />
+						</p>
+						<p class="cell mt-10">
+							<span class="hint">班级：</span>
+							<input class="input " v-model="form.class"  type="text" />
+						</p>
+						<p class="cell mt-10">
+							<span class="hint">专业方向：</span>
+							<input class="input" v-model="form.specialtyDirection" type="text" />
+						</p>
+						<p class="cell mt-10">
+							<span class="hint">手机号码：</span>
+							<input class="input" maxlength="11" v-model="form.phone" type="text" />
+						</p>
+					</div>
+				</div>
+				<div class="form mt-15">
+					<p class="name">
+						2 面试公司信息:
+					</p>
+					<div class="content1 mt-10">
+						<p class="cell">
+							<span class="hint">公司名字：</span>
+							<input class="input" v-model="form.companyName" type="text" />
+						</p>
+						<p class="cell mt-10">
+							<span class="hint">公司地址：</span>
+							<input class="input" v-model="form.companyAddress" type="text" />
+						</p>
+						<p class="cell mt-10">
+							<span class="hint">公司联系人：</span>
+							<input class="input" v-model="form.companyContacts" type="text" />
+						</p>
+						<p class="cell mt-10">
+							<span class="hint">联系人电话：</span>
+							<input class="input" maxlength="11" v-model="form.contactsPhone" type="text" />
+						</p>
+						<p class="cell mt-10">
+							<span class="hint">试岗位：</span>
+							<input class="input" v-model="form.interviewPosition" type="text" />
+						</p>
+						<p class="cell mt-10">
+							<span class="hint">面试时间：</span>
+							<span class="date">
+								<span v-text="form.interviewTime"></span>
+								<i class="iconfont iconriqi1" @click="show=true"></i>
+							</span>
+						</p>
+					</div>
+				</div>
+				<div class="form mt-15">
+					<p class="name">
+						3 面试公司类型:
+					</p>
+					<div class="content2 mt-10">
+						<van-radio-group v-model="form.companyType">
+							<van-radio name="外包公司" class="radio">外包公司</van-radio>
+							<van-radio name="研发公司" class="radio">研发公司</van-radio>
+							<van-radio name="电商公司" class="radio">电商公司</van-radio>
+							<van-radio name="招聘转培训" class="radio">招聘转培训</van-radio>
+							<van-radio name="其他" class="radio">其他</van-radio>
+						</van-radio-group>
+					</div>
+				</div>
+				<div class="form mt-15">
+					<p class="name">
+						4 面试薪资:
+					</p>
+					<div class="content2 mt-10">
+						<van-radio-group v-model="form.interviewSalary">
+							<van-radio name="2k-3k" class="radio">2k-3k</van-radio>
+							<van-radio name="3k-4k" class="radio">3k-4k</van-radio>
+							<van-radio name="4k-5k" class="radio">4k-5k</van-radio>
+							<van-radio name="5k以上" class="radio">5k以上</van-radio>
+						</van-radio-group>
+					</div>
+				</div>
+				<div class="form mt-15">
+					<p class="name">
+						5 面试技术问题（至少两个）:
+					</p>
+					<div class="content1 mt-10">
+						<p class="cell">
+							<span class="hint">面试题一：</span>
+							<input class="input" type="text" v-model="technicalIssues.t1" />
+						</p>
+						<p class="cell mt-10">
+							<span class="hint">面试题二：</span>
+							<input class="input" v-model="technicalIssues.t2" type="text" />
+						</p>
+						<p class="cell mt-10">
+							<span class="hint">面试题三：</span>
+							<input class="input" v-model="technicalIssues.t3" type="text" />
+						</p>
+						<p class="cell mt-10">
+							<span class="hint">面试题四：</span>
+							<input class="input" v-model="technicalIssues.t4" type="text" />
+						</p>
+					</div>
+				</div>
+				<div class="form mt-15">
+					<p class="name">
+						6 面试人事问题（至少两个）:
+					</p>
+					<div class="content1 mt-10">
+						<p class="cell">
+							<span class="hint">面试题一：</span>
+							<input class="input" v-model="personnelIssues.p1" type="text" />
+						</p>
+						<p class="cell mt-10">
+							<span class="hint">面试题二：</span>
+							<input class="input" v-model="personnelIssues.p2" type="text" />
+						</p>
+						<p class="cell mt-10">
+							<span class="hint">面试题三：</span>
+							<input class="input" v-model="personnelIssues.p3" type="text" />
+						</p>
+						<p class="cell mt-10">
+							<span class="hint">面试题四：</span>
+							<input class="input" v-model="personnelIssues.p4" type="text" />
+						</p>
+					</div>
+				</div>
+				<div class="form mt-15">
+					<p class="name">
+						7 是否被录用:
+					</p>
+					<div class="content2 mt-10">
+						<van-radio-group v-model="form.hire">
+							<van-radio name="是" class="radio">是</van-radio>
+							<van-radio name="否" class="radio">否</van-radio>
+							<van-radio name="等通知" class="radio">等通知</van-radio>
+						</van-radio-group>
+					</div>
+				</div>
+				<div class="form mt-15">
+					<p class="name">
+						8 本次面试自己需要提升的地方【多选题】:
+					</p>
+					<div class="content2 mt-10">
+						<van-checkbox-group v-model="interviewPromote">
+							<van-checkbox name="着装" class="radio">着装 </van-checkbox>
+							<van-checkbox name="沟通表达技术" class="radio">沟通表达技术</van-checkbox>
+							<van-checkbox name="面试题背诵" class="radio">面试题背诵</van-checkbox>
+							<van-checkbox name="技术突操能力" class="radio">技术突操能力</van-checkbox>
+							<van-checkbox name="面试心态紧张,准备不足" class="radio">面试心态紧张,准备不足</van-checkbox>
+						</van-checkbox-group>
+					</div>
+				</div>
+				<div class="form mt-15">
+					<p class="name">
+						9 本次面试评价:
+					</p>
+					<div class="mt-10">
+						<van-rate v-model="form.interviewSelfEvaluateNum" void-icon="star" void-color="#eee" />
+					</div>
+				</div>
+				<div class="form mt-15">
+					<p class="name">
+						10 本次面试感受:(1-10字描述)
+					</p>
+					<input type="text" class="content3 mt-10" v-model="form.feel">
+				</div>
+				<div class="confirm_button" @click="checkOutForm">
+					提交
+				</div>
+				<van-popup v-model="show" position="bottom">
+					<van-datetime-picker v-model="time" type="date" @cancel="show=false"  @confirm="confirm"   :max-date="maxDate" :min-date="minDate">
+					</van-datetime-picker>
+				</van-popup>
+			</div>
+		</div>
+		<script src="../../content/js/vue.js"></script>
+		<script src="../../content/js/vant.min.js"></script>
+		<script src="../../content/js/base.js"></script>
+		<script src="../../content/js/pages/employed/interview.record.js"></script>
+	</body>
+</html>

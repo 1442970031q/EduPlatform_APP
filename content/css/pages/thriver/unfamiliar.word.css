@@ -1,0 +1,23 @@
+.word {
+    padding: 10px;
+    background-color: #FFFFFF;
+    margin-bottom: 10px;
+}
+
+    .word:active {
+        background-color: #f9f9f9;
+    }
+
+    .word .value {
+        font-size: 0.9em;
+    }
+
+        .word .value .voice {
+            color: #969799;
+            margin-left: 10px;
+        }
+
+    .word .text {
+        font-size: 0.8em;
+        color: #969799;
+    }

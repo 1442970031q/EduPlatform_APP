@@ -1,0 +1,194 @@
+html,
+body {
+    background-color: #FFFFFF;
+}
+
+.lists {
+    padding: 10px;
+}
+
+    .lists .cell {
+        margin: 15px 0;
+    }
+
+        .lists .cell .info {
+            height: 40px;
+            line-height: 40px;
+            display: flex;
+        }
+
+        .lists .cell .content {
+            padding-left: 10%;
+            margin-top: 2px;
+        }
+
+            .lists .cell .content .c1 {
+                font-size: 0.8em;
+                color: #464646;
+                padding: 5px 0;
+            }
+
+            .lists .cell .content .replay {
+                padding: 5px 0;
+            }
+
+                .lists .cell .content .replay .replaytext {
+                    background-color: #fafafa;
+                    padding: 0 10px;
+                    padding-bottom: 10px;
+                    border-radius: 6px;
+                }
+
+                    .lists .cell .content .replay .replaytext:first-child {
+                        padding-top: 10px;
+                    }
+
+                    .lists .cell .content .replay .replaytext .user {
+                        color: #AAAAAA;
+                        font-size: 0.8em;
+                    }
+
+                        .lists .cell .content .replay .replaytext .user .lef,
+                        .lists .cell .content .replay .replaytext .user .rig {
+                            font-size: 0.8em;
+                            color: #333333;
+                        }
+
+                    .lists .cell .content .replay .replaytext .comment .commenttext {
+                        padding: 10px 0;
+                        font-size: 0.8em;
+                        color: #666666;
+                    }
+
+                    .lists .cell .content .replay .replaytext .comment .commenttime {
+                        font-size: 0.7em;
+                        color: #b9b9b9;
+                    }
+
+                .lists .cell .content .replay .hint {
+                    font-size: 0.7em;
+                    color: #AAAAAA;
+                    text-align: right;
+                    height: 20px;
+                    line-height: 20px;
+                }
+
+        .lists .cell .info .left {
+            width: 10%;
+            height: 40px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+            .lists .cell .info .left .img {
+                width: 100%;
+                display: block;
+                border-radius: 50%;
+            }
+
+        .lists .cell .info .center {
+            width: calc(100% - 170px);
+            margin-left: 10px;
+            line-height: 20px;
+        }
+
+            .lists .cell .info .center .name {
+                font-size: 0.85em;
+            }
+
+            .lists .cell .info .center .time {
+                font-size: 0.7em;
+                color: #AAAAAA;
+            }
+
+        .lists .cell .info .right {
+            width: 120px;
+        }
+
+            .lists .cell .info .right .icons {
+                display: inline-block;
+                width: calc(50% - 5px);
+                text-align: right;
+                font-size: .8em;
+            }
+
+    .lists .input {
+        position: fixed;
+        width: 100%;
+        background-color: #FFFFFF;
+        bottom: 0;
+        left: 0;
+        box-shadow: 0 0 10px #e0e0e0;
+        padding: 0 15px;
+        line-height: 50px;
+        height: 50px;
+        box-sizing: border-box;
+    }
+
+        .lists .input .disable {
+            font-size: 0.9em;
+            text-align: center;
+            width: 100%;
+            color: #aaa;
+        }
+
+        .lists .input.input_safe {
+            height: initial;
+            padding-bottom: 30px;
+        }
+
+        .lists .input .in {
+            width: calc(100% - 115px);
+            height: 50px;
+            float: left;
+            display: flex;
+            align-items: center;
+        }
+
+        .lists .input .text {
+            background-color: #F0F0F0;
+            height: 35px;
+            border-radius: 50px;
+            width: 100%;
+            padding: 5px 15px;
+            font-size: 0.8em;
+            box-sizing: border-box;
+            line-height: 25px;
+        }
+
+        .lists .input .button {
+            height: 100%;
+            width: 90px;
+            float: left;
+            margin-left: 15px;
+        }
+
+            .lists .input .button .bt {
+                background-color: #02b9ff;
+                color: white;
+                font-size: .8em;
+                height: 35px;
+                line-height: 35px;
+                text-align: center;
+                padding: 0 10px;
+                width: 90px;
+                border-radius: 6px;
+            }
+
+                .lists .input .button .bt:active {
+                    background-color: #06a8e6;
+                }
+
+        .lists .input .in::-webkit-input-placeholder {
+            font-size: 0.9em;
+            text-indent: 10px;
+        }
+
+.pb-55 {
+    padding-bottom: 55px;
+}
+
+    .pb-55.safe {
+        padding-bottom: 85px;
+    }

@@ -1,0 +1,242 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no,viewport-fit=cover" />
+    <title></title>
+    <link href="../content/css/base.css" rel="stylesheet" />
+    <link href="../content/css/vant.css" rel="stylesheet" />
+    <link href="../content/css/pages/employed.css" rel="stylesheet" />
+    <script src="html5plus://ready"></script>
+</head>
+<body>
+    <div id="app">
+        <div id="app-head" v-bind:style="{'paddingTop': statusbarHeight + 'px'}">
+            <div class="app-head-text">就业</div>
+        </div>
+        <div id="app-content">
+            <div v-cloak>
+                <div class="pd" v-bind:style="{'paddingTop': (statusbarHeight+5) + 'px'}"></div>
+                <van-tabs v-model="active" @change="changeTab" line-width="20" sticky :offset-top="statusbarHeight+5">
+                    <van-tab title="职场经验">
+                        <div class="infostabs mt-10">
+                            <div v-if="tabs.tab_0.isLoading" class="loading-box p60">
+                                <van-loading color="black"></van-loading>
+                                <p class="loading-text">正在加载...</p>
+                            </div>
+                            <div v-else v-cloak>
+                                <div v-if="tabs.tab_0.data.length===0"  class="normal_info">
+                                    <img class="img" src="../content/img/employed/resume_bg.png" />
+                                    <p class="text">暂无没有相关信息！</p>
+                                </div>
+                                <div v-else class="experience" v-for="item in tabs.tab_0.data">
+                                    <div class="top" >
+                                        <span class="name" v-text="item.Name">
+                                        </span>
+                                        <span class="right" @click="gotoExperienceList(item)">
+                                            更多<i class="iconfont iconchakanquanbux"></i>
+                                        </span>
+                                    </div>
+                                    <div v-if="item.List.length===0" class="none-data">
+                                        <i class="iconfont iconkecheng small"></i>
+                                        <p class="none-data-text">没有职场经验</p>
+                                    </div>
+                                    <div v-else>
+                                        <div class="content" v-for="list in item.List" @click="gotoExperienceDeatil(list)">
+                                            <img  v-lazy="{'src':list.ImageSrc,'error':defaultImg.quare,'loading':defaultImg.quare}"/>
+                                            <div class="right">
+                                                <p class="p1" v-text="list.Title"></p>
+                                                <p class="p2">
+                                                    <span v-text="'浏览次数'+list.LookCount"></span>
+                                                    <span class="r" v-text="list.Time"></span>
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </van-tab>
+                    <van-tab title="就业视频">
+                        <div class="infostabs mt-10">
+                            <div v-if="tabs.tab_1.isLoading" class="loading-box p60">
+                                <van-loading color="black"></van-loading>
+                                <p class="loading-text">正在加载...</p>
+                            </div>
+                            <div v-else>
+                                <div v-if="tabs.tab_1.data.length==0" class="normal_info">
+                                    <img class="img" src="../content/img/employed/resume_bg.png" />
+                                    <p class="text">暂无就业视频</p>
+                                </div>
+                                <div v-else>
+                                    <ul>
+                                        <li class="cell"
+                                            v-for="(item,index) in tabs.tab_1.data"
+                                            v-bind:key="index"
+                                            @click="gotoDeatil(item.Id)">
+                                            <img v-lazy="{'src':item.ImageSrc,'error':defaultImg.quare,'loading':defaultImg.quare}"
+                                                 class="img">
+                                            <div class="title" v-text="item.Title"></div>
+                                            <span class="number" v-text="item.FileTime"></span>
+                                            <i class="iconfont iconplay play"></i>
+                                        </li>
+                                    </ul>
+                                    <div v-show="tabs.tab_1.isLoadMore" class="load_more clearfix">
+                                        <van-loading color="black"></van-loading>
+                                        <span class="load_text">正在加载...</span>
+                                    </div>
+                                    <div v-show="tabs.tab_1.isLoadComplete" class="load_more_complete">
+                                        <span class="load_text">没有更多的数据了...</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </van-tab>
+                    <van-tab title="我的简历">
+                        <div v-if="tabs.tab_2.isLoading" class="loading-box p60">
+                            <van-loading color="black"></van-loading>
+                            <p class="loading-text">正在加载...</p>
+                        </div>
+                        <div v-else class="resume">
+                            <van-notice-bar mode="closeable">
+                                最多上传三份简历
+                            </van-notice-bar>
+                            <div v-if="tabs.tab_2.data.length==0" class="normal_info">
+                                <img class="img" src="../content/img/employed/resume_bg.png" />
+                                <p class="text">暂无简历，赶快上传吧！</p>
+                            </div>
+                            <div v-else>
+                                <div class="myinfo mt-15" @click="changeResume(item)" v-for="item in tabs.tab_2.data">
+                                    <div class="left">
+                                        <img class="img" src="../content/img/employed/pdf_bg.png">
+                                    </div>
+                                    <div class="right">
+                                        <p class="t1" v-text="item.Name"></p>
+                                        <p class="t2">
+                                            <span v-text="item.FileSize+'KB'"> </span>
+                                            <span class="time" v-text="item.UploadTime"></span>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="confirm_button" v-show="tabs.tab_2.data.length==3?false:true" @click="APP.GLOBAL.gotoNewWindow('employed/upload.resume')">
+                                添加简历
+                            </div>
+                        </div>
+                    </van-tab>
+                    <van-tab title="企业查询">
+                        <div class="search">
+                            <div class="input">
+                                <span class="title">企业名称</span>
+                                <input type="text" v-model="tabs.tab_3.text" class="name" placeholder="请输入要查询的企业名称" />
+                            </div>
+                            <div class="confirm_button" @click="searchCompany">
+                                查询
+                            </div>
+                        </div>
+                    </van-tab>
+                    <van-tab title="就业题库">
+                        <div class="question">
+                            <div class="jybd " @click="APP.GLOBAL.gotoNewWindow('employed/work.strategy')">
+                                <p class="title">就业宝典</p>
+                            </div>
+                            <div class="qytm " @click="APP.GLOBAL.gotoNewWindow('employed/company.libary')">
+                                <p class="title">企业题库</p>
+                            </div>
+                        </div>
+                    </van-tab>
+                    <van-tab title="面试登记">
+                        <p class="interview_title">
+                            <span class="tag" v-bind:class="{'isCheck':!tabs.tab_5.form.isSelf}"
+                                  @click="changeTabsTab(0)">所有企业</span>
+                            <span class="tag" v-bind:class="{'isCheck':tabs.tab_5.form.isSelf}"
+                                  @click="changeTabsTab(1)">我的企业</span>
+                        </p>
+                        <div v-if="tabs.tab_5.isLoading" class="loading-box" style="padding-top: 10%;">
+                            <van-loading color="black"></van-loading>
+                            <p class="loading-text">正在加载...</p>
+                        </div>
+                        <div v-else>
+                            <div v-if="tabs.tab_5.data.length==0" class="normal_info">
+                                <img class="img" src="../content/img/employed/resume_bg.png" />
+                                <p class="text">暂无登记信息，赶快上传吧！</p>
+                            </div>
+                            <div v-else class="job mt-10 pd-15">
+                                <div class="tab mt-10" v-for="item in tabs.tab_5.data">
+                                    <div class="left">
+                                        <i class="iconfont icondengji"></i>
+                                    </div>
+                                    <div class="right">
+                                        <p class="name" v-text="item.CompanyName"></p>
+                                        <p class="info">
+                                            <span v-text="'面试职位：'+item.InterviewPosition"></span>
+                                            <span class="ml" v-text="'工资：'+item.InterviewSalary"></span>
+                                        <p class="info" v-text="'面试时间：'+item.InterviewTime"></p>
+                                        </p>
+                                    </div>
+                                </div>
+                                <div v-show="tabs.tab_5.isLoadMore" class="load_more clearfix">
+                                    <van-loading color="black"></van-loading>
+                                    <span class="load_text">正在加载...</span>
+                                </div>
+                                <div v-show="tabs.tab_5.isLoadComplete" class="load_more_complete">
+                                    <span class="load_text">没有更多的数据了...</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="job">
+                            <div class="confirm_button" @click="APP.GLOBAL.gotoNewWindow('employed/interview.record')">
+                                面试登记
+                            </div>
+                        </div>
+                    </van-tab>
+                    <van-tab title="入职">
+                        <div v-if="tabs.tab_6.isLoading" class="loading-box p60">
+                            <van-loading color="black"></van-loading>
+                            <p class="loading-text">正在加载...</p>
+                        </div>
+                        <div v-else class="job mt-10">
+                            <div v-if="tabs.tab_6.data.length==0" class="normal_info">
+                                <img class="img" src="../content/img/employed/resume_bg.png" />
+                                <p class="text">暂无登记信息，赶快上传吧！</p>
+                            </div>
+                            <div v-else>
+                                <p class="title">
+                                    入职企业
+                                </p>
+                                <div class="tab mt-10" v-for="item in tabs.tab_6.data">
+                                    <div class="left">
+                                        <i class="iconfont icondengji"></i>
+                                    </div>
+                                    <div class="right">
+                                        <p class="name" v-text="item.CompanyName"></p>
+                                        <p class="info">
+                                            <span v-text="'职位：'+item.InterviewPosition"></span> <br />
+                                            <span class="info" v-text="'入职时间: '+item.InterviewTime"> </span>
+                                        </p>
+                                    </div>
+                                </div>
+                                <div v-show="tabs.tab_6.isLoadMore" class="load_more clearfix">
+                                    <van-loading color="black"></van-loading>
+                                    <span class="load_text">正在加载...</span>
+                                </div>
+                                <div v-show="tabs.tab_6.isLoadComplete" class="load_more_complete">
+                                    <span class="load_text">没有更多的数据了...</span>
+                                </div>
+                            </div>
+                            <div class="confirm_button" @click="APP.GLOBAL.gotoNewWindow('employed/induction.record')">
+                                入职登记
+                            </div>
+                        </div>
+                    </van-tab>
+                </van-tabs>
+            </div>
+        </div>
+    </div>
+    <script src="../content/js/vue.js"></script>
+    <script src="../content/js/vant.min.js"></script>
+    <script src="../content/js/base.js"></script>
+    <script src="../content/js/pages/employed.js"></script>
+</body>
+
+</html>

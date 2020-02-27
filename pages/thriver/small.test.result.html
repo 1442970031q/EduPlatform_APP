@@ -1,0 +1,45 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no,viewport-fit=cover" />
+    <title></title>
+    <link href="../../content/css/base.css" rel="stylesheet" />
+    <link href="../../content/css/vant.css" rel="stylesheet" />
+    <link href="../../content/css/pages/thriver/small.test.result.css" rel="stylesheet" />
+    <script src="html5plus://ready"></script>
+</head>
+<body>
+    <div id="app">
+        <div id="app-head" v-bind:style="{'paddingTop': statusbarHeight + 'px'}">
+            <i id="app-back-button" class="iconfont iconbaidifanhuianniux right-back"></i>
+            <div class="app-head-text">测试结果</div>
+        </div>
+        <div id="app-content">
+            <div class="score_box">
+                <span class="score_value" v-text="request.score"></span>
+            </div>
+            <div class="test_info">
+                <ul>
+                    <li>
+                        <p class="text">回答错误</p>
+                        <p class="value" v-text="request.eCount"></p>
+                    </li>
+                    <li>
+                        <p class="text">回答正确</p>
+                        <p class="value" v-text="request.qCount - request.eCount"></p>
+                    </li>
+                </ul>
+            </div>
+            <div class="buttons">
+                <button class="btn" @click="gotoResolve">全部解析</button>
+                <button class="btn" @click="APP.GLOBAL.closeWindow()">返回刷题</button>
+            </div>
+        </div>
+    </div>
+    <script src="../../content/js/vue.js"></script>
+    <script src="../../content/js/vant.min.js"></script>
+    <script src="../../content/js/base.js"></script>
+    <script src="../../content/js/pages/thriver/small.test.result.js"></script>
+</body>
+</html>

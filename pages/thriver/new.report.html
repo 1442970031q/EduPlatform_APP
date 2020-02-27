@@ -1,0 +1,70 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no,viewport-fit=cover" />
+    <title></title>
+    <link href="../../content/css/base.css" rel="stylesheet" />
+    <link href="../../content/css/vant.css" rel="stylesheet" />
+    <link href="../../content/css/pages/thriver/fontawesome.css" rel="stylesheet" />
+    <link href="../../content/css/pages/thriver/new.report.css" rel="stylesheet" />
+    <script src="html5plus://ready"></script>
+</head>
+<body>
+    <div id="app">
+        <div id="app-head" class="fixed van-hairline--bottom" v-bind:style="{'paddingTop': statusbarHeight + 'px'}">
+            <button v-if="!APP.CONFIG.IS_RUNTIME"
+                    class="submit-button"
+                    @click="publishReport">
+                保存周报
+            </button>
+        </div>
+        <div id="app-content"
+             v-bind:style="{'paddingTop': (statusbarHeight + 45) + 'px', 'height':'calc(100% - ' + (statusbarHeight + 45) + 'px)'}"
+             v-cloak>
+            <div v-if="isLoading" class="loading-box p60">
+                <van-loading color="black"></van-loading>
+                <p class="loading-text">正在加载...</p>
+            </div>
+            <div v-else class="h-100">
+                <input type="text"
+                       class="caption"
+                       v-model="form.title"
+                       maxlength="20"
+                       placeholder="点击此处输入标题"
+                       v-bind:readonly="request.isSubmit === 'true'" />
+                <vue-html5-editor v-if="request.isSubmit !== 'true'"
+                                  class="van-hairline--top"
+                                  v-bind:content="form.content"
+                                  @change="contentChange"></vue-html5-editor>
+                <div v-else v-html="form.content" class="text_content"></div>
+            </div>
+            <van-action-sheet v-bind:class="{'safe': APP.CONFIG.IsSafeArea()}"
+                              v-model="isActionSheetShow"
+                              v-bind:actions="actions"
+                              @select="onSelect"
+                              cancel-text="取消">
+            </van-action-sheet>
+            <van-dialog v-model="isNoticeShow"
+                        title="关于周报保存提示">
+                <p class="notice_text">因粘贴的内容由于某种情况下无法实时获取，请任意修改周报内容后再点“保存”（如输入一个空格）！</p>
+                <van-checkbox class="checkbox" 
+                              v-model="isAgain"
+                              @change="onAgainChange">
+                    不再提示
+                    <i slot="icon"
+                       class="iconfont"
+                       slot-scope="props"
+                       v-bind:class="[props.checked ? 'iconcheckboxchecked' : 'iconcheckboxunchecked']"></i>
+                </van-checkbox>
+            </van-dialog>
+        </div>
+    </div>
+    <script src="../../content/js/vue.js"></script>
+    <script src="../../content/js/vant.min.js"></script>
+    <script src="../../content/js/lrz.bundle.js"></script>
+    <script src="../../content/js/vue-html5-editor.js"></script>
+    <script src="../../content/js/base.js"></script>
+    <script src="../../content/js/pages/thriver/new.report.js"></script>
+</body>
+</html>

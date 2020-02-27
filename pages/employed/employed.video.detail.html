@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no,viewport-fit=cover" />
+		<title></title>
+		<link href="../../content/css/base.css" rel="stylesheet" />
+		<link href="../../content/css/vant.css" rel="stylesheet" />
+		<script src="html5plus://ready"></script>
+	</head>
+	<style>
+
+		#app-head .right-back {
+			background-color: #FDFFFF;
+			border-radius: 50%;
+			width: 35px;
+			height: 35px;
+			line-height: 35px;
+			font-size: 1em;
+			margin-left: 5px;
+			margin-top: 5px;
+		}
+
+		#video {
+			height: 230px;
+			position: fixed;
+			width: 100%;
+			background-color: black;
+		}
+
+		.content {
+			padding-top: 230px;
+		}
+
+		.content .block {
+			padding: 10px;
+		}
+
+		.content .block .title {
+			font-size: 0.9em;
+			font-weight: 500;
+		}
+
+		.content .block .text {
+			font-size: 0.8em;
+			color: #AAAAAA;
+			padding: 0 10px;
+		}
+
+		.ml-15 {
+			margin-left: 15px;
+		}
+
+		.van-icon {
+			position: relative;
+			top: 2px;
+		}
+	</style>
+	<body>
+		<div id="app">
+			<div id="app-head" class="fixed" v-bind:style="{'paddingTop': statusbarHeight + 'px'}">
+			    <i id="app-back-button" class="iconfont iconbaidifanhuianniux right-back"></i>
+				<div class="app-head-text">
+					就业视频
+				</div>
+			</div>
+			<div id="app-content" v-bind:style="{'paddingTop': (statusbarHeight+45) + 'px'}">
+				<div id="video">
+				</div>
+				<div class="content">
+					<div v-if="isLoading" class="loading-box">
+						<van-loading color="black"></van-loading>
+						<p class="loading-text">正在加载...</p>
+					</div>
+					<div v-else class="block">
+						<p class="title" v-text="data.Title">
+						</p>
+						<div class="text mt-10">
+							. <span v-text="'时长：'+data.FileTime"> </span>
+							<span class="ml-15">
+								<i class="van-icon van-icon-eye-o"></i>
+								<span v-text="data.LookCount"></span>
+							</span>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<script src="../../content/js/vue.js"></script>
+		<script src="../../content/js/vant.min.js"></script>
+		<script src="../../content/js/iconfont.js"></script>
+		<script src="../../content/js/base.js"></script>
+		<script src="../../content/js/pages/employed/employed.video.detail.js"></script>
+	</body>
+</html>

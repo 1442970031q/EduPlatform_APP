@@ -1,0 +1,68 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no,viewport-fit=cover" />
+    <title></title>
+    <link href="../../content/css/base.css" rel="stylesheet" />
+    <link href="../../content/css/vant.css" rel="stylesheet" />
+    <style>
+        .van-cell,
+        .van-cell__right-icon {
+            line-height: 35px;
+        }
+
+        .van-cell__right-icon {
+            height: 35px;
+        }
+
+        .loginout {
+            padding: 15px;
+            text-align: center;
+            font-size: 14px;
+            color: #53aaf6;
+            background-color: #FFFFFF;
+        }
+
+            .loginout:active {
+                background-color: #f9f9f9;
+            }
+    </style>
+    <script src="html5plus://ready"></script>
+</head>
+<body>
+    <div id="app">
+        <div id="app-head" class="van-hairline--bottom" v-bind:style="{'paddingTop': statusbarHeight + 'px'}">
+            <i id="app-back-button" class="iconfont iconbaidifanhuianniux right-back"></i>
+            <div class="app-head-text">设置</div>
+        </div>
+        <div id="app-content">
+            <van-cell-group class="mt-10">
+                <van-cell title="清理缓存"
+                          @click="cofirmClear"
+                          is-link
+                          v-bind:value="fileSize"></van-cell>
+                <van-switch-cell v-model="checked"
+                                 title="消息推送"></van-switch-cell>
+                <van-cell title="检查更新"
+                          is-link
+                          v-bind:value="'v' + numberFormat(APP.CONFIG.VERSION / 10, 1)"
+                          @click="checkUpgrade"></van-cell>
+            </van-cell-group>
+            <van-cell-group class="mt-10">
+                <van-cell title="关于云时代教育"
+                          @click="APP.GLOBAL.gotoNewWindow('about.us')"
+                          is-link></van-cell>
+                <van-cell title="常见问题"
+                          @click="APP.GLOBAL.gotoNewWindow('familiar.quertion')"
+                          is-link></van-cell>
+            </van-cell-group>
+            <div class="loginout mt-15 van-hairline--top-bottom" @click="loginOut">切换当前账号</div>
+        </div>
+    </div>
+    <script src="../../content/js/vue.js"></script>
+    <script src="../../content/js/vant.min.js"></script>
+    <script src="../../content/js/base.js"></script>
+    <script src="../../content/js/pages/center/setting.js"></script>
+</body>
+</html>

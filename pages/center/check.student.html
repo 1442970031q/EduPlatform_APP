@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no,viewport-fit=cover" />
+    <title></title>
+    <link href="../../content/css/base.css" rel="stylesheet" />
+    <link href="../../content/css/vant.css" rel="stylesheet" />
+    <script src="html5plus://ready"></script>
+</head>
+
+<body>
+    <div id="app">
+        <div id="app-head" class="van-hairline--bottom" v-bind:style="{'paddingTop': statusbarHeight + 'px'}">
+            <i id="app-back-button" class="iconfont iconbaidifanhuianniux right-back"></i>
+            <div class="app-head-text">检查</div>
+        </div>
+        <div id="app-content">
+            <div v-if="isLoading" class="loading-box p60">
+                <van-loading color="black"></van-loading>
+                <p class="loading-text">正在加载...</p>
+            </div>
+            <div v-else>
+                <div v-if="pageModel.length==0" class="normal_info">
+                    <img class="img" src="../../content/img/center/cache_bg.png" />
+                    <p class="text">
+                        还没有要帮助的同学
+                    </p>
+                </div>
+                <div v-else class="mt-10">
+                    <van-cell v-for="item in pageModel" :title="item.Name" is-link @click="gotoCheckDeteil(item)">
+                    </van-cell>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="../../content/js/vue.js"></script>
+    <script src="../../content/js/vant.min.js"></script>
+    <script src="../../content/js/base.js"></script>
+     <script src="../../content/js/pages/center/check.studnet.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,192 @@
+﻿html, body {
+    background-color: #2caafd
+}
+
+#app-head {
+    color: white;
+    background-color: transparent;
+}
+
+.loading-box .van-loading .van-loading__circular circle {
+    stroke: #ffffff !important;
+}
+
+.loading-box .loading-text {
+    color: white;
+}
+
+.container {
+    width: 85%;
+    height: 395px;
+    top: -80px;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    margin: auto;
+    position: absolute;
+}
+
+    .container .course_name {
+        font-weight: bold;
+        color: white;
+        font-size: 1.2em;
+        height: 30px;
+        line-height: 30px;
+        text-align: center;
+        text-shadow: 0 0 2px #0062a2;
+    }
+
+    .container .des {
+        color: white;
+        height: 25px;
+        line-height: 25px;
+        font-size: .9em;
+        text-align: center;
+    }
+
+    .container .word_box {
+        -moz-box-sizing: border-box;
+        -webkit-box-sizing: border-box;
+        box-sizing: border-box;
+        width: 100%;
+        background-color: white;
+        position: absolute;
+        border-radius: 6px;
+        box-shadow: 0 0 10px #0077c5;
+        height: 320px;
+        margin-top: 20px;
+    }
+
+        .container .word_box .word_top {
+            padding: 15px;
+            text-align: center;
+            border-top-left-radius: 6px;
+            border-top-right-radius: 6px;
+            background-color: #c7e8ff;
+        }
+
+            .container .word_box .word_top .word {
+                height: 45px;
+                line-height: 45px;
+                font-size: 1.8em;
+                margin-bottom: 5px;
+            }
+
+            .container .word_box .word_top .word_info {
+                display: flex;
+                height: 25px;
+                line-height: 25px;
+                justify-content: center;
+            }
+
+                .container .word_box .word_top .word_info .word_sound {
+                    font-size: 1em;
+                    color: #8b8788;
+                    display: flex;
+                    align-items: center;
+                }
+
+                    .container .word_box .word_top .word_info .word_sound.playing {
+                        color: #63a7ff;
+                    }
+
+                    .container .word_box .word_top .word_info .word_sound .sound_icon {
+                        display: block;
+                        height: 17px;
+                        width: 19px;
+                        margin-right: 5px;
+                        background-image: url('../../../img/thriver/sound_normal.png');
+                        background-size: 19px 17px;
+                    }
+
+                    .container .word_box .word_top .word_info .word_sound.playing .sound_icon {
+                        background-image: url('../../../img/thriver/sound_playing.gif');
+                    }
+
+        .container .word_box .word_explain {
+            padding: 15px;
+            position: relative;
+            height: 215px;
+            box-sizing: border-box;
+        }
+
+            .container .word_box .word_explain .caption {
+                font-size: 1em;
+            }
+
+            .container .word_box .word_explain .word_explain_line {
+                color: #6b6b6a;
+                margin-top: 10px;
+                font-size: .9em;
+            }
+
+            .container .word_box .word_explain .confirm_button {
+                position: absolute;
+                bottom: 15px;
+                left: 0;
+                right: 0;
+                width: calc(100% - 30px);
+            }
+
+                .container .word_box .word_explain .confirm_button.dis,
+                .container .word_box .word_explain .confirm_button.dis:active {
+                    background-color: #f1f1f1;
+                    color: #cfcfcf
+                }
+
+        .container .word_box .bottom {
+            position: absolute;
+            height: 10px;
+            left: 0;
+            right: 0;
+            margin: auto;
+            border-bottom-left-radius: 5px;
+            border-bottom-right-radius: 5px;
+        }
+
+            .container .word_box .bottom.b_1 {
+                background-color: rgba(255, 255, 255, 0.65);
+                bottom: -10px;
+                width: calc(100% - 20px);
+            }
+
+            .container .word_box .bottom.b_2 {
+                width: calc(100% - 30px);
+                background-color: rgba(255, 255, 255, 0.3);
+                bottom: -20px;
+            }
+
+        .container .word_box .actions {
+            height: 45px;
+            background-color: white;
+            border-radius: 6px;
+            width: 100%;
+            margin-top: 35px;
+            display: flex;
+            overflow: hidden;
+        }
+
+            .container .word_box .actions button {
+                width: 50%;
+                text-align: center;
+                font-size: .9em;
+                color: #5f5f5f;
+            }
+
+                .container .word_box .actions button:active {
+                    background-color: #f9f9f9;
+                }
+
+                .container .word_box .actions button.dis,
+                .container .word_box .actions button.dis:active {
+                    background-color: #f1f1f1;
+                    color: #cfcfcf
+                }
+
+                .container .word_box .actions button.blue .iconfont {
+                    color: #2caafd;
+                }
+
+                .container .word_box .actions button.red .iconfont {
+                    color: red;
+                }

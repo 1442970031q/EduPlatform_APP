@@ -1,0 +1,67 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no,viewport-fit=cover" />
+    <title></title>
+    <link href="../../content/css/base.css" rel="stylesheet" />
+    <link href="../../content/css/vant.css" rel="stylesheet" />
+    <link href="../../content/css/pages/center/my.order.css" rel="stylesheet" />
+    <script src="html5plus://ready"></script>
+</head>
+<body>
+    <div id="app">
+        <div id="app-head" class="fixed" v-bind:style="{'paddingTop': statusbarHeight + 'px'}">
+            <i id="app-back-button" class="iconfont iconbaidifanhuianniux right-back"></i>
+            <div class="app-head-text">我的订单</div>
+        </div>
+        <div id="app-content" v-bind:style="{'paddingTop': (45 + statusbarHeight) + 'px'}">
+            <van-tabs v-cloak v-model="tabIndex" @change="tabChanged">
+                <van-tab v-for="(tab, tIndex) in tabPages"
+                         v-bind:key="tIndex"
+                         v-bind:title="tab.name">
+                    <div v-if="tab.isLoading" class="loading-box p50">
+                        <van-loading color="black"></van-loading>
+                        <p class="loading-text">正在加载...</p>
+                    </div>
+                    <div v-else>
+                        <div v-if="tab.list.length === 0" class="normal_info">
+                            <img class="img" src="../../content/img/center/cache_bg.png" />
+                            <p class="text">暂无订单信息</p>
+                        </div>
+                        <div v-else>
+                            <ul class="tabs">
+                                <li v-for="(item,index) in tab.list"
+                                    v-bind:key="index"
+                                    class="product clearfix">
+                                    <div class="left">
+                                        <img v-lazy="item.ImageSrc" />
+                                    </div>
+                                    <div class="center">
+                                        <p class="name" v-text="item.GoodsName"></p>
+                                        <p class="line mt-5" v-text="'x' + item.BuyCount"></p>
+                                        <p class="line blue" v-text="numberFormat(item.TotalCoin, 2) + ' 云币'"></p>
+                                        <p class="line time" v-text="item.BuyTime"></p>
+                                    </div>
+                                </li>
+                            </ul>
+                            <div v-if="tab.isLoadMore" class="load_more clearfix">
+                                <van-loading color="black"></van-loading>
+                                <span class="load_text">正在加载...</span>
+                            </div>
+                            <div v-if="tab.isLoadComplete" class="load_more_complete">
+                                <span class="load_text">没有更多的数据了...</span>
+                            </div>
+                        </div>
+                    </div>
+                </van-tab>
+            </van-tabs>
+        </div>
+    </div>
+    <script src="../../content/js/vue.js"></script>
+    <script src="../../content/js/vant.min.js"></script>
+    <script src="../../content/js/base.js"></script>
+    <script src="../../content/js/pages/center/my.order.js"></script>
+</body>
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no,viewport-fit=cover" />
+		<title></title>
+		<link href="../../content/css/base.css" rel="stylesheet" />
+		<link href="../../content/css/vant.css" rel="stylesheet" />
+		<link href="../../content/css/pages/dynamics/news.detail.css" rel="stylesheet" />
+		<script src="html5plus://ready"></script>
+	</head>
+	<body>
+		<div id="app">
+			<div id="app-head" class="fixed van-hairline--bottom" v-bind:style="{'paddingTop': statusbarHeight + 'px'}">
+				<i id="app-back-button" class="iconfont iconbaidifanhuianniux right-back"></i>
+				<div class="app-head-text" v-text="obj.name">
+				</div>
+			</div>
+			<div id="app-content" v-bind:style="{'paddingTop': (statusbarHeight+45) + 'px'}">
+				<div v-if="isLoading" class="loading-box p60">
+				    <van-loading color="black"></van-loading>
+				    <p class="loading-text">正在加载...</p>
+				</div>
+				<div class="content" v-else>
+					<p class="title" v-text="data.Title">
+					</p>
+					<p class="info">
+						<img src="../../content/img/center/list_head_bg.png" class="img" />
+						<span  class="name">张三</span>
+						<span v-text="data.Time" class="time"></span>
+					</p>
+					<div class="text mt-10" v-html="data.CContent">
+					</div>
+				</div>
+			</div>
+		</div>
+		<script src="../../content/js/vue.js"></script>
+		<script src="../../content/js/vant.min.js"></script>
+		<script src="../../content/js/base.js"></script>
+		<script src="../../content/js/pages/dynamics/news.deatil.js"></script>
+	</body>
+</html>

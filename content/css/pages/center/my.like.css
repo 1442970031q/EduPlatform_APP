@@ -1,0 +1,54 @@
+.product {
+	display: flex;
+	background-color: #FFFFFF;
+	padding: 10px;
+}
+
+.product .left .img {
+	width: 100px;
+	height: auto;
+}
+
+.product .center {
+	margin-left: 5px;
+}
+
+.product .center .name {
+	font-size: 0.9em;
+	text-overflow: -o-ellipsis-lastline;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	display: -webkit-box;
+	-webkit-line-clamp: 1;
+	line-clamp: 1;
+	-webkit-box-orient: vertical;
+}
+
+.product .center .jianjie {
+	margin-top: 2px;
+	font-size: 0.7em;
+	color: #AAAAAA;
+	text-overflow: -o-ellipsis-lastline;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	display: -webkit-box;
+	text-indent: 16px;
+	-webkit-line-clamp: 3;
+	line-clamp: 3;
+	-webkit-box-orient: vertical;
+}
+
+.product .center .price {
+	font-size: 0.9em;
+	color: #02B9FF;
+	margin-top: 5px;
+}
+.delete{
+	 line-height: 124px;
+	 background-color: #ee0a24;
+	 color: #FFFFFF;
+	 height: 124px;
+	 font-size: 0.9em;
+	 text-align: center;
+	 width: 50px;
+}

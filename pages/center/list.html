@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no,viewport-fit=cover" />
+    <title></title>
+    <link href="../../content/css/base.css" rel="stylesheet" />
+    <link href="../../content/css/vant.css" rel="stylesheet" />
+    <link href="../../content/css/pages/center/list.css" rel="stylesheet" />
+    <script src="html5plus://ready"></script>
+</head>
+<body>
+    <div id="app" class="h-100">
+        <div id="app-head" class="fixed" v-bind:style="{'paddingTop': statusbarHeight + 'px'}">
+            <i id="app-back-button" class="iconfont iconbaidifanhuianniux right-back"></i>
+            <div class="app-head-text">榜单</div>
+        </div>
+        <div id="app-content" v-bind:style="{'paddingTop': (45 + statusbarHeight) + 'px', 'height':'calc(100% - ' + (45 + statusbarHeight) + 'px'}">
+            <div class="content">
+                <img class="img" src="../../content/img/center/list_bg.png">
+                <div class="title">
+                    <span class="name">表单列表</span>
+                    <p class="line"></p>
+                </div>
+                <div class="buttons mt-15 b1_c1" @click="APP.GLOBAL.gotoNewWindow('list/one.list')">
+                    <img src="../../content/img/center/list_head_bg.png" class="head" />
+                    <span class="type">过程KPI榜单</span>
+                    <span class="right b1_c2">
+                        <span class="button">
+                            <i class="iconfont iconchakanquanbux"></i>
+                        </span>
+                    </span>
+                </div>
+                <div class="buttons mt-15 b2_c1"  @click="APP.GLOBAL.gotoNewWindow('list/two.list')">
+                    <img src="../../content/img/center/list_head_bg.png" class="head" />
+                    <span class="type">结果KPI榜单</span>
+                    <span class="right b2_c2">
+                        <span class="button">
+                            <i class="iconfont iconchakanquanbux"></i>
+                        </span>
+                    </span>
+                </div>
+                <div class="buttons mt-15 b3_c1" @click="APP.GLOBAL.gotoNewWindow('list/three.list')">
+                    <img src="../../content/img/center/list_head_bg.png" class="head" />
+                    <span class="type">积分榜单</span>
+                    <span class="right b3_c2">
+                        <span class="button">
+                            <i class="iconfont iconchakanquanbux"></i>
+                        </span>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="../../content/js/vue.js"></script>
+    <script src="../../content/js/vant.min.js"></script>
+    <script src="../../content/js/base.js"></script>
+    <script src="../../content/js/pages/center/list.js"></script>
+</body>
+</html>

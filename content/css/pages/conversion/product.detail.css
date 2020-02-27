@@ -1,0 +1,144 @@
+#app-head .app-head-text {
+    white-space: nowrap;
+    width: calc(100% - 90px);
+    left: 0;
+    right: 0;
+    margin: auto;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+#app-head .right-back {
+    background-color: rgba(255, 255, 255, 0.6);
+    border-radius: 50%;
+    height: 35px;
+    line-height: 35px;
+    width: 35px;
+    margin-left: 5px;
+    margin-top: 5px;
+}
+
+.van-stepper__input {
+    margin: 0;
+}
+
+    .van-stepper__input[disabled] {
+        color: #333;
+        background-color: #f9f9f9;
+    }
+
+.van-submit-bar {
+    box-shadow: 0 0 5px #ececec;
+}
+
+.tabs {
+    background-color: #FFFFFF;
+}
+
+    .tabs p {
+        padding: 0px 15px;
+        line-height: 20px;
+        box-sizing: border-box;
+    }
+
+    .tabs .name {
+        font-size: 1em;
+        width: 100%;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+
+    .tabs .price {
+        color: #53aaf6;
+        font-size: 0.9em;
+    }
+
+    .tabs .residue {
+        float: right;
+        font-size: 0.7em;
+        color: #AAAAAA;
+    }
+
+
+    .tabs .number {
+        display: flex;
+        font-size: 0.7em;
+        color: #AAAAAA;
+        line-height: 38px;
+        padding: 0 15px;
+        padding-bottom: 10px;
+    }
+
+    .tabs .swiper {
+        border-radius: 5px;
+    }
+
+        .tabs .swiper .img {
+            width: 100%;
+            display: block;
+        }
+
+.detail {
+    background-color: #FFFFFF;
+    padding: 10px 5px;
+    padding-bottom: 60px;
+    overflow: hidden;
+}
+
+    .detail.safe {
+        padding-bottom: 90px;
+    }
+
+    .detail .title {
+        font-size: 1.1em;
+        padding: 0 10px;
+        padding-bottom: 10px;
+        color: #969799;
+    }
+
+    .detail .content {
+        overflow: hidden;
+    }
+
+        .detail .content table {
+            width: 100% !important;
+        }
+
+        .detail .content p {
+            margin: 5px 0;
+        }
+
+            .detail .content p span {
+                height: 20px;
+                line-height: 20px;
+            }
+
+        .detail .content img {
+            max-width: 100% !important;
+            height: initial !important;
+            display: block !important;
+        }
+
+.van-submit-bar.safe {
+    padding-bottom: 30px;
+}
+
+.van-submit-bar__price {
+    color: #0088ff;
+}
+
+.van-button--danger {
+    border: 1px solid #0088ff;
+    background: #0088ff;
+}
+
+.van-toast {
+    width: 150px;
+    min-height: 150px;
+}
+
+    .van-toast .van-image {
+        width: 70%;
+        height: auto;
+    }

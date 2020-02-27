@@ -1,0 +1,43 @@
+.product {
+    display: flex;
+    background-color: #FFFFFF;
+    padding: 15px;
+}
+
+    .product .left {
+        width: 130px;
+        border-radius: 5px;
+        overflow: hidden;
+    }
+
+        .product .left .img {
+            width: 100%;
+            display: block;
+        }
+
+    .product .center {
+        width: calc(100% - 145px);
+        margin-left: 15px;
+    }
+
+        .product .center .name {
+            font-size: 1em;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            height: 25px;
+            line-height: 25px;
+            width: 100%;
+        }
+
+        .product .center .number {
+            font-size: .8em;
+            height:20px;
+            line-height:20px;
+        }
+
+        .product .center .price {
+            font-size: 0.8em;
+            color: #02B9FF;
+            height: 20px;
+            line-height: 20px;
+        }

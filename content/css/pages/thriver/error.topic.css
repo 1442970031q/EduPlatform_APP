@@ -1,0 +1,139 @@
+﻿#app-head .submit-button {
+    font-size: 1.1em;
+}
+
+.van-tabs--line .van-tabs__wrap.van-hairline--top-bottom::after {
+    border-top: 0 !important;
+}
+
+.van-tab--active {
+    color: #02b9ff;
+    font-size: 16px;
+}
+
+.van-tabs__line {
+    background-color: #02b9ff;
+}
+
+.top_content {
+    padding: 35px 10px;
+    background-color: white;
+    background-image: url('../../../img/thriver/error.topic_bg.png');
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: 100% auto;
+    text-align: center;
+    color: white;
+}
+
+    .top_content .score_box {
+        background-image: url('../../../img/thriver/error.topic_score_bg.png');
+        background-size: 140px auto;
+        width: 140px;
+        height: 140px;
+        margin: 0 auto;
+        background-position: center center;
+        background-repeat: no-repeat;
+    }
+
+        .top_content .score_box .value {
+            font-size: 1.4em;
+            font-weight: bold;
+            height: 30px;
+            line-height: 30px;
+            padding-top: 45px;
+        }
+
+        .top_content .score_box .text {
+            height: 20px;
+            line-height: 20px;
+            font-size: 1em;
+        }
+
+.van-collapse {
+    margin-top: 10px;
+}
+
+    .van-collapse.van-hairline--top-bottom::after {
+        border-bottom: 0 !important;
+    }
+
+    .van-collapse .van-collapse-item {
+        margin-bottom: 5px;
+    }
+
+    .van-collapse .van-cell__right-icon {
+        line-height: 48px;
+        height: 48px;
+    }
+
+.caption .title {
+    font-weight: bold;
+    font-size: 1.1em;
+}
+
+.caption .err {
+    color: #02b9ff;
+    font-size: .8em;
+}
+
+.van-collapse-item__content {
+    padding: 10px 5px;
+}
+
+.chapter_list .van-step__title {
+    display: flex;
+}
+
+.chapter_list .chapter_left {
+    width: calc(100% - 145px);
+}
+
+    .chapter_list .chapter_left .name {
+        height: 20px;
+        line-height: 20px;
+        width: 100%;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        font-size: .9em;
+    }
+
+    .chapter_list .chapter_left .count {
+        height: 25px;
+        line-height: 25px;
+        color: #02b9ff;
+        font-size: .7em;
+    }
+
+.chapter_list .chapter_right {
+    width: 145px;
+    display: flex;
+    justify-content: flex-end;
+    height: 45px;
+    align-items: center;
+}
+
+    .chapter_list .chapter_right button {
+        border: 1px solid #2caafd;
+        color: #2caafd;
+        padding: 5px 10px;
+        border-radius: 10px;
+        font-size: .9em;
+        height: 30px;
+    }
+
+        .chapter_list .chapter_right button.full {
+            margin-left: 5px;
+            background-color: #2caafd;
+            color: white;
+        }
+
+        .chapter_list .chapter_right button:active {
+            background-color: #06a8e6;
+            color: white;
+        }
+
+        .chapter_list .chapter_right button .iconfont {
+            margin-right: 3px;
+        }

@@ -1,0 +1,102 @@
+﻿.container {
+    position: relative;
+}
+
+    .container .van-search {
+        background: rgb(255, 255, 255);
+        position: fixed;
+        width: 100%;
+        top: initial;
+    }
+
+.list {
+    width: calc(100% - 30px);
+    margin: 0 auto;
+    padding-top: 69px;
+}
+
+    .list .item {
+        background-color: white;
+        border-radius: 6px;
+        padding: 15px;
+        margin-bottom: 15px;
+    }
+
+        .list .item.green {
+            background-color: rgba(51, 255, 0, 0.12);
+        }
+
+        .list .item.red {
+            background-color: rgba(255, 0, 0, 0.04);
+        }
+
+        .list .item.green:active {
+            background-color: rgba(51, 255, 0, 0.05);
+        }
+
+        .list .item.red:active {
+            background-color: rgba(255, 0, 0, 0.02);
+        }
+
+        .list .item:last-child {
+            margin-bottom: 30px;
+        }
+
+        .list .item .name {
+            height: 20px;
+            line-height: 20px;
+        }
+
+            .list .item .name .txt {
+                float: left;
+                font-weight: bold;
+            }
+
+            .list .item .name .right {
+                float: right;
+                font-size: .8em;
+                color: #b1b1b1;
+            }
+
+        .list .item .info {
+            display: flex;
+            padding: 10px 0;
+            padding-top: 15px;
+        }
+
+            .list .item .info li {
+                width: 50%;
+            }
+
+                .list .item .info li p {
+                    text-align: center;
+                }
+
+                .list .item .info li .text {
+                    font-size: .7em;
+                    color: #848484;
+                    height: 20px;
+                    line-height: 20px;
+                }
+
+                .list .item .info li .value {
+                    font-size: 1.3em;
+                    height: 35px;
+                    line-height: 35px;
+                    font-weight: bold;
+                }
+
+                    .list .item .info li .value.green {
+                        color: #00bb00;
+                    }
+
+                    .list .item .info li .value.red {
+                        color: #f74747;
+                    }
+
+        .list .item .time {
+            margin-top: 5px;
+            font-size: .8em;
+            color: #adadad;
+            text-align: right;
+        }

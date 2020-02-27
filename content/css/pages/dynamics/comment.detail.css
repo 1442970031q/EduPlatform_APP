@@ -1,0 +1,216 @@
+#app-content {
+    padding-bottom: 30px;
+}
+
+.input_safe {
+    height: initial;
+    padding-bottom: 30px;
+}
+
+.input {
+    position: fixed;
+    width: 100%;
+    background-color: #FFFFFF;
+    bottom: 0;
+    left: 0;
+    box-shadow: 0 0 10px #e0e0e0;
+    padding: 0 15px;
+    line-height: 50px;
+    height: 50px;
+    box-sizing: border-box;
+}
+
+    .input .disable {
+        font-size: 0.9em;
+        text-align: center;
+        width: 100%;
+        color: #aaa;
+    }
+
+    .input .in {
+        width: calc(100% - 115px);
+        height: 50px;
+        float: left;
+        display: flex;
+        align-items: center;
+    }
+
+    .input .text {
+        background-color: #F0F0F0;
+        height: 35px;
+        line-height: 25px;
+        border-radius: 50px;
+        width: 100%;
+        padding: 5px 15px;
+        font-size: 0.8em;
+        box-sizing: border-box;
+    }
+
+    .input .button {
+        height: 100%;
+        width: 90px;
+        float: left;
+        margin-left: 15px;
+    }
+
+        .input .button .bt {
+            background-color: #02b9ff;
+            color: white;
+            font-size: .8em;
+            height: 35px;
+            line-height: 35px;
+            text-align: center;
+            padding: 0 10px;
+            width: 90px;
+            border-radius: 6px;
+        }
+
+    .input .in::-webkit-input-placeholder {
+        font-size: 0.9em;
+        text-indent: 10px;
+    }
+
+.pb-40 {
+    padding-bottom: 40px;
+}
+
+.cell {
+    padding: 10px;
+    background-color: #FFFFFF;
+}
+
+    .cell .user {
+        display: flex;
+    }
+
+    .cell .user {
+        display: flex;
+    }
+
+        .cell .user .left {
+            width: 15%;
+            height: 50px;
+            text-align: center;
+        }
+
+            .cell .user .left .img {
+                height: 100%;
+                width: auto;
+            }
+
+        .cell .user .center {
+            line-height: 25px;
+            width: 75%;
+        }
+
+            .cell .user .center .time {
+                font-size: 0.8em;
+                color: #AAAAAA;
+            }
+
+        .cell .user .right {
+            font-size: 0.9em;
+            color: #AAAAAA;
+            line-height: 50px;
+        }
+
+    .cell .text {
+        padding-left: 15%;
+        font-size: 0.9em;
+    }
+
+    .cell .info {
+        padding: 5px 0;
+        padding-left: 15%;
+        text-align: right;
+    }
+
+        .cell .info .block {
+            width: 15%;
+            display: inline-block;
+        }
+
+            .cell .info .block .te {
+                font-size: 0.8em;
+            }
+
+.floor {
+    background-color: #FFFFFF;
+    padding: 10px;
+}
+
+    .floor .title {
+        font-size: 0.9em;
+        text-indent: 5px;
+        border-left: 3px solid #53AAF6;
+    }
+
+    .floor .block {
+        padding: 10px 5px;
+    }
+
+        .floor .block .user {
+            display: flex;
+        }
+
+            .floor .block .user .left {
+                width: 10%;
+                height: 40px;
+                text-align: center;
+            }
+
+                .floor .block .user .left .img {
+                    border-radius: 50px;
+                }
+
+            .floor .block .user .center {
+                line-height: 20px;
+                width: 70%;
+                margin-left: 10px;
+            }
+
+                .floor .block .user .center .name {
+                    font-size: 0.85em;
+                }
+
+                .floor .block .user .center .time {
+                    font-size: 0.75em;
+                    color: #AAAAAA;
+                }
+
+            .floor .block .user .left .img {
+                height: 100%;
+                width: auto;
+            }
+
+            .floor .block .user .right {
+                width: 20%;
+                text-align: right;
+                line-height: 40px;
+            }
+
+                .floor .block .user .right .number {
+                    font-size: 0.75em;
+                }
+
+        .floor .block .text {
+            font-size: .8em;
+            padding-left: 10%;
+        }
+
+            .floor .block .text .rep {
+                margin-left: 10px;
+            }
+
+            .floor .block .text .hf {
+                color: #7e7e7e;
+            }
+
+            .floor .block .text .replay {
+                color: #53AAF6;
+            }
+
+            .floor .block .text .replaytext {
+                word-wrap: break-word;
+                word-break: break-all;
+            }

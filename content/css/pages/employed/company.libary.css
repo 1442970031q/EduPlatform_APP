@@ -1,0 +1,44 @@
+.search {
+	position: fixed;
+	width: 100%;
+}
+
+.content {
+	padding-top: 54px;
+}
+
+.content .none {
+	text-align: center;
+	margin-top: 40%;
+	font-size: 0.9em;
+	color: #8f8f8f;
+}
+
+.content .cells {
+}
+.content .cells .cell{
+	background-color: #FFFFFF;
+	display: flex;
+	padding: 10px 15px;
+}
+.content .cells .cell:active{
+	background-color: #f6f6f6;
+}
+.content .cells .cell .left{
+	width: 15%;
+}
+.content .cells .cell .right{
+	margin-left: 5px;
+}
+.content .cells .cell .right .name{
+	font-size: 0.9em;
+}
+.content .cells .cell .right .info{
+	font-size: 0.8em;
+	color: #AAAAAA;
+	margin-top: 5px;
+}
+.content .cells .cell .left .img{
+	width: 100%;
+	height: auto;
+}

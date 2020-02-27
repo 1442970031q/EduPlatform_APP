@@ -1,0 +1,51 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no,viewport-fit=cover" />
+    <title></title>
+    <link href="../../content/css/base.css" rel="stylesheet" />
+    <link href="../../content/css/vant.css" rel="stylesheet" />
+    <link href="../../content/css/pages/center/my.kpl.css" rel="stylesheet" />
+    <script src="html5plus://ready"></script>
+</head>
+    <body>
+        <div id="app">
+            <div id="app-head" class="fixed" v-bind:style="{'paddingTop': statusbarHeight + 'px'}">
+                <i id="app-back-button" class="iconfont iconbaidifanhuianniux right-back"></i>
+                <div class="app-head-text">我的KPI</div>
+            </div>
+            <div id="app-content" v-bind:style="{'paddingTop': (45 + statusbarHeight) + 'px'}">
+                <div class="kpl">
+                    <div class="content">
+                        <div class="cell">
+                            <span class="name">
+                                姓名
+                            </span>
+                            <input class="input" placeholder="请输入姓名" type="text" />
+                        </div>
+                        <div class="cell mt-15">
+                            <span class="name">
+                                账号
+                            </span>
+                            <input class="input" placeholder="请输入账号" type="text" />
+                        </div>
+                        <div class="cell mt-15">
+                            <span class="name">
+                                手机号
+                            </span>
+                            <input class="input" placeholder="请输入手机号" type="text" />
+                        </div>
+                    </div>
+                    <div class="confirm_button mt-15" @click="APP.GLOBAL.gotoNewWindow('look.kpl')">
+                        查询
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script src="../../content/js/vue.js"></script>
+        <script src="../../content/js/vant.min.js"></script>
+        <script src="../../content/js/base.js"></script>
+        <script src="../../content/js/pages/center/my.kpl.js"></script>
+    </body>
+</html>

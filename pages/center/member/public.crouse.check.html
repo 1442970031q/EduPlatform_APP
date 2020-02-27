@@ -1,0 +1,62 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no,viewport-fit=cover" />
+    <title></title>
+    <link href="../../../content/css/base.css" rel="stylesheet" />
+    <link href="../../../content/css/vant.css" rel="stylesheet" />
+    <link href="../../../content/css/pages/center/member/public.crouse.check.css" rel="stylesheet" />
+    <script src="html5plus://ready"></script>
+</head>
+
+<body>
+    <div id="app">
+        <div id="app-head" class="fixed van-hairline--bottom" v-bind:style="{'paddingTop': statusbarHeight + 'px'}">
+            <i id="app-back-button" class="iconfont iconbaidifanhuianniux right-back"></i>
+            <div class="app-head-text">公共课考勤</div>
+        </div>
+        <div id="app-content" v-bind:style="{'paddingTop': (45 + statusbarHeight) + 'px'}">
+            <div v-if="isLoading" class="loading-box p60">
+                <van-loading color="black"></van-loading>
+                <p class="loading-text">正在加载...</p>
+            </div>
+            <div v-else v-cloak class="pdding_bottom">
+                <div class="cell mt-15" v-for="itme in pageModule" @click="gotoNewWinow(itme)">
+                    <p class="title">
+                        <span class="">学期编号：</span>
+                        <span class="left" v-text="itme.AttendanceId"></span>
+                    </p>
+                    <p>
+                        <span class="">章节名称：</span>
+                        <span class="left" v-text="itme.LessonName"></span>
+                    </p>
+                    <p class="time">
+                        <span class="">上课时间：</span>
+                        <span class="left" v-text="getTimeZone(itme.SegNum) + '第' + itme.SegNum + '节'"></span>
+                    </p>
+                </div>
+                <div class="cell mt-15" @click="gotoNewWinow()">
+                    <p class="icon"><i class="van-icon van-icon-add-o"></i></p>
+                </div>
+                <van-dialog v-model="show" title="课程名称" @confirm="getCrouseName" show-cancel-button>
+                    <van-field v-model="name" label="课程名称:" placeholder="请输入公共课程名称"> </van-field>
+                    <div class="checkTime">
+                        <span class="tabs" v-bind:class="{'isCheck':time == 1}" @click="time=1">第1节课</span>
+                        <span class="tabs" v-bind:class="{'isCheck':time == 2}" @click="time=2">第2节课</span>
+                        <span class="tabs" v-bind:class="{'isCheck':time == 3}" @click="time=3">第3节课</span>
+                        <span class="tabs" v-bind:class="{'isCheck':time == 4}" @click="time=4">第4节课</span>
+                        <span class="tabs" v-bind:class="{'isCheck':time == 5}" @click="time=5">第5节课</span>
+                    </div>
+                </van-dialog>
+            </div>
+        </div>
+    </div>
+    <script src="../../../content/js/vue.js"></script>
+    <script src="../../../content/js/vant.min.js"></script>
+    <script src="../../../content/js/base.js"></script>
+    <script src="../../../content/js/pages/center/member/public.crouse.check.js"></script>
+</body>
+
+</html>

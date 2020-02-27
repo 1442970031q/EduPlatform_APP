@@ -1,0 +1,102 @@
+html,
+body {
+    background-color: #FFFFFF;
+}
+
+#app-head {
+    border-bottom: 1px solid #e2e2e2;
+}
+
+.submit-button {
+    color: #AAAAAA;
+}
+
+.content {
+    width: 95%;
+    margin: auto;
+}
+
+    .content .top {
+        text-align: center;
+        color: #FFFFFF;
+        background: url(../../../img/center/up_bg.png) no-repeat,linear-gradient(to top, #3f7afb, #4865fb);
+        background-size: 100% auto;
+        background-position: center center;
+        padding: 25px 0;
+        border-radius: 5px;
+    }
+
+        .content .top .name {
+            font-size: 0.9em;
+            font-weight: bold;
+        }
+
+        .content .top .value {
+            font-size: 1.3em;
+        }
+
+    .content .tab .title {
+        font-size: 0.9em;
+    }
+
+    .content .tab .ment {
+        display: flex;
+    }
+
+        .content .tab .ment .lis {
+            padding: 5px 0;
+            margin: auto;
+            text-align: center;
+            box-shadow: 1px 1px 3px #AAAAAA;
+            border-radius: 5px;
+            width: 30%;
+        }
+
+        .content .tab .ment .pd {
+            padding: 13px 0;
+        }
+
+        .content .tab .ment .lis .zdy {
+            font-size: 0.9em;
+            color: #AAAAAA;
+        }
+
+        .content .tab .ment .lis .price {
+            font-size: 0.9em;
+            color: #5078d4;
+            font-weight: bold;
+        }
+
+        .content .tab .ment .lis .money {
+            font-size: 0.6em;
+            color: #AAAAAA;
+        }
+
+    .content .tab .iconfont {
+        font-size: 1.5em;
+    }
+
+.ic1 {
+    color: #41b035;
+}
+
+.ic2 {
+    color: #1296db;
+}
+
+.content .tab .van-cell {
+    box-shadow: 1px 1px 3px #AAAAAA;
+    border-radius: 5px;
+}
+
+.content .tab .van-cell__title {
+    margin-left: 10px;
+}
+
+.content .tab .van-hairline--top-bottom::after {
+    border: 0;
+}
+
+.content .tab .van-cell:not(:last-child)::after {
+    border: 0;
+}

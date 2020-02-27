@@ -1,0 +1,44 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no,viewport-fit=cover" />
+    <title></title>
+    <link href="../../content/css/base.css" rel="stylesheet" />
+    <link href="../../content/css/vant.css" rel="stylesheet" />
+    <link href="../../content/css/pages/dynamics/student.info.css" rel="stylesheet" />
+    <script src="html5plus://ready"></script>
+</head>
+<body>
+    <div id="app">
+        <div id="app-head" class="fixed" v-bind:style="{'paddingTop': statusbarHeight + 'px'}">
+            <i id="app-back-button" class="iconfont iconbaidifanhuianniux right-back"></i>
+        </div>
+        <div id="app-content">
+            <div class="content" v-bind:style="{'paddingTop': (statusbarHeight+45) + 'px'}">
+                <div class="top">
+                    <img v-lazy="item.ImageSrc" class="head" />
+                    <p class="name" v-text="!item.RealName ? '暂无信息' : item.RealName"></p>
+                    <p class="write mt-10" v-text="!item.Motto ? '暂无信息' : item.Motto"> </p>
+                </div>
+            </div>
+            <div class="text mt-15">
+                <p class="title van-hairline--bottom">
+                    <span class="left">明星简介</span>
+                </p>
+                <div class="values" v-html="!item.Des ? '暂无信息' : item.Des"></div>
+            </div>
+            <div class="text mt-15">
+                <p class="title van-hairline--bottom">
+                    <span class="left">就业单位</span>
+                    <span class="right" v-text="!item.Company ? '暂无信息' : item.Company"></span>
+                </p>
+            </div>
+        </div>
+    </div>
+    <script src="../../content/js/vue.js"></script>
+    <script src="../../content/js/vant.min.js"></script>
+    <script src="../../content/js/base.js"></script>
+    <script src="../../content/js/pages/dynamics/student.info.js"></script>
+</body>
+</html>

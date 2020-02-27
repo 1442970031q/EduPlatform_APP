@@ -1,0 +1,91 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no,viewport-fit=cover" />
+    <title></title>
+    <link href="../../content/css/base.css" rel="stylesheet" />
+    <link href="../../content/css/vant.css" rel="stylesheet" />
+    <link href="../../content/css/pages/thriver/do.homework.css" rel="stylesheet" />
+    <script src="html5plus://ready"></script>
+</head>
+<body>
+    <div id="app">
+        <div id="app-head"
+             class="fixed van-hairline--bottom"
+             v-bind:style="{'paddingTop': statusbarHeight + 'px'}">
+            <i id="app-back-button" class="iconfont iconbaidifanhuianniux right-back"></i>
+            <div class="app-head-text">刷题</div>
+            <div v-show="data.crouse.length !== 0" @click="choiceList" class="submit-button">全选</div>
+        </div>
+        <div id="app-content" v-bind:style="{'paddingTop': (45 + statusbarHeight) + 'px'}">
+            <div v-if="isLoading" class="loading-box p60">
+                <van-loading color="black"></van-loading>
+                <p class="loading-text">正在加载...</p>
+            </div>
+            <div v-else v-cloak>
+                <div class="crouse van-hairline--top-bottom"
+                     @click="isClassListShow = true">
+                    <div class="left">
+                        <span>当前课程：</span>
+                        <span class="name" v-text="radio.Name"></span>
+                    </div>
+                    <div class="right">
+                        <i class="iconfont iconqiehuan"></i>
+                    </div>
+                </div>
+                <van-popup v-model="isClassListShow"
+                           position="bottom"
+                           v-bind:style="{ height: '100%', backgroundColor: '#f6f6f6', width:'100%'}">
+                    <div class="check">
+                        <div class="cell van-hairline--bottom"
+                             v-bind:style="{'paddingTop': statusbarHeight + 'px'}">选择课程</div>
+                        <div class="term">
+                            <p class="term_name">当前学期</p>
+                            <div v-for="(item,index) in data.columns"
+                                 v-text="item.Name"
+                                 @click="getSection(item)"
+                                 class="cell fp"
+                                 v-bind:class="{'isCheck': radio === item, 'van-hairline--top': index === 0}">
+                            </div>
+                        </div>
+                    </div>
+                    <button class="confirm_button full"
+                            v-bind:class="{'safe': APP.CONFIG.IsSafeArea()}"
+                            @click="isClassListShow = false">
+                        取消选择
+                    </button>
+                </van-popup>
+                <div class="content" 
+                     v-show="data.crouse.length !== 0"
+                     v-bind:class="{'safe': APP.CONFIG.IsSafeArea()}">
+                    <van-checkbox-group v-model="checkList">
+                        <div class="block" 
+                             v-for="(item,index) in data.crouse"
+                             v-bind:key="index">
+                            <div class="left">
+                                <p class="name">
+                                    <span v-text="item.SName"></span>
+                                    <span class="small" v-text="'（共' + item.Count +'道）'"></span>
+                                </p>
+                                <p v-text="item.Name" class="info"></p>
+                                <p v-text="'有效刷题次数 #' + item.EffectiveCount + '#'" class="count"></p>
+                            </div>
+                            <div class="right">
+                                <van-checkbox v-bind:name="item.Id"></van-checkbox>
+                            </div>
+                        </div>
+                    </van-checkbox-group>
+                    <div class="confirm_button full"
+                         v-bind:class="{'dis': checkList.length === 0, 'safe': APP.CONFIG.IsSafeArea()}"
+                         @click="checkList.length > 0 && doBeginWork()">开始刷题</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="../../content/js/vue.js"></script>
+    <script src="../../content/js/vant.min.js"></script>
+    <script src="../../content/js/base.js"></script>
+    <script src="../../content/js/pages/thriver/do.homework.js"></script>
+</body>
+</html>

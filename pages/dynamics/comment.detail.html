@@ -1,0 +1,108 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<title></title>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
+		<link href="../../content/css/base.css" rel="stylesheet" />
+		<link href="../../content/css/vant.css" rel="stylesheet" />
+		<link href="../../content/css/pages/dynamics/comment.detail.css" rel="stylesheet" />
+		<script src="html5plus://ready"></script>
+	</head>
+	<body>
+		<div id="app">
+			<div id="app-head" class="fixed van-hairline--bottom" v-bind:style="{'paddingTop': statusbarHeight+'px'}">
+				<div id="app-back-button" class="left-button">
+					<i class="iconfont iconbaidifanhuianniux right-back"></i>
+				</div>
+				<div class="app-head-text">
+					评论详情
+				</div>
+			</div>
+            <div id="app-content" v-bind:style="{'paddingTop': (statusbarHeight+45)+'px'}">
+                <div class="cell">
+                    <div class="user">
+                        <div class="left">
+                            <img class="img" v-lazy="item.CommenterAvatar">
+                        </div>
+                        <div class="center">
+                            <p class="name" v-text="item.Commenter"></p>
+                            <p class="time" v-text="item.CommentTime"> </p>
+                        </div>
+                        <div class="right" v-text="(item.number+1)+'楼'">
+                        </div>
+                    </div>
+                    <p class="text" v-text="item.CommentContent"> </p>
+                </div>
+                <div class="floor mt-5">
+                    <p class="title" v-text="item.SonCount+'条回复'"></p>
+                    <div v-if="isLoading" class="loading-box p60">
+                        <van-loading color="black"></van-loading>
+                        <p class="loading-text">正在加载...</p>
+                    </div>
+                    <div v-else>
+                        <div v-if="data.length==0" class="normal_info">
+                            <img class="img" src="../../content/img/center/cache_bg.png" />
+                            <p class="text">
+                                还没有评论，来评论一个吧~
+                            </p>
+                        </div>
+                        <div v-else class="block" v-for="(item,index) in data" @click="focusclick(item.Id,item.Commenter,index)">
+                            <div class="user">
+                                <div class="left">
+                                    <img v-lazy="item.CommenterAvatar" class="img">
+                                </div>
+                                <div class="center">
+                                    <p class="name" v-text="item.Commenter"></p>
+                                    <p class="time" v-text="item.CommentTime"></p>
+                                </div>
+                                <div class="right">
+                                    <i @click.stop="isLike(item.Id,true,index)" v-if="!item.IsLike" class="iconfont iconpinglunzanx"></i>
+                                    <i @click.stop="isLike(item.Id,false,index)" v-else class="iconfont iconpinglunzanx" style="color: red;"></i>
+                                    <span class="number" v-text="item.LikeCount"></span>
+                                </div>
+                            </div>
+                            <div class="text">
+                                <p class="rep">
+                                    <span class="hf">回复</span>
+                                    <span class="replay" v-text="item.Respondent"></span>
+                                    <span class="replaytext" v-text="' : '+item.CommentContent"></span>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div v-if="isLoadMore" class="load_more clearfix">
+                        <van-loading color="black"></van-loading>
+                        <span class="load_text">正在加载...</span>
+                    </div>
+                    <div v-if="isLoadComplete" class="load_more_complete" style="padding-bottom:30px;">
+                        <span class="load_text">没有更多的数据了...</span>
+                    </div>
+                </div>
+                <div class="input clearfix"
+                     v-bind:class="{'input_safe': APP.CONFIG.IsSafeArea()}">
+                    <div v-if="isCanComment==='true'">
+                        <div class="in">
+                            <input class="text"
+                                   type="text"
+                                   v-model="repaly.content"
+                                   :placeholder="replayinfo"
+                                   @blur="focusState = false"
+                                   v-focus="focusState" />
+                        </div>
+                        <div class="button">
+                            <button class="bt" @click="replayConmmentAjax">发表评论</button>
+                        </div>
+                    </div>
+                    <div v-else class="disable">
+                        周报暂时不能评论
+                    </div>
+                </div>
+            </div>
+		</div>
+		<script src="../../content/js/vue.js"></script>
+		<script src="../../content/js/vant.min.js"></script>
+		<script src="../../content/js/base.js"></script>
+		<script src="../../content/js/pages/dynamics/comment.detail.js"></script>
+	</body>
+</html>

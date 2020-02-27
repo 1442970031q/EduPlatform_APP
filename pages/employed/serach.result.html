@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no,viewport-fit=cover" />
+	<title></title>
+	<link href="../../content/css/base.css" rel="stylesheet" />
+	<link href="../../content/css/vant.css" rel="stylesheet" />
+	<link href="../../content/css/pages/employed/serach.result.css" rel="stylesheet" />
+	<script src="html5plus://ready"></script>
+</head>
+
+<body>
+	<div id="app">
+		<div id="app-head" class="fixed" v-bind:style="{'paddingTop': statusbarHeight + 'px'}">
+			<i id="app-back-button" class="iconfont iconbaidifanhuianniux right-back"></i>
+			<div class="app-head-text">查询结果</div>
+		</div>
+		<div id="app-content" v-bind:style="{'paddingTop': (45 + statusbarHeight) + 'px'}">
+			<div v-if="isLoadding" class="loading-box p60">
+				<van-loading color="black"></van-loading>
+				<p class="loading-text">正在加载...</p>
+			</div>
+			<div v-else class="content">
+				<p class="title mt-10">
+					<svg class="icon svg-icon" aria-hidden="true">
+						<use xlink:href="#iconchaxunxiangqingx"></use>
+					</svg>
+					<span class="text">
+						查询详情
+					</span>
+				</p>
+				<div v-if="pageModule.length==0" class="normal_info">
+					<img class="img" src="../../content/img/employed/resume_bg.png" />
+					<p class="text">暂无企业信息！</p>
+				</div>
+				<div v-else class="pb-10">
+					<div class="result mt-10" v-for="item in pageModule">
+						<div class="cell c1">
+							<span>名字</span>
+							<span class="right" v-text="item.Name"></span>
+						</div>
+						<div class="cell">
+							<span>是否为招转培</span>
+							<span class="right" v-text="item.IsZZP?'是':'否'"></span>
+						</div>
+						<div class="cell c1">
+							<span>是否在黑名单 </span>
+							<span class="right" v-text="item.IsHMD?'是':'否'"> </span>
+						</div>
+						<div class="cell">
+							<span>是否有学历要求</span>
+							<span class="right" v-text="item.IsYQXL?'是':'否'"> </span>
+						</div>
+						<div class="cell c1">
+							<span>是否招实习生</span>
+							<span class="right" v-text="item.IsZSXS?'是':'否'"> </span>
+						</div>
+						<div class="cell">
+							<span>是否有老生入职</span>
+							<span class="right" v-text="item.IsLSRZ?'是':'否'"> </span>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<script src="../../content/js/vue.js"></script>
+	<script src="../../content/js/vant.min.js"></script>
+	<script src="../../content/js/iconfont.js"></script>
+	<script src="../../content/js/base.js"></script>
+	<script src="../../content/js/pages/employed/serach.result.js"></script>
+</body>
+
+</html>

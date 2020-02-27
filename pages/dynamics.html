@@ -1,0 +1,348 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no,viewport-fit=cover" />
+    <title></title>
+    <link href="../content/css/base.css" rel="stylesheet" />
+    <link href="../content/css/vant.css" rel="stylesheet" />
+    <link href="../content/css/pages/dynamics.css" rel="stylesheet" />
+    <script src="html5plus://ready"></script>
+</head>
+<body>
+    <div id="app">
+        <div id="app-head" v-bind:style="{'paddingTop': statusbarHeight + 'px'}">
+            <div class="top_button left-button" @click="APP.GLOBAL.gotoNewWindow('center/message')">
+                <svg class="icon svg-icon" aria-hidden="true">
+                    <use xlink:href="#iconxiaoxix"></use>
+                </svg>
+            </div>
+            <div class="app-head-text">动态</div>
+            <div class="top_button right-button" @click="gotoScan">
+                <svg class="icon svg-icon" aria-hidden="true">
+                    <use xlink:href="#iconsaoyisaox"></use>
+                </svg>
+            </div>
+        </div>
+        <div id="app-content">
+            <div class="placeholder" v-bind:style="{'paddingTop': statusbarHeight + 'px'}"></div>
+            <van-pull-refresh
+                              v-model="page.isLoadingRefresh" 
+                              @refresh="onRefresh">
+                <van-tabs v-cloak
+                          sticky
+                          v-bind:offset-top="statusbarHeight"
+                          line-width="20"
+                          @change="tabChanged">
+                    <van-tab title="推荐">
+                        <div v-if="page.recommend.isLoading" class="loading-box p60">
+                            <van-loading color="black"></van-loading>
+                            <p class="loading-text">正在加载...</p>
+                        </div>
+                        <div v-else class="recommend">
+                            <div class="cell">
+                                <van-swipe class="swiper" autoplay="5000" indicator-color="white">
+                                    <van-swipe-item v-for="item in page.recommend.data.CaroueselList">
+                                        <img class="img" v-lazy="{'src':item.ImageSrc,'error':defaultImg.rectangle,'loading':defaultImg.rectangle}" />
+                                    </van-swipe-item>
+                                </van-swipe>
+                            </div>
+                            <div class="cell">
+                                <p class="title pd-0 clearfix">
+                                    <span class="name">精选周报</span>
+                                    <span class="right" @click="APP.GLOBAL.gotoNewWindow('dynamics/good.weekly')">
+                                        查看全部
+                                        <i class="iconfont iconchakanquanbux"></i>
+                                    </span>
+                                </p>
+                                <div v-if="page.recommend.data.WeeklyList.length === 0" class="none-data">
+                                    <i class="iconfont iconkecheng small"></i>
+                                    <p class="none-data-text">暂无数据</p>
+                                </div>
+                                <div v-else class="content week_report"
+                                     v-for="(item,index) in page.recommend.data.WeeklyList"
+                                     v-bind:key="index"
+                                     @click="gotoDeatil(item,1)">
+                                    <div class="left">
+                                        <img src="../content/img/thriver/thriver_report_item.png" />
+                                    </div>
+                                    <div class="right">
+                                        <p class="first" v-text="item.Title"></p>
+                                        <div class="last clearfix">
+                                            <span class="school" v-text="'#' + item.CollegeName + '#'"></span>
+                                            <span class="student" v-text="item.StudentName"></span>
+                                            <span class="message">
+                                                <i class="iconfont iconzhoubaoneirongpinglunx"></i>
+                                                <span v-text="item.CommentCount"></span>
+                                            </span>
+                                            <span class="message">
+                                                <i class="iconfont icongongkaishipindianzanx"></i>
+                                                <span v-text="item.LikeCount"></span>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="cell">
+                                <p class="title pd-0 clearfix">
+                                    <span class="name">公开课程</span>
+                                    <span class="right" @click="APP.GLOBAL.gotoNewWindow('dynamics/crouse.public')">
+                                        查看全部
+                                        <i class="iconfont iconchakanquanbux"></i>
+                                    </span>
+                                </p>
+                                <div v-if="page.recommend.data.PublicCourseList.length === 0" class="none-data">
+                                    <i class="iconfont iconkecheng small"></i>
+                                    <p class="none-data-text">暂无数据</p>
+                                </div>
+                                <div v-else class="content classes" @click="gotoDeatil(item,2)"
+                                     v-for="(item,index) in page.recommend.data.PublicCourseList"
+                                     v-bind:key="index">
+                                    <div class="left">
+                                        <img class="img" v-lazy="{'src':item.ImageSrc,'error':defaultImg.quare,'loading':defaultImg.quare}" />
+                                    </div>
+                                    <div class="right">
+                                        <p class="first" v-text="item.Name"></p>
+                                        <p class="center" v-text="!item.Introduce ? '暂无介绍' : item.Introduce"></p>
+                                        <div class="bottom clearfix">
+                                            <span class="time" v-text="'学时：' + item.Hours + '小时'"></span>
+                                            <!-- 暂时隐藏 <span class="number" v-text="item.BuyCount + '人加入学习'"></span>-->
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="cell">
+                                <p class="title pd-0 clearfix">
+                                    <span class="name">公开视频</span>
+                                    <span class="right" @click="APP.GLOBAL.gotoNewWindow('dynamics/video.public')">
+                                        查看全部
+                                        <i class="iconfont iconchakanquanbux"></i>
+                                    </span>
+                                </p>
+                                <div v-if="page.recommend.data.PublicVideoList.length === 0" class="none-data">
+                                    <i class="iconfont iconkecheng small"></i>
+                                    <p class="none-data-text">暂无数据</p>
+                                </div>
+                                <div v-else
+                                     v-for="item in page.recommend.data.PublicVideoList"
+                                     class="content videos"
+                                     @click="gotoDeatil(item, 3)">
+                                    <div class="left">
+                                        <img class="img" v-lazy="{'src':item.ImageSrc,'error':defaultImg.quare,'loading':defaultImg.quare}" />
+                                    </div>
+                                    <div class="right">
+                                        <p class="first" v-text="item.Title"></p>
+                                        <p class="center" v-text="!item.Des ? '暂无介绍' : item.Des"></p>
+                                        <p class="bottom clearfix">
+                                            <span class="lookNumber" v-text="item.LookCount + '人观看'"></span>
+                                            <span class="eduPlatform" v-text="'#' + item.CollegeName + '#'"></span>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </van-tab>
+                    <van-tab title="榜样">
+                        <div v-if="page.example.isLoading" class="loading-box p60">
+                            <van-loading color="black"></van-loading>
+                            <p class="loading-text">正在加载...</p>
+                        </div>
+                        <div v-else class="recommend star_student">
+                            <div class="cell">
+                                <van-swipe class="swiper" autoplay="5000" indicator-color="white">
+                                    <van-swipe-item v-for="item in page.example.data.CaroueselList">
+                                        <img class="img" v-lazy="{'src':item.ImageSrc,'error':defaultImg.rectangle,'loading':defaultImg.rectangle}" />
+                                    </van-swipe-item>
+                                </van-swipe>
+                            </div>
+                            <div class="cell">
+                                <p class="title pd-0">
+                                    <span class="name">
+                                        明星学生
+                                    </span>
+                                    <span class="right" @click="gotoListPage(2,'明星学生')">
+                                        查看全部
+                                        <i class="iconfont iconchakanquanbux"></i>
+                                    </span>
+                                </p>
+                                <div v-if="page.example.data.StarList.length === 0" class="none-data">
+                                    <i class="iconfont iconkecheng small"></i>
+                                    <p class="none-data-text">暂无数据</p>
+                                </div>
+                                <div v-else class="content" v-for="item in page.example.data.StarList" @click="gotoStudnetDetail(item)">
+                                    <div class="left">
+                                        <img class="img" v-lazy="{'src':item.ImageSrc,'error':defaultImg.quare,'loading':defaultImg.quare}" />
+                                    </div>
+                                    <div class="right w-100">
+                                        <p class="info1">
+                                            <span class="nick" v-text="item.RealName"></span>
+                                        </p>
+                                        <p class="info2" v-text="item.Motto">
+                                        </p>
+                                        <p class="info3" v-text="item.Company">
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="cell">
+                                <p class="title pd-0">
+                                    <span class="name">
+                                        进步学生
+                                    </span>
+                                    <span class="right" @click="gotoListPage(1,'进步学生')">
+                                        查看全部
+                                        <i class="iconfont iconchakanquanbux"></i>
+                                    </span>
+                                </p>
+                                <div v-if="page.example.data.StarList.length === 0" class="none-data">
+                                    <i class="iconfont iconkecheng small"></i>
+                                    <p class="none-data-text">暂无数据</p>
+                                </div>
+                                <div v-else class="content" @click="gotoStudnetDetail(item)" v-for="item in page.example.data.ProgressiveList">
+                                    <div class="left">
+                                        <img class="img" v-lazy="{'src':item.ImageSrc,'error':defaultImg.quare,'loading':defaultImg.quare}" />
+                                    </div>
+                                    <div class="right w-100">
+                                        <p class="info1">
+                                            <span class="nick" v-text="item.RealName"></span>
+                                            <span class="schoolname" v-text="'#' + item.CollegeName + '#'"></span>
+                                        </p>
+                                        <p class="info2" v-text="item.Motto"></p>
+                                        <p class="info3" v-text="item.Company"></p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="cell">
+                                <p class="title pd-0">
+                                    <span class="name">就业明星</span>
+                                    <span class="right" @click="gotoListPage(4,'就业明星')">
+                                        查看全部
+                                        <i class="iconfont iconchakanquanbux"></i>
+                                    </span>
+                                </p>
+                                <div v-if="page.example.data.EmploymentStarList.length === 0" class="none-data">
+                                    <i class="iconfont iconkecheng small"></i>
+                                    <p class="none-data-text">暂无数据</p>
+                                </div>
+                                <div v-else class="content" @click="gotoStudnetDetail(item)" v-for="item in page.example.data.EmploymentStarList">
+                                    <div class="left">
+                                        <img class="img" v-lazy="{'src':item.ImageSrc,'error':defaultImg.quare,'loading':defaultImg.quare}" />
+                                    </div>
+                                    <div class="right w-100">
+                                        <p class="info1">
+                                            <span class="nick" v-text="item.RealName"></span>
+                                            <span class="schoolname" v-text="'#' + item.CollegeName + '#'"></span>
+                                        </p>
+                                        <p class="info2" v-text="item.Motto"></p>
+                                        <p class="info3" v-text="item.Company"></p>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </van-tab>
+                    <van-tab title="校园头条">
+                        <div v-if="page.news.isLoading" class="loading-box p60">
+                            <van-loading color="black"></van-loading>
+                            <p class="loading-text">正在加载...</p>
+                        </div>
+                        <div v-else v-bind:style="{'minHeight':height+'px'}">
+                            <div v-if="page.news.data.length===0" class="normal_info">
+                                <img class="img" src="../content/img/center/cache_bg.png" />
+                                <p class="text">暂无数据</p>
+                            </div>
+                            <div v-else>
+                                <div class="recommend"
+                                     v-if="item.List.length !== 0"
+                                     v-for="item in page.news.data">
+                                    <div class="cell">
+                                        <p class="title">
+                                            <span class="name" v-text="item.Name">
+                                            </span>
+                                            <span class="right" @click="gotoNewsAll(item)">
+                                                查看全部
+                                                <i class="iconfont iconchakanquanbux"></i>
+                                            </span>
+                                        </p>
+                                        <div class="tabs" v-for="list in item.List" @click="gotoNewsDeatil(list.Id,item.Name)">
+                                            <img class="bg" v-lazy="list.ImageSrc" />
+                                            <div class="tabs_right">
+                                                <p class="title" v-text="list.Title"></p>
+                                                <div class="bottom clearfix">
+                                                    <span class="time" v-text="list.Time"></span>
+                                                    <span class="number" v-text="'浏览次数：' + list.LookCount"></span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </van-tab>
+                    <van-tab title="课程表">
+                        <div v-if="page.timetable.isLoading" class="loading-box p60">
+                            <van-loading color="black"></van-loading>
+                            <p class="loading-text">正在加载...</p>
+                        </div>
+                        <div v-else class="time_table_container">
+                            <div class="time_table_head van-hairline--bottom">
+                                <i class="arrow iconfont iconbaidifanhuianniux"
+                                   v-bind:class="{'dis': page.timetable.currentWeek <= 0}"
+                                   @click="previousWeek"></i>
+                                <div class="middle">
+                                    <span v-text="getBeginTime()"></span>
+                                    <span>至</span>
+                                    <span v-text="getEndTime()"></span>
+                                </div>
+                                <i class="arrow iconfont iconchakanquanbux"
+                                   v-bind:class="{'dis': page.timetable.currentWeek >= page.timetable.weekList.length - 1}"
+                                   @click="nextWeek"></i>
+                            </div>
+                            <div v-if="page.timetable.isLoadWeekList" class="loading-box p50">
+                                <van-loading color="black"></van-loading>
+                                <p class="loading-text">正在加载...</p>
+                            </div>
+                            <div v-else>
+                                <div v-if="page.timetable.table.length === 0" class="none-data p50">
+                                    <i class="iconfont iconc-kongzhuangtai small"></i>
+                                    <p class="none-data-text">暂无课程信息</p>
+                                </div>
+                                <ul class="time_table_rows">
+                                    <li class="time_table"
+                                        v-for="(item,index) in page.timetable.table"
+                                        v-bind:key="index"
+                                        v-bind:class="{'today': item.IsToday}">
+                                        <div class="time_table_left van-hairline--right"
+                                             v-text="getWeekName(item.WeekNum)"></div>
+                                        <div class="time_table_right"
+                                             v-if="!allEmpty(item.List)">
+                                            <ul>
+                                                <li class="inner_list"
+                                                    v-for="(course, cIndex) in item.List"
+                                                    v-bind:key="cIndex"
+                                                    v-if="course.ChapterName">
+                                                    <p class="name" v-text="course.ChapterName"></p>
+                                                    <p class="time line" v-text="course.Time"></p>
+                                                    <p class="pos line" v-text="course.Classroom"></p>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        <div v-else class="time_table_right empty">
+                                            无课程
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </van-tab>
+                </van-tabs>
+            </van-pull-refresh>
+        </div>
+    </div>
+    <script src="../content/js/vue.js"></script>
+    <script src="../content/js/vant.min.js"></script>
+    <script src="../content/js/base.js"></script>
+    <script src="../content/js/iconfont.js"></script>
+    <script src="../content/js/pages/dynamics.js"></script>
+</body>
+</html>

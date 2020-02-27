@@ -1,0 +1,43 @@
+﻿body, html {
+    background-color: #000000;
+}
+
+#app-head {
+    background-color: transparent !important;
+    color: white;
+}
+
+    #app-head .submit-button {
+        width: auto;
+    }
+
+#app {
+    height: 100%;
+}
+
+#scanControl {
+    width: 100%;
+    position: absolute;
+}
+
+.text {
+    width: 100%;
+    height: 50px;
+    position: absolute;
+    bottom: 0;
+    line-height: 50px;
+    text-align: center;
+    color: white;
+    display: flex;
+    justify-content: center;
+}
+
+    .text.safe {
+        padding-bottom: 30px;
+    }
+
+    .text button {
+        color: white;
+        font-size: .8em;
+        margin: 0 15px;
+    }

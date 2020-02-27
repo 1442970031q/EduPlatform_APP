@@ -1,0 +1,95 @@
+html,
+body {
+	background-color: #FFFFFF;
+}
+
+ 
+.content {
+	padding: 0 10px;
+}
+
+.content .title {
+	padding: 10px 0;
+	font-weight: bold;
+}
+
+.content .info {
+	font-size: 0.8em;
+}
+
+.content .text {
+	font-size: 0.8em;
+}
+
+.content .info .img {
+	width: 30px;
+	height: auto;
+	border-radius: 50px;
+	vertical-align: middle;
+}
+
+.content .info .name {
+	margin-left: 10px;
+}
+
+.content .info .time {
+	float: right;
+	color: #AAAAAA;
+}
+
+.content img {
+	width: 100%;
+	height: auto;
+}
+
+.bottom {
+	height: 40px;
+	background-color: #FFFFFF;
+	position: fixed;
+	width: 100%;
+	bottom: 0;
+	line-height: 40px;
+	padding: 0 10px;
+}
+
+@font-face {
+	font-family: writer-icon;
+	src:
+		url('data:application/x-font-woff2;charset=utf-8;base64,d09GMgABAAAAAALUAAsAAAAABogAAAKIAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAHEIGVgCCcAqBCIEQATYCJAMICwYABCAFhG0HPBvCBcgusG3YkyIhAgplXeaWPpijl0ME9fuxvf8OE4l0z6KJTGI6oYrFRskkmmiof2jN3VRpfkjbvOGSPE7vfje7d9wTNBHPNBq0RSA0IpnM0r5vgAs1fomSou4T907/BPog8513Oe5FY02a1AUYB1Kge2AUJVoogTeMXeAS7hNoNclNsdfW0w/0krUsEFeEiQB9LiolKzQLjTV7UzyDBs3VjfID8BR+P34EQ0+lobBaDi9b46Dh3WWXqGb+Z1z4BIgR0OEGFKwDkjitze5TCcaptGbVZoF9NQbvrv/a94i9OgX766z6djAOVfekdjW3qliBZDILgI1Rb6K092vGzefXszcmy93VzGX2tKL/9a141qEdl3Dz3sBVzsiQMMhWh5U5eBY7cj3+j9kyhQ43Qfc/00jFSg3xr5OR5Upd43aw8WBTUXDSUv4JWwDqy1vRCwRPbQzZav6a2xK8YnPhgvpUmtG8b1/wj9Q9B1LXWu4qVXVtsbJAde62Vq2owcFeP2NtAzdUDM0GbsvfZCJF0WyeTHYdDdpsoFGzTbRa0364TR+eSmQLVi0ChG4PqHR6QdHtk0z2Gw0G/aJRd6jQ6jzyzmyzGMTYzKOIiOIwOgpJjGax4xWNUWMvYqR0hM9qQ34Q8QJJwIDXXyy0oyzi59ggyExQFDHEPM3ANvAYSqcpZHmaRDHRmxBFtsrnw3Uv8sZoBhjt4iERIiQOihoFETFUFvZHi4ylz/dCGJK0CL6lr6Y8COEJyPRQgJe/B9luyvbqu5dnBDJGkEiEQRiPyoDawCwkLY2C2PpZSUiMyCsxIs2q4rOH4b4m7/qWzNcdg1aWvQr72qL3miCWZJm0lB1LUCkaoSMAAA==') format('woff2')
+}
+
+.bottom .input {
+	font-family: writer-icon;
+	background: #F0F0F0;
+	height: 25px;
+	border-radius: 50px;
+	width: 60%;
+	text-indent: 16px;
+}
+
+.bottom .post {
+	background-color: #53aaf6;
+	padding: 2px 10px;
+	border-radius: 50px;
+	color: #FFFFFF;
+	font-size: 0.9em;
+	margin-left: 15px;
+}
+
+.bottom .input::-webkit-input-placeholder {
+	font-size: 0.8em;
+	text-indent: 30px;
+}
+
+.bottom .w75 {
+	width: 75%;
+}
+
+.bottom .ml_2 {
+	margin-left: 10%;
+}
+
+.content .lable {
+	font-size: 0.8em;
+	color: #53aaf6;
+}

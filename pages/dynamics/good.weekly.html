@@ -1,0 +1,72 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no,viewport-fit=cover" />
+    <title></title>
+    <link href="../../content/css/base.css" rel="stylesheet" />
+    <link href="../../content/css/vant.css" rel="stylesheet" />
+    <link href="../../content/css/pages/dynamics/good.weekly.css" rel="stylesheet" />
+    <script src="html5plus://ready"></script>
+</head>
+<body>
+    <div id="app">
+        <div id="app-head" 
+             class="fixed van-hairline--bottom" 
+             v-bind:style="{'paddingTop': statusbarHeight + 'px'}">
+            <i id="app-back-button" class="iconfont iconbaidifanhuianniux right-back"></i>
+            <div class="app-head-text">精选周报</div>
+        </div>
+        <div id="app-content" v-bind:style="{'paddingTop': (statusbarHeight+45) + 'px'}">
+            <div v-if="isLoading" class="loading-box p60">
+                <van-loading color="black"></van-loading>
+                <p class="loading-text">正在加载...</p>
+            </div>
+            <div v-else v-cloak>
+                <div v-if="data.length==0" class="normal_info">
+                    <img class="img" src="../../content/img/center/cache_bg.png" />
+                    <p class="text">暂时还没有精选的周报</p>
+                </div>
+                <ul v-else>
+                    <li class="cell mt-10"
+                        v-for="(item,index) in data"
+                        v-bind:key="index"
+                        @click="gotoDetail(item)">
+                        <div class="content">
+                            <div class="left">
+                                <img class="img" src="../../content/img/thriver/thriver_report_item.png" />
+                            </div>
+                            <div class="right">
+                                <p class="first" v-text="item.Title"></p>
+                                <p class="last">
+                                    <span class="school" v-text="'#' + item.CollegeName + '#'"></span>
+                                    <span class="student" v-text="item.StudentName"></span>
+                                    <span class="like">
+                                        <i v-bind:class="{'red': item.IsLike}" class="iconfont icongongkaishipindianzanx"></i>
+                                        <span v-text="item.LikeCount" v-bind:class="{'red': item.IsLike}"></span>
+                                    </span>
+                                    <span class="message">
+                                        <i class="iconfont iconzhoubaoneirongpinglunx"></i>
+                                        <span v-text="item.CommentCount"></span>
+                                    </span>
+                                </p>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+                <div v-if="isLoadMore" class="load_more clearfix">
+                    <van-loading color="black"></van-loading>
+                    <span class="load_text">正在加载...</span>
+                </div>
+                <div v-if="isLoadComplete" class="load_more_complete">
+                    <span class="load_text">没有更多的数据了...</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="../../content/js/vue.js"></script>
+    <script src="../../content/js/vant.min.js"></script>
+    <script src="../../content/js/base.js"></script>
+    <script src="../../content/js/pages/dynamics/good.weekly.js"></script>
+</body>
+</html>

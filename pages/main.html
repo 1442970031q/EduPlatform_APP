@@ -1,0 +1,32 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <link href="../content/css/vant.css" rel="stylesheet" />
+    <link href="../content/css/base.css" rel="stylesheet" />
+    <link href="../content/css/main.css" rel="stylesheet" />
+    <script src="html5plus://ready"></script>
+</head>
+<body>
+    <div id="bottom" class="van-hairline--top">
+        <ul class="bottom_icon">
+            <li class="icon_style"
+                v-for="item in bottom"
+                v-key="item.Id"
+                @click="switchPage(item)">
+                <div class="icon">
+                    <svg class="svg-icon" aria-hidden="true">
+                        <use v-bind:xlink:href="currentIndex === item.Id ? item.selectIcon : item.Icon"></use>
+                    </svg>
+                </div>
+                <p v-text="item.name" class="name" v-bind:class="{'color': currentIndex === item.Id}"></p>
+            </li>
+        </ul>
+    </div>
+    <script src="../content/js/vue.js"></script>
+    <script src="../content/js/iconfont.js"></script>
+    <script src="../content/js/base.js"></script>
+    <script src="../content/js/pages/main.js"></script>
+</body>
+</html>

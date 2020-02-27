@@ -1,0 +1,185 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no,viewport-fit=cover" />
+		<title></title>
+		<link href="../../content/css/base.css" rel="stylesheet" />
+		<link href="../../content/css/vant.css" rel="stylesheet" />
+        <style>
+
+            .experience .content {
+                display: flex;
+                margin-top: 5px;
+                background-color: #FFFFFF;
+                padding:10px;
+            }
+                .experience .content:active {
+                    background-color:#fafafa;
+                }
+                .experience .content img {
+                    width: 100px;
+                    display: block;
+                    border-radius: 5px;
+                    height: 66.66px;
+                }
+
+                .experience .content .right {
+                    line-height: 33px;
+                    width: calc(100% - 105px);
+                    margin-left: 5px;
+                }
+
+                    .experience .content .right .p1 {
+                        font-size: .9em;
+                        overflow-x: hidden;
+                        text-overflow: ellipsis;
+                        white-space: nowrap;
+                    }
+
+                    .experience .content .right .p2 {
+                        font-size: .8em;
+                        color: #aaaaaa;
+                    }
+                        .experience .content .right .p2 .r {
+                            float: right;
+                            margin-right:5px;
+                        }
+        </style>
+		<script src="html5plus://ready"></script>
+	</head>
+	<body>
+		<div id="app">
+			<div id="app-head" class="fixed van-hairline--bottom" v-bind:style="{'paddingTop': statusbarHeight + 'px'}">
+				<i id="app-back-button" class="iconfont iconbaidifanhuianniux right-back"></i>
+				<div class="app-head-text" v-text="pageModel.page.Name"></div>
+			</div>
+            <div id="app-content" v-bind:style="{'paddingTop': (45 + statusbarHeight) + 'px'}">
+                <div v-if="pageModel.isLoadding" class="loading-box p60">
+                    <van-loading color="black"></van-loading>
+                    <p class="loading-text">正在加载...</p>
+                </div>
+                <div v-else v-cloak>
+                    <div v-if="pageModel.data.length===0" class="normal_info">
+                        <img class="img" src="../../content/img/employed/resume_bg.png" />
+                        <p class="text">暂无没有相关信息！</p>
+                    </div>
+                    <div v-else class="experience">
+                        <div class="content" v-for="list in pageModel.data" @click="gotoExperienceDeatil(list)">
+                            <img v-lazy="list.ImageSrc" />
+                            <div class="right">
+                                <p class="p1" v-text="list.Title"></p>
+                                <p class="p2">
+                                    <span v-text="'浏览次数'+list.LookCount"></span>
+                                    <span class="r" v-text="list.Time"></span>
+                                </p>
+                            </div>
+                        </div>
+                        <div v-show="pageModel.isLoadMore" class="load_more clearfix">
+                            <van-loading color="black"></van-loading>
+                            <span class="load_text">正在加载...</span>
+                        </div>
+                        <div v-show="pageModel.isLoadComplete" class="load_more_complete">
+                            <span class="load_text">没有更多的数据了...</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+		</div>
+		<script src="../../content/js/vue.js"></script>
+		<script src="../../content/js/vant.min.js"></script>
+		<script src="../../content/js/base.js"></script>
+		<script>
+            Vue.use(vant.Lazyload, {
+                'attempt': 1,
+                'error':'../../content/img/conversion/default_conversion_block.jpg',
+                'loading':'../../content/img/conversion/default_conversion_block.jpg'
+            });
+ 
+            var _vue = new Vue({
+                el: '#app',
+                data: {
+                    'currentUser': APP.GLOBAL.getUserModel(),
+                    'isLoading': true,
+                    'pageModel': {
+                        'page': {},
+                        'data': [],
+                        'isLoadding': true,
+                        'isLoadMore': false,
+                        'isLoadComplete': false
+                    },
+                    'form': {
+                        'pageIndex': 1,
+                        'pageSize': 15,
+                        'cId':''
+                    },
+                    'statusbarHeight': 20
+				},
+                methods: {
+                    'loadingPageData': function () {
+                        APP.GLOBAL.ajax({
+                            url: APP.CONFIG.BASE_URL + 'ObtainEmploymentHeadlineList',
+                            data: this.form,
+                            success: function (result) {
+                                if (result.Error) {
+                                    APP.GLOBAL.toastMsg(result.Msg);
+                                    return;
+                                }
+
+                                Vue.set(_vue.pageModel, 'data', result.Data);
+                                _vue.pageModel.isLoadding = false;
+                                _vue.form.pageIndex++;
+                            }
+                        });
+                    },
+                    'loadMore': function () {
+                        APP.GLOBAL.ajax({
+                            url: APP.CONFIG.BASE_URL +'ObtainEmploymentHeadlineList',
+                            data: this.form,
+                            success: function (result) {
+                                if (result.Error) {
+                                    APP.GLOBAL.toastMsg(result.Msg);
+                                    return;
+                                }
+
+                                var data = _vue.pageModel.data.concat(result.Data);
+                                Vue.set(_vue.pageModel, 'data', data);
+                                _vue.form.pageIndex++;
+                                _vue.pageModel.isLoadMore = false;
+                                if (_vue.form.pageSize > result.Data.length) {
+                                    _vue.pageModel.isLoadComplete = true;
+                                }
+                            }
+                        });
+                    },
+                    'gotoExperienceDeatil': function (item) {
+                        APP.GLOBAL.gotoNewWindow('experience.detail', {
+                            param: 'id=' + item.Id
+                        });
+                    },
+                    'scrollBottom': function (top) {
+                        if (top <= 0) return;
+
+                        if (!this.pageModel.isLoadMore && !this.pageModel.isLoadComplete) {
+                            this.pageModel.isLoadMore = true;
+                            this.loadMore();
+                        }
+                    }
+                },
+				created: function() {
+                    if (APP.CONFIG.IS_RUNTIME) {
+                        this.statusbarHeight = plus.navigator.getStatusbarHeight();
+
+                        var wb = plus.webview.currentWebview();
+                        this.pageModel.page = wb.paramObject;
+                        this.form.cId = this.pageModel.page.Id;
+                        this.loadingPageData();
+                    }
+                },
+                mounted: function () {
+                    window.scrollBottom = this.scrollBottom;
+                }
+			});
+		</script>
+	</body>
+</html>

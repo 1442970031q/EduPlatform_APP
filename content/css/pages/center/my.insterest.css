@@ -1,0 +1,111 @@
+.new {
+	padding: 10px;
+}
+
+.new .list {
+	margin-bottom: 10px;
+}
+
+.new .rec {
+	padding: 15px;
+	margin-bottom: 10px;
+	border-radius: 6px;
+	background-color: white;
+	box-shadow: 0 0 10px 0px #ececec;
+}
+
+.new .rec:active {
+	background-color: #f9f9f9;
+}
+
+.new .rec .user {
+	display: flex;
+	align-items: center;
+}
+
+.new .rec .user .focus {
+	font-size: 0.7em;
+	width: 70px;
+	height: 25px;
+	text-align: center;
+	line-height: 25px;
+	color: #02b9ff;
+}
+
+.new .rec .user .focus.van-hairline--surround::after {
+	border-radius: 6px;
+	border-color: #02b9ff;
+}
+
+.new .rec .user .focus.red {
+	color: #ff3838;
+}
+
+.new .rec .user .focus.red.van-hairline--surround::after {
+	border-radius: 6px;
+	border-color: #ff3838;
+}
+
+.new .rec .user .head {
+	width: 30px;
+	height: 30px;
+	border-radius: 50%;
+	display: block;
+}
+
+.new .rec .user .name {
+	font-size: 0.8em;
+	color: #777777;
+	line-height: 30px;
+	margin-left: 10px;
+	width: calc(100% - 110px);
+}
+
+.new .rec .tags {
+	display: flex;
+	margin-bottom: 5px;
+	flex-wrap: wrap;
+	line-height: 20px;
+}
+
+.new .rec .tags .tag {
+	font-size: .7em;
+	padding: 0 5px;
+	border-radius: 4px;
+	color: #53aaf6;
+	margin-right: 8px;
+	margin-bottom: 5px;
+}
+
+.new .rec .tags .tag.van-hairline--surround::after {
+	border-radius: 6px;
+	border-color: #227aff;
+}
+
+.new .rec .bottoms {
+	font-size: 0.8em;
+	color: #a1a1a1;
+	display: flex;
+	height: 20px;
+	line-height: 20px;
+}
+
+.new .rec .bottoms .w5 {
+	width: 50%;
+}
+
+.new .rec .value {
+	font-weight: bold;
+	margin: 15px 0;
+	font-size: 0.9em;
+	height: 25px;
+	width: 100%;
+	line-height: 25px;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+.txt-right {
+	text-align: right;
+}
